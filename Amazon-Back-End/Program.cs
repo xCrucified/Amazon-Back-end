@@ -1,4 +1,5 @@
-
+using data_access;
+using Amazon_Back_End;
 namespace Amazon_Back_End
 {
     public class Program
@@ -6,13 +7,16 @@ namespace Amazon_Back_End
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connStr = builder.Configuration.GetConnectionString("LocalDb")!;
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext(connStr);
+            builder.Services.AddIdentity();
+            builder.Services.AddRepositories();
+            //builder.Services.AddAutoMapper();
 
             var app = builder.Build();
 
