@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace business_logic.DTOs
 {
-    internal class UserToken
+    public class UserToken
     {
         public string RefreshToken { get; set; }
         public string AccessToken { get; set; }

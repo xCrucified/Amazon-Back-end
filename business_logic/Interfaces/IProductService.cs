@@ -14,6 +14,6 @@ namespace business_logic.Interfaces
         public IEnumerable<ProductDto> GetAll();
         public void Create(CreateProductModel productModel);
         public Task Delete(int id);
-        public Task Edit(ProductDto productDto);
+        public Task Edit(EditProductModel productEdit);
     }
 }

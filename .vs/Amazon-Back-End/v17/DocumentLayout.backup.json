@@ -1,0 +1,957 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\services\\localfileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\services\\localfileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\profiles\\applicationprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\profiles\\applicationprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\specifications\\refreshtokenspecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\specifications\\refreshtokenspecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\serviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\serviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6DAAA6D-988A-4D49-808B-ED314693535A}|Amazon-Back-End\\Amazon-Back-End.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\amazon-back-end\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6DAAA6D-988A-4D49-808B-ED314693535A}|Amazon-Back-End\\Amazon-Back-End.csproj|solutionrelative:amazon-back-end\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\usertoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\usertoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6DAAA6D-988A-4D49-808B-ED314693535A}|Amazon-Back-End\\Amazon-Back-End.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\amazon-back-end\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6DAAA6D-988A-4D49-808B-ED314693535A}|Amazon-Back-End\\Amazon-Back-End.csproj|solutionrelative:amazon-back-end\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6DAAA6D-988A-4D49-808B-ED314693535A}|Amazon-Back-End\\Amazon-Back-End.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\amazon-back-end\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6DAAA6D-988A-4D49-808B-ED314693535A}|Amazon-Back-End\\Amazon-Back-End.csproj|solutionrelative:amazon-back-end\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250112170735_reftokens2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data_access\\Migrations\\20250112170735_reftokens2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\helpers\\jwtoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\helpers\\jwtoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\data_access\\serviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|solutionrelative:data_access\\serviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\data_access\\data\\database\\samplecontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|solutionrelative:data_access\\data\\database\\samplecontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\data_access\\data\\database\\amazondbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|solutionrelative:data_access\\data\\database\\amazondbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\data_access\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|solutionrelative:data_access\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\data_access\\configs\\categoryconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|solutionrelative:data_access\\configs\\categoryconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\data_access\\configs\\productconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|solutionrelative:data_access\\configs\\productconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\data_access\\configs\\refreshtokenconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|solutionrelative:data_access\\configs\\refreshtokenconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250112165433_reftokens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data_access\\Migrations\\20250112165433_reftokens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\interfaces\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\interfaces\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\interfaces\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\interfaces\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\interfaces\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\interfaces\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\interfaces\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\interfaces\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\interfaces\\ifileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\interfaces\\ifileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\specifications\\productspecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\specifications\\productspecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\specifications\\categoryspecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\specifications\\categoryspecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\entities\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\entities\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\entities\\refund.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\entities\\refund.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\interfaces\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\interfaces\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\interfaces\\iwishlistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\interfaces\\iwishlistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\logoutmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\logoutmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\httpexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\httpexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\errors.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\errors.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\data_access\\data\\database\\modelbuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|solutionrelative:data_access\\data\\database\\modelbuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\editproductmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\editproductmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\editcategorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\editcategorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\createproductmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\createproductmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6DAAA6D-988A-4D49-808B-ED314693535A}|Amazon-Back-End\\Amazon-Back-End.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\amazon-back-end\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6DAAA6D-988A-4D49-808B-ED314693535A}|Amazon-Back-End\\Amazon-Back-End.csproj|solutionrelative:amazon-back-end\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\dtos\\createrefundmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\dtos\\createrefundmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\entities\\refreshtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\entities\\refreshtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\business_logic\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}|business_logic\\business_logic.csproj|solutionrelative:business_logic\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250107164404_fix.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data_access\\Migrations\\20250107164404_fix.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|c:\\users\\pc\\source\\repos\\amazon-back-end\\data_access\\migrations\\20250106171028_addcategories2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}|data_access\\data_access.csproj|solutionrelative:data_access\\migrations\\20250106171028_addcategories2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/AmazonDb/True/SqlTable/dbo.Products.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 392,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ServiceExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\ServiceExtensions.cs",
+              "RelativeDocumentMoniker": "business_logic\\ServiceExtensions.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\ServiceExtensions.cs",
+              "RelativeToolTip": "business_logic\\ServiceExtensions.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAEwCcAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:48:39.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\Amazon-Back-End\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Amazon-Back-End\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\Amazon-Back-End\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Amazon-Back-End\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T17:02:16.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RegisterModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\RegisterModel.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\RegisterModel.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\RegisterModel.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\RegisterModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:02:24.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserToken.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\UserToken.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\UserToken.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\UserToken.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\UserToken.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:50.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LocalFileService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\LocalFileService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Services\\LocalFileService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\LocalFileService.cs",
+              "RelativeToolTip": "business_logic\\Services\\LocalFileService.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAewCUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:26:46.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RefreshTokenSpecs.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Specifications\\RefreshTokenSpecs.cs",
+              "RelativeDocumentMoniker": "business_logic\\Specifications\\RefreshTokenSpecs.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Specifications\\RefreshTokenSpecs.cs",
+              "RelativeToolTip": "business_logic\\Specifications\\RefreshTokenSpecs.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAcwBsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:37:41.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationProfile.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Profiles\\ApplicationProfile.cs",
+              "RelativeDocumentMoniker": "business_logic\\Profiles\\ApplicationProfile.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Profiles\\ApplicationProfile.cs",
+              "RelativeToolTip": "business_logic\\Profiles\\ApplicationProfile.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:45:52.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\Amazon-Back-End\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Amazon-Back-End\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\Amazon-Back-End\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Amazon-Back-End\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:16:21.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SampleContextFactory.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\data\\Database\\SampleContextFactory.cs",
+              "RelativeDocumentMoniker": "data_access\\data\\Database\\SampleContextFactory.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\data\\Database\\SampleContextFactory.cs",
+              "RelativeToolTip": "data_access\\data\\Database\\SampleContextFactory.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:32.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\Amazon-Back-End\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "Amazon-Back-End\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\Amazon-Back-End\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "Amazon-Back-End\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:17:39.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "business_logic\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\User.cs",
+              "RelativeToolTip": "business_logic\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:53.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ServiceExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\ServiceExtensions.cs",
+              "RelativeDocumentMoniker": "data_access\\ServiceExtensions.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\ServiceExtensions.cs",
+              "RelativeToolTip": "data_access\\ServiceExtensions.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:49:15.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "20250112170735_reftokens2.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250112170735_reftokens2.cs",
+              "RelativeDocumentMoniker": "data_access\\Migrations\\20250112170735_reftokens2.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250112170735_reftokens2.cs",
+              "RelativeToolTip": "data_access\\Migrations\\20250112170735_reftokens2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T17:07:35.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "JwtOptions.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Helpers\\JwtOptions.cs",
+              "RelativeDocumentMoniker": "business_logic\\Helpers\\JwtOptions.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Helpers\\JwtOptions.cs",
+              "RelativeToolTip": "business_logic\\Helpers\\JwtOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T14:50:53.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AmazonDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\data\\Database\\AmazonDbContext.cs",
+              "RelativeDocumentMoniker": "data_access\\data\\Database\\AmazonDbContext.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\data\\Database\\AmazonDbContext.cs",
+              "RelativeToolTip": "data_access\\data\\Database\\AmazonDbContext.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAiwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:37.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\repository\\Repository.cs",
+              "RelativeDocumentMoniker": "data_access\\repository\\Repository.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\repository\\Repository.cs",
+              "RelativeToolTip": "data_access\\repository\\Repository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:39:23.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CategoryConfig.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Configs\\CategoryConfig.cs",
+              "RelativeDocumentMoniker": "data_access\\Configs\\CategoryConfig.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Configs\\CategoryConfig.cs",
+              "RelativeToolTip": "data_access\\Configs\\CategoryConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:30.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProductConfig.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Configs\\ProductConfig.cs",
+              "RelativeDocumentMoniker": "data_access\\Configs\\ProductConfig.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Configs\\ProductConfig.cs",
+              "RelativeToolTip": "data_access\\Configs\\ProductConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:29.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "RefreshTokenConfig.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Configs\\RefreshTokenConfig.cs",
+              "RelativeDocumentMoniker": "data_access\\Configs\\RefreshTokenConfig.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Configs\\RefreshTokenConfig.cs",
+              "RelativeToolTip": "data_access\\Configs\\RefreshTokenConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:52:43.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "20250112165433_reftokens.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250112165433_reftokens.cs",
+              "RelativeDocumentMoniker": "data_access\\Migrations\\20250112165433_reftokens.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250112165433_reftokens.cs",
+              "RelativeToolTip": "data_access\\Migrations\\20250112165433_reftokens.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:54:33.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\AccountService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Services\\AccountService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\AccountService.cs",
+              "RelativeToolTip": "business_logic\\Services\\AccountService.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAUwEEAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:00:57.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IAccountService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IAccountService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Interfaces\\IAccountService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IAccountService.cs",
+              "RelativeToolTip": "business_logic\\Interfaces\\IAccountService.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA9wAkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:00:40.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "IJwtService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IJwtService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Interfaces\\IJwtService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IJwtService.cs",
+              "RelativeToolTip": "business_logic\\Interfaces\\IJwtService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T14:45:15.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ICategoryService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\ICategoryService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Interfaces\\ICategoryService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\ICategoryService.cs",
+              "RelativeToolTip": "business_logic\\Interfaces\\ICategoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:46:45.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\ProductService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Services\\ProductService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\ProductService.cs",
+              "RelativeToolTip": "business_logic\\Services\\ProductService.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwDYAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:45:57.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\JwtService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Services\\JwtService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\JwtService.cs",
+              "RelativeToolTip": "business_logic\\Services\\JwtService.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T14:49:49.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\OrderService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Services\\OrderService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\OrderService.cs",
+              "RelativeToolTip": "business_logic\\Services\\OrderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T18:17:13.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "IFileService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IFileService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Interfaces\\IFileService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IFileService.cs",
+              "RelativeToolTip": "business_logic\\Interfaces\\IFileService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:48:35.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "CategoryDto.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\CategoryDto.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\CategoryDto.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\CategoryDto.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\CategoryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:41:59.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ICartService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\ICartService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Interfaces\\ICartService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\ICartService.cs",
+              "RelativeToolTip": "business_logic\\Interfaces\\ICartService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T08:49:30.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "CategoryService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\CategoryService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Services\\CategoryService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Services\\CategoryService.cs",
+              "RelativeToolTip": "business_logic\\Services\\CategoryService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:05:03.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "LoginModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\LoginModel.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\LoginModel.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\LoginModel.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\LoginModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:02:45.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "LoginResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\LoginResponseDto.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\LoginResponseDto.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\LoginResponseDto.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\LoginResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T15:57:21.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ProductSpecs.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Specifications\\ProductSpecs.cs",
+              "RelativeDocumentMoniker": "business_logic\\Specifications\\ProductSpecs.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Specifications\\ProductSpecs.cs",
+              "RelativeToolTip": "business_logic\\Specifications\\ProductSpecs.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:48:44.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "CategorySpecs.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Specifications\\CategorySpecs.cs",
+              "RelativeDocumentMoniker": "business_logic\\Specifications\\CategorySpecs.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Specifications\\CategorySpecs.cs",
+              "RelativeToolTip": "business_logic\\Specifications\\CategorySpecs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:48:45.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Review.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\Review.cs",
+              "RelativeDocumentMoniker": "business_logic\\Entities\\Review.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\Review.cs",
+              "RelativeToolTip": "business_logic\\Entities\\Review.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:52.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Refund.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\Refund.cs",
+              "RelativeDocumentMoniker": "business_logic\\Entities\\Refund.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\Refund.cs",
+              "RelativeToolTip": "business_logic\\Entities\\Refund.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:52.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "IOrderService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IOrderService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Interfaces\\IOrderService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IOrderService.cs",
+              "RelativeToolTip": "business_logic\\Interfaces\\IOrderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:45:49.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "business_logic\\Interfaces\\IRepository.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "business_logic\\Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T14:51:34.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "IWishListService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IWishListService.cs",
+              "RelativeDocumentMoniker": "business_logic\\Interfaces\\IWishListService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Interfaces\\IWishListService.cs",
+              "RelativeToolTip": "business_logic\\Interfaces\\IWishListService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T08:49:28.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "LogoutModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\LogoutModel.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\LogoutModel.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\LogoutModel.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\LogoutModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T14:44:02.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Errors.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Errors.Designer.cs",
+              "RelativeDocumentMoniker": "business_logic\\Errors.Designer.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Errors.Designer.cs",
+              "RelativeToolTip": "business_logic\\Errors.Designer.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:18:23.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "HttpException.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\HttpException.cs",
+              "RelativeDocumentMoniker": "business_logic\\HttpException.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\HttpException.cs",
+              "RelativeToolTip": "business_logic\\HttpException.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:39:12.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "ModelBuilderExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\data\\Database\\ModelBuilderExtensions.cs",
+              "RelativeDocumentMoniker": "data_access\\data\\Database\\ModelBuilderExtensions.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\data\\Database\\ModelBuilderExtensions.cs",
+              "RelativeToolTip": "data_access\\data\\Database\\ModelBuilderExtensions.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:31.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "OrderDto.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\OrderDto.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\OrderDto.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\OrderDto.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\OrderDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T18:48:04.742Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "ProductDto.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\ProductDto.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\ProductDto.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\ProductDto.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\ProductDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T18:16:40.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "EditProductModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\EditProductModel.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\EditProductModel.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\EditProductModel.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\EditProductModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:18:52.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "EditCategoryModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\EditCategoryModel.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\EditCategoryModel.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\EditCategoryModel.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\EditCategoryModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:18:50.024Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "CreateProductModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\CreateProductModel.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\CreateProductModel.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\CreateProductModel.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\CreateProductModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:44.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\Amazon-Back-End\\Program.cs",
+              "RelativeDocumentMoniker": "Amazon-Back-End\\Program.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\Amazon-Back-End\\Program.cs",
+              "RelativeToolTip": "Amazon-Back-End\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:36:56.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "CreateRefundModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\CreateRefundModel.cs",
+              "RelativeDocumentMoniker": "business_logic\\DTOs\\CreateRefundModel.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\DTOs\\CreateRefundModel.cs",
+              "RelativeToolTip": "business_logic\\DTOs\\CreateRefundModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T09:11:06.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "RefreshToken.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\RefreshToken.cs",
+              "RelativeDocumentMoniker": "business_logic\\Entities\\RefreshToken.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\RefreshToken.cs",
+              "RelativeToolTip": "business_logic\\Entities\\RefreshToken.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:51.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\Order.cs",
+              "RelativeDocumentMoniker": "business_logic\\Entities\\Order.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\business_logic\\Entities\\Order.cs",
+              "RelativeToolTip": "business_logic\\Entities\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:50.72Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "20250107164404_fix.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250107164404_fix.cs",
+              "RelativeDocumentMoniker": "data_access\\Migrations\\20250107164404_fix.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250107164404_fix.cs",
+              "RelativeToolTip": "data_access\\Migrations\\20250107164404_fix.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:44:05.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "20250106171028_addcategories2.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250106171028_addcategories2.cs",
+              "RelativeDocumentMoniker": "data_access\\Migrations\\20250106171028_addcategories2.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\data_access\\Migrations\\20250106171028_addcategories2.cs",
+              "RelativeToolTip": "data_access\\Migrations\\20250106171028_addcategories2.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:43:41.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "dbo.Products.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/AmazonDb/True/SqlTable/dbo.Products.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/AmazonDb/True/SqlTable/dbo.Products.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-01-07T16:43:16.829Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

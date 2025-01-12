@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using data_access.data;
 
-namespace data_access.data.configs
+namespace data_access.data.Database
 {
     internal class SampleContextFactory : IDesignTimeDbContextFactory<AmazonDbContext>
     {
@@ -17,7 +19,7 @@ namespace data_access.data.configs
 
             ConfigurationBuilder builder = new ConfigurationBuilder();
             builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("C:\\Users\\PC\\source\\repos\\Amazon-Back-end\\Amazon-Back-End\\appsettings.json");
+            builder.AddJsonFile("appsettings.json");
             IConfigurationRoot config = builder.Build();
 
             string? connectionString = config.GetConnectionString("LocalDb");

@@ -1,7 +1,8 @@
 ﻿using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
 using business_logic.Interfaces;
-using data_access.data.configs;
+using data_access;
+using data_access.data.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

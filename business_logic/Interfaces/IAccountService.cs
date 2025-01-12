@@ -1,0 +1,29 @@
+﻿using business_logic.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace business_logic.Interfaces
+{
+    public interface IAccountService
+    {
+        Task Register(RegisterModel model);
+        Task<LoginResponseDto> Login(LoginModel model);
+        Task Logout(string refreshToken);
+        Task<UserToken> RefreshTokens(UserToken tokens);
+
+        Task RemoveExpiredRefreshTokens();
+
+    }
+    public class ResetToken
+    {
+        public string Token { get; set; }
+    }
+    public class ResetPasswordModel
+    {
+        public string? NewPassword { get; set; }
+        public string Token { get; set; }
+    }
+}

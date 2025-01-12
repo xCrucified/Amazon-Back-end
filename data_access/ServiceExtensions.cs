@@ -1,6 +1,6 @@
 ﻿using business_logic.Entities;
 using business_logic.Interfaces;
-using data_access.data.configs;
+using data_access.data.Database;
 using data_access.repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

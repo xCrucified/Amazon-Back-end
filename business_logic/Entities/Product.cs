@@ -16,7 +16,7 @@ namespace business_logic.Entities
         public bool AvailableToPurchase { get; set; }
         public int Discount { get; set; }
         public int CategoryId { get; set; }
-        public ICollection<int> Rates { get; set; }
-        //public ICollection<KeyValuePair<string, string>> Properties { get; set; }
+        public Category Category { get; set; }
+        //public ICollection<int> Rates { get; set; }
     }
 }

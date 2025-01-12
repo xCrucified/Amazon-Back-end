@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using data_access.data.configs;
+using data_access.data.Database;
 
 #nullable disable
 
 namespace data_access.Migrations
 {
     [DbContext(typeof(AmazonDbContext))]
-    [Migration("20241229001644_Initial")]
-    partial class Initial
+    [Migration("20250106163228_addcategories")]
+    partial class addcategories
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,6 +158,80 @@ namespace data_access.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("business_logic.Entities.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Electronic"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Furniture"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Clothing"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Books"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Toys"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Sports"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Beauty & Health"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Automotive"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Groceries"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Home Appliances"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Garden & Outdoor"
+                        });
+                });
+
             modelBuilder.Entity("business_logic.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -189,10 +263,6 @@ namespace data_access.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.PrimitiveCollection<string>("Rates")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -201,11 +271,13 @@ namespace data_access.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("UserId");
 
                     b.HasIndex("UserId1");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("business_logic.Entities.User", b =>
@@ -277,20 +349,6 @@ namespace data_access.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "b0b00bdb-7620-493f-9fb7-f34952f32bea",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "43b521ef-57bd-46f1-b589-d0520b74e5f3",
-                            TwoFactorEnabled = false,
-                            UserName = "dota2player"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -346,6 +404,12 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.Product", b =>
                 {
+                    b.HasOne("business_logic.Entities.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("business_logic.Entities.User", null)
                         .WithMany("Cart")
                         .HasForeignKey("UserId");
@@ -353,6 +417,13 @@ namespace data_access.Migrations
                     b.HasOne("business_logic.Entities.User", null)
                         .WithMany("WishList")
                         .HasForeignKey("UserId1");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("business_logic.Entities.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("business_logic.Entities.User", b =>

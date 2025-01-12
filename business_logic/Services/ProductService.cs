@@ -3,6 +3,7 @@ using business_logic.DTOs;
 using business_logic.Entities;
 using business_logic.Interfaces;
 using business_logic.Specifications;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,8 @@ namespace business_logic.Services
     public class ProductService : IProductService
     {
         private readonly IMapper mapper;
-        private readonly IRepository<Product> productR; 
-
+        private readonly IRepository<Product> productR;
+        //private readonly IFileService fileService;
         public ProductService(IMapper mapper, IRepository<Product> productR)
         {
             this.mapper = mapper;
@@ -27,7 +28,30 @@ namespace business_logic.Services
 
         public void Create(CreateProductModel productModel)
         {
-            productR.Insert(mapper.Map<Product>(productModel));
+
+
+            var p = mapper.Map<Product>(productModel);
+
+            string root = Directory.GetCurrentDirectory();
+            string name = Guid.NewGuid().ToString();
+            string extension = Path.GetExtension(productModel.Image.FileName);
+            string fullName = name + extension;
+            string imageFolder = "images";
+
+            string imagePath = Path.Combine(imageFolder, fullName);
+            Directory.CreateDirectory(Path.Combine(root, imageFolder));
+            string imageFullPath = Path.Combine(root, imagePath);
+
+
+            using (FileStream fs = new FileStream(imageFullPath, FileMode.Create))
+            {
+                if (productModel.Image != null)
+                {
+                    productModel.Image.CopyTo(fs);
+                }
+            }
+            p.Image = fullName;
+            productR.Insert(p);
             productR.Save();
         }
 
@@ -41,9 +65,9 @@ namespace business_logic.Services
             productR.Save();
         }
 
-        public async Task Edit(ProductDto productDto)
+        public async Task Edit(EditProductModel productEdit)
         {
-            productR.Update(mapper.Map<Product>(productR));
+            productR.Update(mapper.Map<Product>(productEdit));
             productR.Save();
         }
 

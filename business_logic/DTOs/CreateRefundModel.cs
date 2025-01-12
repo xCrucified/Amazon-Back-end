@@ -8,7 +8,7 @@ namespace business_logic.DTOs
 {
     internal class CreateRefundModel
     {
-        public string Description { get; set; } // here will be reason for refund
+        public string Description { get; set; }
         public int OrderId { get; set; }
         public DateTime RefundDate { get; set; }
     }

@@ -10,6 +10,7 @@ namespace business_logic.Entities
     {
         public int Id { get; set; }
         public string ReviewText { get; set; }
+        public DateTime PostDate { get; set; }
         public int LikesCount { get; set; }
         public int DislikesCount { get; set; }
         public int Rate { get; set; }

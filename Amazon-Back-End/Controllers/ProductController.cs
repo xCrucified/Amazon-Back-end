@@ -7,42 +7,42 @@ namespace Amazon_Back_End.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductController : Controller
     {
-        public readonly IProductService _productService;
+        public readonly IProductService productService;
 
         public ProductController(IProductService productService)
         {
-            this._productService = productService;
+            this.productService = productService;
         }
 
         [HttpGet("all")]
-        public IActionResult GetAll() => Ok(this._productService.GetAll());
+        public IActionResult GetAll() => Ok(this.productService.GetAll());
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get([FromRoute] int id)
         {
-            return  Ok(await _productService.Get(id));
+            return  Ok(await productService.Get(id));
         }
 
         [HttpPost]
         public IActionResult Create([FromForm] CreateProductModel createProductModel)
         {
-            _productService.Create(createProductModel);
+            productService.Create(createProductModel);
             return Ok();
         }
 
         [HttpPut]
-        public async Task<IActionResult> Edit([FromBody] ProductDto product)
+        public async Task<IActionResult> Edit([FromForm] EditProductModel product)
         {
-            await _productService.Edit(product);
+            await productService.Edit(product);
             return Ok();
         }
         
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            await _productService.Delete(id);
+            await productService.Delete(id);
             return Ok();
         }
     }

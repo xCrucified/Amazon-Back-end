@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace business_logic.DTOs
 {
-    internal class CategoryDto
+    public class CategoryDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

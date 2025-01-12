@@ -15,6 +15,8 @@ namespace business_logic.Entities
         public string? AvatarPicture {  get; set; }
         public ICollection<Product> WishList { get; set; }
         public ICollection<Product> Cart { get; set; }
+        public ICollection<RefreshToken>? RefreshTokens { get; set; }
+
 
         //public decimal Balance { get; set; }
 

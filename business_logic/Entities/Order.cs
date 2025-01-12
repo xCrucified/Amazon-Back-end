@@ -12,7 +12,6 @@ namespace business_logic.Entities
         public int Count { get; set; }
         public DateTime PurchaseDate { get; set; }
         public string DeliveryAddress { get; set; }
-        public int ProductId { get; set; }
         public ICollection<Product> Products { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
