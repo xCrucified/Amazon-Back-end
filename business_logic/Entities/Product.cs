@@ -17,6 +17,6 @@ namespace business_logic.Entities
         public int Discount { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        //public ICollection<int> Rates { get; set; }
+        public ICollection<Review> Reviews { get; set; }
     }
 }

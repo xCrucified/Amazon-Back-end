@@ -38,6 +38,7 @@ namespace business_logic
             services.AddScoped<IFileService, LocalFileService>();
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IReviewService, ReviewService>();
         }
     }
 }

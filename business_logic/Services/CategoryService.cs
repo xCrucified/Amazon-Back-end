@@ -34,8 +34,6 @@ namespace business_logic.Services
         {
             if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            var pr = categoryR.GetById(id);
-
             categoryR.Delete(id);
             categoryR.Save();
         }

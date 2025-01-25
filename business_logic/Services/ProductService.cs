@@ -18,18 +18,14 @@ namespace business_logic.Services
     {
         private readonly IMapper mapper;
         private readonly IRepository<Product> productR;
-        //private readonly IFileService fileService;
         public ProductService(IMapper mapper, IRepository<Product> productR)
         {
             this.mapper = mapper;
             this.productR = productR;
         }
 
-
         public void Create(CreateProductModel productModel)
         {
-
-
             var p = mapper.Map<Product>(productModel);
 
             string root = Directory.GetCurrentDirectory();
@@ -58,8 +54,6 @@ namespace business_logic.Services
         public async Task Delete(int id)
         {
             if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
-
-            var pr = productR.GetById(id);
 
             productR.Delete(id);
             productR.Save();

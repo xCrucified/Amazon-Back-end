@@ -13,7 +13,8 @@ namespace business_logic.Entities
         public DateTime PurchaseDate { get; set; }
         public string DeliveryAddress { get; set; }
         public ICollection<Product> Products { get; set; }
-        public int UserId { get; set; }
+        public float SummaryPrice { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
     }
 }

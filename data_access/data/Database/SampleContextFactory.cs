@@ -22,8 +22,8 @@ namespace data_access.data.Database
             builder.AddJsonFile("appsettings.json");
             IConfigurationRoot config = builder.Build();
 
-            string? connectionString = config.GetConnectionString("LocalDb");
-            optionsBuilder.UseSqlServer(connectionString);
+            string? connectionString = config.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseNpgsql(connectionString);
             return new AmazonDbContext(optionsBuilder.Options);
         }
     }

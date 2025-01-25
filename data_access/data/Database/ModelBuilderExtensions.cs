@@ -11,7 +11,6 @@ namespace data_access.data.Database
 {
     public static class ModelBuilderExtensions
     {
-
         public static void SeedData(this ModelBuilder builder)
         {
             builder.Entity<Category>().HasData(new[]

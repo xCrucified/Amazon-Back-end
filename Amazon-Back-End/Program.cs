@@ -4,6 +4,11 @@ using Amazon_Back_End;
 using data_access.data;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.FileProviders;
+using Amazon_Back_End.Services;
+using business_logic.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
+using data_access.data.Database;
 namespace Amazon_Back_End
 {
     public class Program
@@ -11,9 +16,11 @@ namespace Amazon_Back_End
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            var connStr = builder.Configuration.GetConnectionString("LocalDb")!;
+            var connStr = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
-            // Add services to the container.
+            builder.Services.AddDbContext<AmazonDbContext>(options =>
+                    options.UseNpgsql(connStr));
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -23,8 +30,10 @@ namespace Amazon_Back_End
             builder.Services.AddAutoMapper();
             builder.Services.AddFluentValidators();
             builder.Services.AddCustomServices();
+            builder.Services.AddScoped<ICartService, CartService>();
 
             var app = builder.Build();
+
 
 
             // Configure the HTTP request pipeline.

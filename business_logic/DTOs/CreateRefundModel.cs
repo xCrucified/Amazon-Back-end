@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace business_logic.DTOs
 {
-    internal class CreateRefundModel
+    public class CreateRefundModel
     {
+        public string ReviewText { get; set; }
         public string Description { get; set; }
         public int OrderId { get; set; }
-        public DateTime RefundDate { get; set; }
+        public DateTime RefundDate { get; set; }    
     }
 }

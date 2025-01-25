@@ -14,7 +14,6 @@ namespace data_access.data.Database
 {
     public class AmazonDbContext : IdentityDbContext<User>
     {
-        public AmazonDbContext() { }
         public AmazonDbContext(DbContextOptions opt) : base(opt) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,8 +28,8 @@ namespace data_access.data.Database
         //{
         //    base.OnConfiguring(optionsBuilder);
 
-        //    optionsBuilder.UseSqlServer(@"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AmazonDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-            
+        //    optionsBuilder.UseSqlServer("NeonTechDatabase");
+
 
         //}
 

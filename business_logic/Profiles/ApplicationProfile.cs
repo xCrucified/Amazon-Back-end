@@ -26,6 +26,12 @@ namespace business_logic.Profiles
             CreateMap<Category, CategoryDto>();
             
             CreateMap<CategoryDto, Category>();
+
+            CreateMap<ReviewDto, Review>();
+            CreateMap<Review, ReviewDto>();
+            CreateMap<CreateReviewModel, Review>();
+
+            CreateMap<OrderDto, Order>();
             
             CreateMap<CreateCategoryModel, Category>();
             CreateMap<EditCategoryModel, Category>();
