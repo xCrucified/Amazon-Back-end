@@ -3,6 +3,9 @@ using business_logic.DTOs;
 using business_logic.Entities;
 using business_logic.Interfaces;
 using business_logic.Specifications;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -18,44 +21,49 @@ namespace business_logic.Services
     {
         private readonly IMapper mapper;
         private readonly IRepository<Product> productR;
-        public ProductService(IMapper mapper, IRepository<Product> productR)
+        private readonly IRepository<ProductImage> productimageR;
+        public readonly IImageHulk imageHulk;
+        private readonly IWebHostEnvironment environment;
+        private readonly string imageFolder = "Images";
+
+        
+        public ProductService(IMapper mapper, IRepository<Product> productR, IImageHulk hulk, IRepository<ProductImage> repository, IWebHostEnvironment environment)
         {
             this.mapper = mapper;
             this.productR = productR;
+            this.imageHulk = hulk;
+            this.productimageR = repository;
+            this.environment = environment;
         }
 
-        public void Create(CreateProductModel productModel)
+        public async void Create(CreateProductModel productModel)
         {
-            var p = mapper.Map<Product>(productModel);
-
-            string root = Directory.GetCurrentDirectory();
-            string name = Guid.NewGuid().ToString();
-            string extension = Path.GetExtension(productModel.Image.FileName);
-            string fullName = name + extension;
-            string imageFolder = "images";
-
-            string imagePath = Path.Combine(imageFolder, fullName);
-            Directory.CreateDirectory(Path.Combine(root, imageFolder));
-            string imageFullPath = Path.Combine(root, imagePath);
-
-
-            using (FileStream fs = new FileStream(imageFullPath, FileMode.Create))
+            var ProductToInsert = mapper.Map<Product>(productModel);
+            productR.Insert(ProductToInsert);
+            if (productModel.Images != null)
             {
-                if (productModel.Image != null)
+                foreach (var image in productModel.Images)
                 {
-                    productModel.Image.CopyTo(fs);
+                    var imageName = await imageHulk.Save(image);
+                    var imageProduct = new ProductImage
+                    {
+                        Product = ProductToInsert,
+                        Image = imageName
+                    };
+                    productimageR.Insert(imageProduct);
+                    productimageR.Save();
                 }
             }
-            p.Image = fullName;
-            productR.Insert(p);
             productR.Save();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int ID)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (ID < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            productR.Delete(id);
+            var product = mapper.Map<ProductDto>(Get(ID));
+
+            productR.Delete(ID);
             productR.Save();
         }
 
@@ -85,5 +93,7 @@ namespace business_logic.Services
         {
             return mapper.Map<List<ProductDto>>(await productR.GetListBySpec(new ProductSpecs.ByIds(ids)));
         }
+
+       
     }
 }

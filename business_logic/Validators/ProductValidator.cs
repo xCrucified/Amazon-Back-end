@@ -29,7 +29,6 @@ namespace business_logic.Validators
             RuleFor(x => x.Description).
                 MaximumLength(1200).NotEmpty();
 
-            RuleFor(x => x.Quantity).GreaterThanOrEqualTo(1).NotEmpty();
 
             RuleFor(x => x.CategoryId).NotEmpty().GreaterThanOrEqualTo(1);
             

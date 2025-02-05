@@ -57,6 +57,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.7.413, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -145,6 +149,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AWSSDK.Extensions.NETCore.Setup": {
+              "target": "Package",
+              "version": "[3.7.301, )"
+            },
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.7.413, )"
+            },
             "Ardalis.Specification": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -168,6 +180,10 @@
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[8.3.0, )"
+            },
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.1.6, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

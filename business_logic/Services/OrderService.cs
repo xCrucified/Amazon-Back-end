@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Cors.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,17 +37,20 @@ namespace business_logic.Services
             var ids = cartService.GetProductIds();
             var products = await productR.GetListBySpec(new ProductSpecs.ByIds(ids));
 
-            var order = new Order()
+            if (!products.ToList().Select(x => x.AvailableToPurchase).Contains(false))
             {
-                PurchaseDate = DateTime.Now,
-                UserId = userId,
-                Products = products.ToList()
-            };
+                var order = new Order()
+                {
+                    PurchaseDate = DateTime.Now,
+                    UserId = userId,
+                    Products = products.ToList()
+                };
 
-            orderR.Insert(order);
-            orderR.Save();
+                orderR.Insert(order);
+                orderR.Save();
+            }
+            else throw new HttpException("Some of products are not available for purchase now", HttpStatusCode.BadRequest);
         }
-
         public async Task<IEnumerable<OrderDto>> GetAllByUser(string userId)
         {
             var items = await orderR.GetListBySpec(new OrderSpecs.ByUser(userId));

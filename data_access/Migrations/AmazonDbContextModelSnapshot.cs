@@ -236,13 +236,6 @@ namespace data_access.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Count")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("DeliveryAddress")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -281,9 +274,6 @@ namespace data_access.Migrations
                     b.Property<int>("Discount")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -311,6 +301,28 @@ namespace data_access.Migrations
                     b.HasIndex("UserId1");
 
                     b.ToTable("Products", (string)null);
+                });
+
+            modelBuilder.Entity("business_logic.Entities.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages", (string)null);
                 });
 
             modelBuilder.Entity("business_logic.Entities.RefreshToken", b =>
@@ -497,7 +509,7 @@ namespace data_access.Migrations
             modelBuilder.Entity("business_logic.Entities.Order", b =>
                 {
                     b.HasOne("business_logic.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -526,6 +538,17 @@ namespace data_access.Migrations
                         .HasForeignKey("UserId1");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("business_logic.Entities.ProductImage", b =>
+                {
+                    b.HasOne("business_logic.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("business_logic.Entities.RefreshToken", b =>
@@ -576,6 +599,8 @@ namespace data_access.Migrations
             modelBuilder.Entity("business_logic.Entities.User", b =>
                 {
                     b.Navigation("Cart");
+
+                    b.Navigation("Orders");
 
                     b.Navigation("RefreshTokens");
 

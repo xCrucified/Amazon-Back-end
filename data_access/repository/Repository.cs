@@ -64,7 +64,6 @@ namespace data_access.repository
             context.SaveChanges();
         }
 
-        // working with specifications
         public async Task<IEnumerable<TEntity>> GetListBySpec(ISpecification<TEntity> specification)
         {
             return await ApplySpecification(specification).ToListAsync();

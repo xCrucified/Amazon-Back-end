@@ -196,8 +196,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Image",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "Name": "images[]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
         "IsRequired": false
       }
     ],
@@ -242,13 +242,8 @@
         "IsRequired": false
       },
       {
-        "Name": "ImageUrl",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "NewImage",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "Name": "images",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[business_logic.Entities.ProductImage, business_logic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       }
     ],

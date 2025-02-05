@@ -20,9 +20,9 @@ namespace business_logic.Specifications
         }
         public class All : Specification<Review>
         {
-            public All(int id)
+            public All()
             {
-                Query.Include(x => x.Id == id);
+                Query.Include(x => x.Product).Include(x => x.User);
             }
         }
         public class ByIds : Specification<Review>

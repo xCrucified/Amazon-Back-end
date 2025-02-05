@@ -17,24 +17,27 @@ namespace business_logic.Profiles
         {
             CreateMap<Product, ProductDto>();
             
-            CreateMap<ProductDto, Product>();
-            
-            CreateMap<CreateProductModel, Product>();
+            CreateMap<ProductDto, Product>()
+                .ForMember(x => x.ProductImages, opt =>
+                    opt.MapFrom(x => x.images == null ?
+                        new List<string>() : x.images.Select(pi => pi.Image).ToList()));
 
+            CreateMap<CreateProductModel, Product>()
+                .ForMember(x => x.ProductImages, opt => opt.Ignore()); ;
             CreateMap<EditProductModel, Product>();
-
-            CreateMap<Category, CategoryDto>();
             
+            
+            CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
+            CreateMap<CreateCategoryModel, Category>();
+            CreateMap<EditCategoryModel, Category>();
+            
 
             CreateMap<ReviewDto, Review>();
             CreateMap<Review, ReviewDto>();
             CreateMap<CreateReviewModel, Review>();
 
             CreateMap<OrderDto, Order>();
-            
-            CreateMap<CreateCategoryModel, Category>();
-            CreateMap<EditCategoryModel, Category>();
             CreateMap<RegisterModel, User>();
         }
     }

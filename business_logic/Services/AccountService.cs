@@ -83,6 +83,7 @@ namespace business_logic.Services
                 throw new HttpException("Users aged younger than 14 are forbidden from  using this site", HttpStatusCode.BadRequest);
             
             var NewUser = mapper.Map<User>(model);
+
             var res = await userManager.CreateAsync(NewUser, model.Password);
 
             if (!res.Succeeded)

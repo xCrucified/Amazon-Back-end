@@ -15,6 +15,8 @@ namespace data_access.Configs
         {
             builder.HasKey(x => x.Id);
             builder.ToTable("Orders");
+
+            builder.HasOne(x => x.User).WithMany(x => x.Orders);
         }
     }
 }

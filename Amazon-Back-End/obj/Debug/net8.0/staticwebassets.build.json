@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "QLv+00WxiTf7S5op2NM4TlWtFd0+eFh0xHsftsoPi5Y=",
+  "Hash": "O97K/VoVfTrJihAGoUOIcBQx55rJodVMWAuNDGN2gd8=",
   "Source": "Amazon-Back-End",
   "BasePath": "_content/Amazon-Back-End",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Amazon-Back-End\\wwwroot",
+      "Source": "Amazon-Back-End",
+      "ContentRoot": "C:\\Users\\PC\\source\\repos\\Amazon-Back-End\\Amazon-Back-End\\wwwroot\\",
+      "BasePath": "_content/Amazon-Back-End",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

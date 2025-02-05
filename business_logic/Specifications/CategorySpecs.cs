@@ -20,9 +20,9 @@ namespace business_logic.Specifications
         }
         public class All : Specification<Category>
         {
-            public All(int id)
+            public All()
             {
-                Query.Include(x => x.Id == id);
+                Query.Include(x => x.Id);
             }
         }
         public class ByIds : Specification<Category>

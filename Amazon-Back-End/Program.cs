@@ -9,6 +9,7 @@ using business_logic.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using data_access.data.Database;
+using business_logic.Services;
 namespace Amazon_Back_End
 {
     public class Program
@@ -20,6 +21,8 @@ namespace Amazon_Back_End
 
             builder.Services.AddDbContext<AmazonDbContext>(options =>
                     options.UseNpgsql(connStr));
+
+            builder.Services.AddScoped<IImageHulk, ImageHulk>();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -34,6 +37,16 @@ namespace Amazon_Back_End
 
             var app = builder.Build();
 
+            //var dirImage = builder.Configuration["ImageFolder"] ?? "uploading";
+            //var dirPath = Path.Combine(Directory.GetCurrentDirectory(), dirImage);
+            //if (!Directory.Exists(dirPath))
+            //    Directory.CreateDirectory(dirPath);
+
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(dirPath),
+            //    RequestPath = "/images"
+            //});
 
 
             // Configure the HTTP request pipeline.
@@ -43,25 +56,6 @@ namespace Amazon_Back_End
                 app.UseSwaggerUI();
             }
 
-            // Static file configuration
-            var imageDir = "images"; // Default directory
-            var dirPath = Path.Combine(Directory.GetCurrentDirectory(), imageDir);
-
-            // Ensure the directory exists
-            if (!Directory.Exists(dirPath))
-            {
-                Directory.CreateDirectory(dirPath);
-                Console.WriteLine($"Directory created at: {dirPath}");
-            }
-
-            // Configure static file serving
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(dirPath),
-                RequestPath = "/images"
-            });
-
-            app.UseHttpsRedirection();
 
             app.UseAuthorization();
 

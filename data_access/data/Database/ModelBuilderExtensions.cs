@@ -27,6 +27,10 @@ namespace data_access.data.Database
                 new Category { Id = 10, Name = "Home Appliances" },
                 new Category { Id = 11, Name = "Garden & Outdoor" },
             });
+
+            //builder.Entity<Product>().HasData(new[] {
+            //    new Product {Id = 1, Name = ""}            
+            //});
         }
     }
 }

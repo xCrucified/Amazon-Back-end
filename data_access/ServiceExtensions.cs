@@ -17,7 +17,7 @@ namespace data_access
     {
         public static void AddDbContext(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<AmazonDbContext>(opts => opts.UseSqlServer(connectionString));
+            services.AddDbContext<AmazonDbContext>(opts => opts.UseNpgsql(connectionString));
         }
 
         public static void AddRepositories(this IServiceCollection services)
