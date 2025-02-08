@@ -36,8 +36,5 @@
 		<ProjectReference Include="..\data_access\data_access.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="wwwroot\" />
-	</ItemGroup>
 
 </Project>
