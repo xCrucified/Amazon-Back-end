@@ -16,6 +16,5 @@ namespace business_logic.Entities
         public ICollection<Product>? Cart { get; set; }
         public ICollection<Review>? WrittenReviews { get; set; }
         public ICollection<RefreshToken>? RefreshTokens { get; set; }
-        public ICollection<Order> Orders { get; set; }
     }
 }

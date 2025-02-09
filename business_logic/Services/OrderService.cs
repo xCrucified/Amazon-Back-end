@@ -35,21 +35,24 @@ namespace business_logic.Services
         public async Task Create(string userId)
         {
             var ids = cartService.GetProductIds();
-            var products = await productR.GetListBySpec(new ProductSpecs.ByIds(ids));
 
-            if (!products.ToList().Select(x => x.AvailableToPurchase).Contains(false))
-            {
-                var order = new Order()
-                {
-                    PurchaseDate = DateTime.Now,
-                    UserId = userId,
-                    Products = products.ToList()
-                };
+            //var OrderProducts = new OrderProducts()
+            //{ };
 
-                orderR.Insert(order);
-                orderR.Save();
-            }
-            else throw new HttpException("Some of products are not available for purchase now", HttpStatusCode.BadRequest);
+            //if (!products.ToList().Select(x => x.AvailableToPurchase).Contains(false))
+            //{
+
+            //    var order = new Order()
+            //    {
+            //        PurchaseDate = DateTime.Now,
+            //        UserId = userId,
+            //        TotalPrice  
+            //    };
+
+            //    orderR.Insert(order);
+            //    orderR.Save();
+            //}
+            //else throw new HttpException("Some of products are not available for purchase now", HttpStatusCode.BadRequest);
         }
         public async Task<IEnumerable<OrderDto>> GetAllByUser(string userId)
         {

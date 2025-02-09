@@ -9,14 +9,12 @@ using System.Threading.Tasks;
 
 namespace data_access.Configs
 {
-    public class OrderConfig : IEntityTypeConfiguration<Order>
+    public class OrderProductConfig : IEntityTypeConfiguration<OrderProducts>
     {
-        public void Configure(EntityTypeBuilder<Order> builder)
+        public void Configure(EntityTypeBuilder<OrderProducts> builder)
         {
+            builder.ToTable("OrderProducts");
             builder.HasKey(x => x.Id);
-            builder.ToTable("Orders");
-
-
         }
     }
 }

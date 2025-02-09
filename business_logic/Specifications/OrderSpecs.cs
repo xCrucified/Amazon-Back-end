@@ -15,7 +15,7 @@ namespace business_logic.Specifications
         {
             public All()
             {
-                Query.Include(x => x.User).Include(x => x.Products);
+                Query.Include(x => x.User);
             }
         }
 
@@ -25,8 +25,7 @@ namespace business_logic.Specifications
             {
                 Query
                     .Where(x => x.UserId.Equals(userId))
-                    .Include(x => x.User)
-                    .Include(x => x.Products);
+                    .Include(x => x.User);
             }
         }
 
@@ -35,7 +34,6 @@ namespace business_logic.Specifications
             public ByDate(string UserId)
             {
                 Query.Where(x => x.UserId == UserId)
-                    .Include(x => x.Products)
                     .OrderBy(x => x.PurchaseDate);
             }
         }

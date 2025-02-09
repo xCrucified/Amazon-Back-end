@@ -20,17 +20,21 @@ namespace business_logic.Services
         private readonly IMapper mapper;
         private readonly IJwtService jwtService;
         private readonly IRepository<RefreshToken> refreshTokenR;
+        private readonly IImageHulk imageHulk;
+
         public AccountService(UserManager<User> userManager,
                                 SignInManager<User> signInManager,
                                 IRepository<RefreshToken> refreshTokenR,
                                 IMapper mapper,
-                                IJwtService jwtService)
+                                IJwtService jwtService,
+                                IImageHulk hulk)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.refreshTokenR = refreshTokenR;
             this.mapper = mapper;
             this.jwtService = jwtService;
+            this.imageHulk = hulk;
         }
 
         public async Task<LoginResponseDto> Login(LoginModel model)
@@ -50,17 +54,17 @@ namespace business_logic.Services
 
         public async Task<UserToken> RefreshTokens(UserToken ut)
         {
-            var refrestToken = await refreshTokenR.GetItemBySpec(new RefreshTokenSpecs.ByToken(ut.RefreshToken));
+            var refreshToken = await refreshTokenR.GetItemBySpec(new RefreshTokenSpecs.ByToken(ut.RefreshToken));
 
-            if (refrestToken == null) throw new HttpException(Errors.InvalidToken, HttpStatusCode.BadRequest);
+            if (refreshToken == null) throw new HttpException(Errors.InvalidToken, HttpStatusCode.BadRequest);
 
             var claims = jwtService.GetClaimsFromExpiredToken(ut.AccessToken);
             var newAccessToken = jwtService.CreateToken(claims);
             var newRefreshToken = jwtService.CreateRefreshToken();
 
-            refrestToken.Token = newRefreshToken;
+            refreshToken.Token = newRefreshToken;
 
-            refreshTokenR.Update(refrestToken);
+            refreshTokenR.Update(refreshToken);
             refreshTokenR.Save();
 
             var tokens = new UserToken()
@@ -85,6 +89,12 @@ namespace business_logic.Services
             var NewUser = mapper.Map<User>(model);
 
             var res = await userManager.CreateAsync(NewUser, model.Password);
+            if(model.AvatarPicture != null)
+            {
+                var imageName = await imageHulk.Save(model.AvatarPicture);
+                //productimageR.Insert(imageProduct);
+                //productimageR.Save();
+            }
 
             if (!res.Succeeded)
                 throw new HttpException(string.Join(" ", res.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);

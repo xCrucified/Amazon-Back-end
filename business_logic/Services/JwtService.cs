@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace business_logic.Services
 {
-    internal class JwtService : IJwtService
+    public class JwtService : IJwtService
     {
         private readonly IConfiguration configuration;
         private readonly UserManager<User> userManager;
@@ -31,12 +31,11 @@ namespace business_logic.Services
 
         public string CreateToken(IEnumerable<Claim> claims)
         {
-            // TODO: make separate method
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mala_Qwerty234924397fdhahfdkWsdafhisudhkjsd36asksdfh"));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-               //issuer: jwtOptions.Issuer,
+                issuer: jwtOptions.Issuer,
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(10000),
                 signingCredentials: credentials);
