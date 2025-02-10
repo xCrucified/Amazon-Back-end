@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using business_logic.DTOs;
+using business_logic.DTOs.User;
 using business_logic.Entities;
 using business_logic.Interfaces;
 using business_logic.Specifications;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -37,7 +40,19 @@ namespace business_logic.Services
             this.imageHulk = hulk;
         }
 
-        public async Task<LoginResponseDto> Login(LoginModel model)
+        public async Task<LoginResponseDto> LoginViaPhone(LoginModelPhone model)
+        {
+            var user = await userManager.Users.FirstOrDefaultAsync(x => x.PhoneNumber == model.PhoneNumber);
+            if (user == null || !await userManager.CheckPasswordAsync(user, model.Password))
+                throw new HttpException("Invalid user phone number or password.", HttpStatusCode.BadRequest);
+
+            return new LoginResponseDto
+            {
+                AccessToken = jwtService.CreateToken(jwtService.GetClaims(user)),
+                RefreshToken = CreateRefreshToken(user.Id).Token
+            };
+        }
+        public async Task<LoginResponseDto> LoginViaEmail(LoginModelEmail model)
         {
             var user = await userManager.FindByEmailAsync(model.Email);
             if (user == null || !await userManager.CheckPasswordAsync(user, model.Password))
@@ -140,5 +155,13 @@ namespace business_logic.Services
             var user = await userManager.FindByEmailAsync(email);
             return user != null;
         }
+
+        public async Task<bool> CheckPhoneNumberExistence(string phonenum)
+        {
+            var user = await userManager.Users.FirstOrDefaultAsync(x => x.PhoneNumber == phonenum);
+            return user != null;
+        }
+
+        
     }
 }

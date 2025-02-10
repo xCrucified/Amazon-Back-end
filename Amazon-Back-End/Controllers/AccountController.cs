@@ -1,8 +1,10 @@
 ﻿using business_logic.DTOs;
+using business_logic.DTOs.User;
 using business_logic.Interfaces;
 using business_logic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Amazon_Back_End.Controllers
 {
@@ -24,10 +26,16 @@ namespace Amazon_Back_End.Controllers
             return Ok();
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        [HttpPost("login-via-email")]
+        public async Task<IActionResult> LoginEmail([FromForm] LoginModelEmail model)
         {
-            return Ok(await accountService.Login(model));
+            return Ok(await accountService.LoginViaEmail(model));
+        }
+
+        [HttpPost("login-via-phone")]
+        public async Task<IActionResult> LoginPhone([FromForm] LoginModelPhone model)
+        {
+            return Ok(await accountService.LoginViaPhone(model));
         }
 
         [HttpPost("refreshTokens")]
@@ -49,5 +57,13 @@ namespace Amazon_Back_End.Controllers
             bool exists = await accountService.CheckEmailExistence(email);
             return Ok(new { exists });
         }
+
+        [HttpGet("check-phone-number")]
+        public async Task<IActionResult> CheckPhoneNumberExists([FromQuery] string phonenumber)
+        {
+            bool exists = await accountService.CheckPhoneNumberExistence(phonenumber);
+            return Ok(new { exists });
+        }
+
     }
 }
