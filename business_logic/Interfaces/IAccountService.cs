@@ -13,6 +13,7 @@ namespace business_logic.Interfaces
         Task<LoginResponseDto> Login(LoginModel model);
         Task Logout(string refreshToken);
         Task<UserToken> RefreshTokens(UserToken tokens);
+        public Task<bool> CheckEmailExistence(string email);
         Task RemoveExpiredRefreshTokens();
 
     }

@@ -2,6 +2,7 @@
 using business_logic.Interfaces;
 using business_logic.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Amazon_Back_End.Controllers
 {
@@ -9,7 +10,7 @@ namespace Amazon_Back_End.Controllers
     [ApiController]
     public class AccountController : Controller
     {
-        public readonly IAccountService accountService;
+        private readonly IAccountService accountService;
 
         public AccountController(IAccountService service)
         {
@@ -35,11 +36,18 @@ namespace Amazon_Back_End.Controllers
             return Ok(await accountService.RefreshTokens(tokens));
         }
 
-        [HttpPost("Logout")]
+        [HttpPost("logout")]
         public async Task<IActionResult> Logout(LogoutModel model)
         {
             await accountService.Logout(model.RefreshToken);
             return Ok();
+        }
+
+        [HttpGet("check-email")]
+        public async Task<IActionResult> CheckEmailExists([FromQuery] string email)
+        {
+            bool exists = await accountService.CheckEmailExistence(email);
+            return Ok(new { exists });
         }
     }
 }

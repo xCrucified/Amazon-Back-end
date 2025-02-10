@@ -41,16 +41,16 @@ namespace business_logic.Services
         {
             var user = await userManager.FindByEmailAsync(model.Email);
             if (user == null || !await userManager.CheckPasswordAsync(user, model.Password))
-                throw new HttpException("Invalid user login or password.", HttpStatusCode.BadRequest);
+                throw new HttpException("Invalid user email or password.", HttpStatusCode.BadRequest);
 
             return new LoginResponseDto
             {
                 AccessToken = jwtService.CreateToken(jwtService.GetClaims(user)),
                 RefreshToken = CreateRefreshToken(user.Id).Token
             };
-
         }
         
+
 
         public async Task<UserToken> RefreshTokens(UserToken ut)
         {
@@ -87,7 +87,7 @@ namespace business_logic.Services
                 throw new HttpException("Users aged younger than 14 are forbidden from  using this site", HttpStatusCode.BadRequest);
             
             var NewUser = mapper.Map<User>(model);
-
+            
             var res = await userManager.CreateAsync(NewUser, model.Password);
             if(model.AvatarPicture != null)
             {
@@ -131,6 +131,14 @@ namespace business_logic.Services
         }
 
         public async Task Logout(string refreshToken) => await signInManager.SignOutAsync();
-
+        public async Task<bool> CheckEmailExistence(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                throw new HttpException("Email is required.", HttpStatusCode.BadRequest);
+            }
+            var user = await userManager.FindByEmailAsync(email);
+            return user != null;
+        }
     }
 }

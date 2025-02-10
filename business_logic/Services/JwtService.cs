@@ -42,7 +42,7 @@ namespace business_logic.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
+            
         public IEnumerable<Claim> GetClaims(User user)
         {
             var claims = new List<Claim>
