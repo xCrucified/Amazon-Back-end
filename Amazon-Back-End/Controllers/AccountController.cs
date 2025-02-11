@@ -51,7 +51,7 @@ namespace Amazon_Back_End.Controllers
             return Ok();
         }
 
-        [HttpGet("{email:}")]
+        [HttpGet("check-email")]
         public async Task<IActionResult> CheckEmailExists([FromQuery] string email)
         {
             bool exists = await accountService.CheckEmailExistence(email);
