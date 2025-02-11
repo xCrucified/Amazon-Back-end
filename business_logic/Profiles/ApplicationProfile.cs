@@ -25,8 +25,14 @@ namespace business_logic.Profiles
             CreateMap<CreateProductModel, Product>()
                 .ForMember(x => x.ProductImages, opt => opt.Ignore()); ;
             CreateMap<EditProductModel, Product>();
-            
-            
+
+
+            CreateMap<ProductProperties, ProductPropertiesDto>();
+            CreateMap<ProductPropertiesDto, ProductProperties>();
+            CreateMap<CreateProductPropertiesModel, ProductProperties>();
+            CreateMap<EditProductPropertiesModel, ProductProperties>();
+
+
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
             CreateMap<CreateCategoryModel, Category>();

@@ -66,7 +66,6 @@ namespace business_logic.Services
 
             var sizes = _configuration["ImageSizes"].Split(",")
                     .Select(x => int.Parse(x));
-            //int[] sizes = [50, 150, 300, 600, 1200];
             foreach (var size in sizes)
             {
                 string dirSave = Path.Combine(Directory.GetCurrentDirectory(),

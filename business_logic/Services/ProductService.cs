@@ -59,7 +59,7 @@ namespace business_logic.Services
 
         public async Task Delete(int ID)
         {
-            if (ID < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (await Get(ID) == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
             var product = mapper.Map<ProductDto>(Get(ID));
 

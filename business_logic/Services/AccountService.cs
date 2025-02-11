@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Text;
+using System.Text;  
 using System.Threading.Tasks;
 
 namespace business_logic.Services
@@ -104,12 +104,6 @@ namespace business_logic.Services
             var NewUser = mapper.Map<User>(model);
             
             var res = await userManager.CreateAsync(NewUser, model.Password);
-            if(model.AvatarPicture != null)
-            {
-                var imageName = await imageHulk.Save(model.AvatarPicture);
-                //productimageR.Insert(imageProduct);
-                //productimageR.Save();
-            }
 
             if (!res.Succeeded)
                 throw new HttpException(string.Join(" ", res.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);

@@ -20,20 +20,20 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromForm] RegisterModel model)
+        public async Task<IActionResult> Register(RegisterModel model)
         {
             await accountService.Register(model);
             return Ok();
         }
 
         [HttpPost("login-via-email")]
-        public async Task<IActionResult> LoginEmail([FromForm] LoginModelEmail model)
+        public async Task<IActionResult> LoginEmail(LoginModelEmail model)
         {
             return Ok(await accountService.LoginViaEmail(model));
         }
 
         [HttpPost("login-via-phone")]
-        public async Task<IActionResult> LoginPhone([FromForm] LoginModelPhone model)
+        public async Task<IActionResult> LoginPhone(LoginModelPhone model)
         {
             return Ok(await accountService.LoginViaPhone(model));
         }
@@ -51,7 +51,7 @@ namespace Amazon_Back_End.Controllers
             return Ok();
         }
 
-        [HttpGet("check-email")]
+        [HttpGet("{email:}")]
         public async Task<IActionResult> CheckEmailExists([FromQuery] string email)
         {
             bool exists = await accountService.CheckEmailExistence(email);

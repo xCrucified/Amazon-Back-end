@@ -14,6 +14,5 @@ namespace business_logic.DTOs
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime Birthdate { get; set; }
-        public IFormFile? AvatarPicture { get; set; }
     }
 }

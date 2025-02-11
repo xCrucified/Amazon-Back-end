@@ -17,5 +17,6 @@ namespace business_logic.Entities
         public Category Category { get; set; }
         public ICollection<Review>? Reviews { get; set; }
         public virtual ICollection<ProductImage>? ProductImages { get; set; }
+        public ICollection<ProductProperties>? ProductProperties { get; set; }
     }
 }

@@ -11,7 +11,6 @@ namespace business_logic.Entities
     public class User : IdentityUser
     {
         public DateTime? BirthDate { get; set; }
-        public string? AvatarPicture {  get; set; }
         public ICollection<Product>? WishList { get; set; }
         public ICollection<Product>? Cart { get; set; }
         public ICollection<Review>? WrittenReviews { get; set; }
