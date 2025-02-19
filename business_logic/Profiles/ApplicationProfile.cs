@@ -30,7 +30,6 @@ namespace business_logic.Profiles
             CreateMap<ProductProperties, ProductPropertiesDto>();
             CreateMap<ProductPropertiesDto, ProductProperties>();
             CreateMap<CreateProductPropertiesModel, ProductProperties>();
-            CreateMap<EditProductPropertiesModel, ProductProperties>();
 
 
             CreateMap<Category, CategoryDto>();
