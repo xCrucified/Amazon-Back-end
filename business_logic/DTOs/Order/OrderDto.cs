@@ -9,9 +9,8 @@ namespace business_logic.DTOs
     public class OrderDto
     {
         public int Id { get; set; }
-        public int Count { get; set; }
-        public float SummaryPrice { get; set; }
         public string UserId { get; set; }
-        public IEnumerable<ProductDto> Products { get; set; }
+        public decimal TotalPrice { get; set; }
+        public DateTime PurchaseDate { get; set; }
     }
 }

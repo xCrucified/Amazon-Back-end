@@ -12,8 +12,8 @@ using data_access.data.Database;
 namespace data_access.Migrations
 {
     [DbContext(typeof(AmazonDbContext))]
-    [Migration("20250208193153_OrderFix")]
-    partial class OrderFix
+    [Migration("20250219181502_Connect")]
+    partial class Connect
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -270,9 +270,6 @@ namespace data_access.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
@@ -349,6 +346,32 @@ namespace data_access.Migrations
                     b.ToTable("ProductImages", (string)null);
                 });
 
+            modelBuilder.Entity("business_logic.Entities.ProductProperties", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductProperties");
+                });
+
             modelBuilder.Entity("business_logic.Entities.RefreshToken", b =>
                 {
                     b.Property<int>("Id")
@@ -416,9 +439,6 @@ namespace data_access.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
-
-                    b.Property<string>("AvatarPicture")
-                        .HasColumnType("text");
 
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("timestamp with time zone");
@@ -590,6 +610,17 @@ namespace data_access.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("business_logic.Entities.ProductProperties", b =>
+                {
+                    b.HasOne("business_logic.Entities.Product", "Product")
+                        .WithMany("ProductProperties")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("business_logic.Entities.RefreshToken", b =>
                 {
                     b.HasOne("business_logic.Entities.User", "User")
@@ -628,6 +659,8 @@ namespace data_access.Migrations
             modelBuilder.Entity("business_logic.Entities.Product", b =>
                 {
                     b.Navigation("ProductImages");
+
+                    b.Navigation("ProductProperties");
 
                     b.Navigation("Reviews");
                 });

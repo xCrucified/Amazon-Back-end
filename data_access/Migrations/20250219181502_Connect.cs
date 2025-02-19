@@ -5,7 +5,7 @@
 namespace data_access.Migrations
 {
     /// <inheritdoc />
-    public partial class ImageProd1 : Migration
+    public partial class Connect : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

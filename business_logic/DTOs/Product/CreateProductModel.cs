@@ -16,7 +16,7 @@ namespace business_logic.DTOs
         public int? CategoryId { get; set; }
         public string? Description { get; set; }
         public bool? AvailableToPurchase { get; set; }
-        [BindProperty(Name = "images[]")]
+        [BindProperty(Name = "Images List")]
         public IEnumerable<IFormFile>? Images {  get; set; }
     }
 }

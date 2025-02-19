@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace data_access.Configs
 {
-    public class OrderProductConfig : IEntityTypeConfiguration<OrderProducts>
+    public class OrderProductConfig : IEntityTypeConfiguration<OrderProduct>
     {
-        public void Configure(EntityTypeBuilder<OrderProducts> builder)
+        public void Configure(EntityTypeBuilder<OrderProduct> builder)
         {
             builder.ToTable("OrderProducts");
             builder.HasKey(x => x.Id);

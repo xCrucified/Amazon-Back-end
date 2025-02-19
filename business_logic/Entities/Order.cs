@@ -13,5 +13,6 @@ namespace business_logic.Entities
         public User User { get; set; }
         public decimal TotalPrice { get; set; }
         public DateTime PurchaseDate { get; set; }
+        public ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

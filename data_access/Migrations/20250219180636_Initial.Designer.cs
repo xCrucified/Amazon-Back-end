@@ -12,8 +12,8 @@ using data_access.data.Database;
 namespace data_access.Migrations
 {
     [DbContext(typeof(AmazonDbContext))]
-    [Migration("20250201153016_Fix")]
-    partial class Fix
+    [Migration("20250219180636_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,18 +239,11 @@ namespace data_access.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Count")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("DeliveryAddress")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<float>("SummaryPrice")
-                        .HasColumnType("real");
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -261,6 +254,32 @@ namespace data_access.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders", (string)null);
+                });
+
+            modelBuilder.Entity("business_logic.Entities.OrderProducts", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderProducts", (string)null);
                 });
 
             modelBuilder.Entity("business_logic.Entities.Product", b =>
@@ -281,15 +300,9 @@ namespace data_access.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Discount")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("integer");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
@@ -303,8 +316,6 @@ namespace data_access.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("OrderId");
 
                     b.HasIndex("UserId");
 
@@ -333,6 +344,32 @@ namespace data_access.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages", (string)null);
+                });
+
+            modelBuilder.Entity("business_logic.Entities.ProductProperties", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductProperties");
                 });
 
             modelBuilder.Entity("business_logic.Entities.RefreshToken", b =>
@@ -402,9 +439,6 @@ namespace data_access.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
-
-                    b.Property<string>("AvatarPicture")
-                        .HasColumnType("text");
 
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("timestamp with time zone");
@@ -519,12 +553,31 @@ namespace data_access.Migrations
             modelBuilder.Entity("business_logic.Entities.Order", b =>
                 {
                     b.HasOne("business_logic.Entities.User", "User")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("business_logic.Entities.OrderProducts", b =>
+                {
+                    b.HasOne("business_logic.Entities.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("business_logic.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("business_logic.Entities.Product", b =>
@@ -534,10 +587,6 @@ namespace data_access.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("business_logic.Entities.Order", null)
-                        .WithMany("Products")
-                        .HasForeignKey("OrderId");
 
                     b.HasOne("business_logic.Entities.User", null)
                         .WithMany("Cart")
@@ -553,7 +602,18 @@ namespace data_access.Migrations
             modelBuilder.Entity("business_logic.Entities.ProductImage", b =>
                 {
                     b.HasOne("business_logic.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("business_logic.Entities.ProductProperties", b =>
+                {
+                    b.HasOne("business_logic.Entities.Product", "Product")
+                        .WithMany("ProductProperties")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -596,21 +656,18 @@ namespace data_access.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("business_logic.Entities.Order", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("business_logic.Entities.Product", b =>
                 {
+                    b.Navigation("ProductImages");
+
+                    b.Navigation("ProductProperties");
+
                     b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("business_logic.Entities.User", b =>
                 {
                     b.Navigation("Cart");
-
-                    b.Navigation("Orders");
 
                     b.Navigation("RefreshTokens");
 

@@ -40,21 +40,21 @@ namespace business_logic.Services
         {
             var ProductToInsert = mapper.Map<Product>(productModel);
             productR.Insert(ProductToInsert);
+            productR.Save();
             if (productModel.Images != null)
             {
                 foreach (var image in productModel.Images)
                 {
                     var imageName = await imageHulk.Save(image);
-                    var imageProduct = new ProductImage
+                    var imageProduct = new ProductImagesDto
                     {
-                        Product = ProductToInsert,
-                        Image = imageName
+                        Image = imageName,
+                        ProductId = ProductToInsert.Id
                     };
-                    productimageR.Insert(imageProduct);
-                    productimageR.Save();
+                    productimageR.Insert(mapper.Map<ProductImage>(imageProduct));
                 }
             }
-            productR.Save();
+            productimageR.Save();
         }
 
         public async Task Delete(int ID)
