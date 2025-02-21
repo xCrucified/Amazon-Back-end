@@ -65,8 +65,6 @@ namespace business_logic.Services
             };
         }
         
-
-
         public async Task<UserToken> RefreshTokens(UserToken ut)
         {
             var refreshToken = await refreshTokenR.GetItemBySpec(new RefreshTokenSpecs.ByToken(ut.RefreshToken));
@@ -155,7 +153,5 @@ namespace business_logic.Services
             var user = await userManager.Users.FirstOrDefaultAsync(x => x.PhoneNumber == phonenum);
             return user != null;
         }
-
-        
     }
 }

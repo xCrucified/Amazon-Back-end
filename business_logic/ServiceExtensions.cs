@@ -3,6 +3,7 @@ using business_logic.Interfaces;
 using business_logic.Profiles;
 using business_logic.Services;
 using FluentValidation;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace business_logic
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IImageHulk, ImageHulk>();
+            services.AddScoped<IEmailSender, MailjetSender>();
         }
     }
 }
