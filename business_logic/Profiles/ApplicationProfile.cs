@@ -23,7 +23,7 @@ namespace business_logic.Profiles
                         new List<string>() : x.images.Select(pi => pi.Image).ToList()));
 
             CreateMap<CreateProductModel, Product>()
-                .ForMember(x => x.ProductImages, opt => opt.Ignore()); ;
+                 .ForMember(x => x.ProductImages, opt => opt.Ignore());
             CreateMap<EditProductModel, Product>();
 
 
@@ -39,6 +39,11 @@ namespace business_logic.Profiles
 
             CreateMap<ProductImage, ProductPropertiesDto>();
             CreateMap<ProductPropertiesDto, ProductProperties>();
+
+            CreateMap<Subcategory, SubcategoryDto>();
+            CreateMap<SubcategoryDto, Subcategory>();
+            CreateMap<CreateSubcategoryModel, Subcategory>();
+            CreateMap<EditSubcategoryModel, Subcategory>();
 
             CreateMap<ReviewDto, Review>();
             CreateMap<Review, ReviewDto>();

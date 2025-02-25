@@ -27,7 +27,7 @@ namespace Amazon_Back_End
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext(connStr);
+            //builder.Services.AddDbContext(connStr);
             builder.Services.AddIdentity();
             builder.Services.AddRepositories();
             builder.Services.AddAutoMapper();

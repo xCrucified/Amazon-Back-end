@@ -253,7 +253,7 @@ namespace data_access.Migrations
                     b.ToTable("Orders", (string)null);
                 });
 
-            modelBuilder.Entity("business_logic.Entities.OrderProducts", b =>
+            modelBuilder.Entity("business_logic.Entities.OrderProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -290,9 +290,6 @@ namespace data_access.Migrations
                     b.Property<bool>("AvailableToPurchase")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -304,6 +301,9 @@ namespace data_access.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
+                    b.Property<int>("SubcategoryId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("UserId")
                         .HasColumnType("text");
 
@@ -312,7 +312,7 @@ namespace data_access.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("SubcategoryId");
 
                     b.HasIndex("UserId");
 
@@ -427,6 +427,228 @@ namespace data_access.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Reviews", (string)null);
+                });
+
+            modelBuilder.Entity("business_logic.Entities.Subcategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Subcategories", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Name = "Mobile Phones"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            Name = "Laptops"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            Name = "Televisions"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 2,
+                            Name = "Sofas"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 2,
+                            Name = "Beds"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 2,
+                            Name = "Dining Tables"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 3,
+                            Name = "Men's Clothing"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 3,
+                            Name = "Women's Clothing"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 3,
+                            Name = "Kids' Clothing"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 4,
+                            Name = "Fiction"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 4,
+                            Name = "Non-Fiction"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 4,
+                            Name = "Educational"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 5,
+                            Name = "Action Figures"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 5,
+                            Name = "Board Games"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoryId = 5,
+                            Name = "Dolls"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CategoryId = 6,
+                            Name = "Fitness Equipment"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CategoryId = 6,
+                            Name = "Outdoor Sports"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CategoryId = 6,
+                            Name = "Team Sports"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CategoryId = 7,
+                            Name = "Skincare"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CategoryId = 7,
+                            Name = "Hair Care"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CategoryId = 7,
+                            Name = "Makeup"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CategoryId = 8,
+                            Name = "Car Accessories"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CategoryId = 8,
+                            Name = "Motorcycle Parts"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CategoryId = 8,
+                            Name = "Tires & Wheels"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CategoryId = 9,
+                            Name = "Fruits & Vegetables"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CategoryId = 9,
+                            Name = "Beverages"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CategoryId = 9,
+                            Name = "Snacks"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CategoryId = 10,
+                            Name = "Refrigerators"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CategoryId = 10,
+                            Name = "Washing Machines"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CategoryId = 10,
+                            Name = "Microwaves"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CategoryId = 11,
+                            Name = "Gardening Tools"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CategoryId = 11,
+                            Name = "Outdoor Furniture"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CategoryId = 11,
+                            Name = "BBQ & Grills"
+                        });
                 });
 
             modelBuilder.Entity("business_logic.Entities.User", b =>
@@ -558,10 +780,10 @@ namespace data_access.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("business_logic.Entities.OrderProducts", b =>
+            modelBuilder.Entity("business_logic.Entities.OrderProduct", b =>
                 {
                     b.HasOne("business_logic.Entities.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -579,9 +801,9 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.Product", b =>
                 {
-                    b.HasOne("business_logic.Entities.Category", "Category")
+                    b.HasOne("business_logic.Entities.Subcategory", "Subcategory")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("SubcategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -593,7 +815,7 @@ namespace data_access.Migrations
                         .WithMany("WishList")
                         .HasForeignKey("UserId1");
 
-                    b.Navigation("Category");
+                    b.Navigation("Subcategory");
                 });
 
             modelBuilder.Entity("business_logic.Entities.ProductImage", b =>
@@ -648,9 +870,25 @@ namespace data_access.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("business_logic.Entities.Subcategory", b =>
+                {
+                    b.HasOne("business_logic.Entities.Category", "Category")
+                        .WithMany("Subcategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("business_logic.Entities.Category", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Subcategories");
+                });
+
+            modelBuilder.Entity("business_logic.Entities.Order", b =>
+                {
+                    b.Navigation("OrderProducts");
                 });
 
             modelBuilder.Entity("business_logic.Entities.Product", b =>
@@ -660,6 +898,11 @@ namespace data_access.Migrations
                     b.Navigation("ProductProperties");
 
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("business_logic.Entities.Subcategory", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("business_logic.Entities.User", b =>

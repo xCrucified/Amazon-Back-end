@@ -21,16 +21,12 @@ namespace business_logic.Validators
                 .MinimumLength(3)
                 .NotEmpty();
 
-            RuleFor(x => x.Discount)
-                .LessThan(100)
-                .GreaterThan(1)
-                .NotEmpty();
 
             RuleFor(x => x.Description).
                 MaximumLength(1200).NotEmpty();
 
 
-            RuleFor(x => x.CategoryId).NotEmpty().GreaterThanOrEqualTo(1);
+            RuleFor(x => x.SubcategoryId).NotEmpty().GreaterThanOrEqualTo(1);
             
         }
     }

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Entities
+namespace business_logic.DTOs
 {
-    public class Category
+    public class CreateSubcategoryModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<Subcategory> Subcategories { get; set; } 
+        public int CategoryId { get; set; }
     }
 }

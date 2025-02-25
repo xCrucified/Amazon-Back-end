@@ -216,6 +216,26 @@ namespace data_access.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Subcategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CategoryId = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subcategories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Subcategories_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -225,7 +245,7 @@ namespace data_access.Migrations
                     Description = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
                     AvailableToPurchase = table.Column<bool>(type: "boolean", nullable: false),
-                    CategoryId = table.Column<int>(type: "integer", nullable: false),
+                    SubcategoryId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<string>(type: "text", nullable: true),
                     UserId1 = table.Column<string>(type: "text", nullable: true)
                 },
@@ -243,9 +263,9 @@ namespace data_access.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
+                        name: "FK_Products_Subcategories_SubcategoryId",
+                        column: x => x.SubcategoryId,
+                        principalTable: "Subcategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -365,6 +385,46 @@ namespace data_access.Migrations
                     { 11, "Garden & Outdoor" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Subcategories",
+                columns: new[] { "Id", "CategoryId", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "Mobile Phones" },
+                    { 2, 1, "Laptops" },
+                    { 3, 1, "Televisions" },
+                    { 4, 2, "Sofas" },
+                    { 5, 2, "Beds" },
+                    { 6, 2, "Dining Tables" },
+                    { 7, 3, "Men's Clothing" },
+                    { 8, 3, "Women's Clothing" },
+                    { 9, 3, "Kids' Clothing" },
+                    { 10, 4, "Fiction" },
+                    { 11, 4, "Non-Fiction" },
+                    { 12, 4, "Educational" },
+                    { 13, 5, "Action Figures" },
+                    { 14, 5, "Board Games" },
+                    { 15, 5, "Dolls" },
+                    { 16, 6, "Fitness Equipment" },
+                    { 17, 6, "Outdoor Sports" },
+                    { 18, 6, "Team Sports" },
+                    { 19, 7, "Skincare" },
+                    { 20, 7, "Hair Care" },
+                    { 21, 7, "Makeup" },
+                    { 22, 8, "Car Accessories" },
+                    { 23, 8, "Motorcycle Parts" },
+                    { 24, 8, "Tires & Wheels" },
+                    { 25, 9, "Fruits & Vegetables" },
+                    { 26, 9, "Beverages" },
+                    { 27, 9, "Snacks" },
+                    { 28, 10, "Refrigerators" },
+                    { 29, 10, "Washing Machines" },
+                    { 30, 10, "Microwaves" },
+                    { 31, 11, "Gardening Tools" },
+                    { 32, 11, "Outdoor Furniture" },
+                    { 33, 11, "BBQ & Grills" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -428,9 +488,9 @@ namespace data_access.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoryId",
+                name: "IX_Products_SubcategoryId",
                 table: "Products",
-                column: "CategoryId");
+                column: "SubcategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_UserId",
@@ -456,6 +516,11 @@ namespace data_access.Migrations
                 name: "IX_Reviews_UserId",
                 table: "Reviews",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Subcategories_CategoryId",
+                table: "Subcategories",
+                column: "CategoryId");
         }
 
         /// <inheritdoc />
@@ -502,6 +567,9 @@ namespace data_access.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Subcategories");
 
             migrationBuilder.DropTable(
                 name: "Categories");

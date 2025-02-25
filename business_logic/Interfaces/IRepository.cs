@@ -16,6 +16,8 @@ namespace business_logic.Interfaces
         void Delete(TEntity entityToDelete);
         void Update(TEntity entityToUpdate);
 
+        
+
         public Task<TEntity?> GetItemBySpec(ISpecification<TEntity> specification);
         public Task<IEnumerable<TEntity>> GetListBySpec(ISpecification<TEntity> specification);
 

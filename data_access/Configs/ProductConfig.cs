@@ -19,6 +19,7 @@ namespace data_access.Configs
             builder.ToTable("Products");
 
             builder.HasMany(x => x.Reviews).WithOne(x => x.Product).HasForeignKey(x => x.Id);
+            builder.HasOne(x => x.Subcategory).WithMany(x => x.Products).HasForeignKey(x => x.SubcategoryId);
         }
     }
 }

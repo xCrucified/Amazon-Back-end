@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace business_logic.Entities
 {
-    public class Category
+    public class Subcategory
     {
         public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
-        public ICollection<Subcategory> Subcategories { get; set; } 
+        public Category Category { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }
