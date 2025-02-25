@@ -27,26 +27,26 @@ namespace business_logic.Profiles
             CreateMap<EditProductModel, Product>();
 
 
-            CreateMap<ProductProperties, ProductPropertiesDto>();
-            CreateMap<ProductPropertiesDto, ProductProperties>();
+            CreateMap<ProductProperties, ProductPropertiesDto>().ReverseMap();
             CreateMap<CreateProductPropertiesModel, ProductProperties>();
 
-
-            CreateMap<Category, CategoryDto>();
-            CreateMap<CategoryDto, Category>();
-            CreateMap<CreateCategoryModel, Category>();
-            CreateMap<EditCategoryModel, Category>();
-
-            CreateMap<ProductImage, ProductPropertiesDto>();
-            CreateMap<ProductPropertiesDto, ProductProperties>();
-
-            CreateMap<Subcategory, SubcategoryDto>();
-            CreateMap<SubcategoryDto, Subcategory>();
+            CreateMap<Subcategory, SubcategoryDto>().ReverseMap();
             CreateMap<CreateSubcategoryModel, Subcategory>();
             CreateMap<EditSubcategoryModel, Subcategory>();
 
-            CreateMap<ReviewDto, Review>();
-            CreateMap<Review, ReviewDto>();
+            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<CreateCategoryModel, Category>();
+            CreateMap<EditCategoryModel, Category>();
+
+            CreateMap<ProductProperties, ProductPropertiesDto>().ReverseMap();
+            CreateMap<CreateProductPropertiesModel, ProductProperties>();
+            CreateMap<EditProductPropertiesModel, ProductProperties>();
+
+            CreateMap<Subcategory, SubcategoryDto>().ReverseMap();
+            CreateMap<CreateSubcategoryModel, Subcategory>();
+            CreateMap<EditSubcategoryModel, Subcategory>();
+
+            CreateMap<ReviewDto, Review>().ReverseMap();
             CreateMap<CreateReviewModel, Review>();
 
             CreateMap<OrderDto, Order>();

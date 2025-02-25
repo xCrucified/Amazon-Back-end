@@ -16,6 +16,13 @@ namespace business_logic.Services
     {
         private readonly IRepository<ProductProperties> _productPropertiesRepository;
         private readonly IMapper mapper;
+
+        public ProductPropertiesService(IRepository<ProductProperties> productPropertiesRepository, IMapper mapper)
+        {
+            _productPropertiesRepository = productPropertiesRepository;
+            this.mapper = mapper;
+        }
+
         public void Create(CreateProductPropertiesModel model)
         {
             var productProperties = mapper.Map<ProductProperties>(model);

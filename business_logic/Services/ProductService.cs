@@ -21,7 +21,7 @@ namespace business_logic.Services
     {
         private readonly IMapper mapper;
         private readonly IRepository<Product> productR;
-        //private readonly IRepository<ProductImage> productimageR;
+        private readonly IRepository<ProductImage> productimageR;
         public readonly IImageHulk imageHulk;
         private readonly IWebHostEnvironment environment;
         private readonly string imageFolder = "Images";
@@ -32,16 +32,29 @@ namespace business_logic.Services
             this.mapper = mapper;
             this.productR = productR;
             this.imageHulk = hulk;
-        //    this.productimageR = repository;
+            this.productimageR = repository;
             this.environment = environment;
         }
 
         public async Task Create(CreateProductModel productModel)
         {
             var ProductToInsert = mapper.Map<Product>(productModel);
-            
             productR.Insert(ProductToInsert);
             productR.Save();
+            if (productModel.Images != null)
+            {
+                foreach (var image in productModel.Images)
+                {
+                    var imageName = await imageHulk.Save(image);
+                    var imageProduct = new ProductImage
+                    {
+                        Image = imageName,
+                        ProductId = ProductToInsert.Id
+                    };
+                    productimageR.Insert(mapper.Map<ProductImage>(imageProduct));
+                }
+            }
+            productimageR.Save();
         }
 
         public async Task Delete(int ID)

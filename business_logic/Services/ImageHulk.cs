@@ -1,4 +1,5 @@
-﻿using business_logic.Interfaces;
+﻿using business_logic.Entities;
+using business_logic.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ namespace business_logic.Services
     public class ImageHulk : IImageHulk
     {
         private readonly IConfiguration _configuration;
+        public IRepository<ProductImage> productimageR { get; }
 
         public ImageHulk(IConfiguration conf)
         {
