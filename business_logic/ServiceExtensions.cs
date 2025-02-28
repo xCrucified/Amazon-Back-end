@@ -34,9 +34,9 @@ namespace business_logic
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductPropertiesService, ProductPropertiesService>();
             services.AddScoped<ISubcategoryService, SubcategoryService>();
-            services.AddScoped<IJwtService, JwtService>();
-            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IImageHulk, ImageHulk>();
             services.AddScoped<IEmailSender, MailjetSender>();
         }
