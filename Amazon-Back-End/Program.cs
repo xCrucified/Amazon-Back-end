@@ -59,6 +59,7 @@ namespace Amazon_Back_End
 
             app.UseAuthorization();
 
+            JobConfigurator.AddJobs();
 
             app.MapControllers();
 
