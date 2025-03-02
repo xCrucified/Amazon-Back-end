@@ -153,5 +153,17 @@ namespace business_logic.Services
             var user = await userManager.Users.FirstOrDefaultAsync(x => x.PhoneNumber == phonenum);
             return user != null;
         }
+
+        public async Task ChangeData(ChangeUserDataModel model)
+        {
+
+            var user = await userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+                throw new HttpException("User not found.", HttpStatusCode.NotFound);
+
+            //userManager.ChangeEmailAsync(user, model.Email, user.RefreshTokens);
+
+        }
     }
 }

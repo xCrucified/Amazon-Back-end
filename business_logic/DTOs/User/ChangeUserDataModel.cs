@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.DTOs
+namespace business_logic.DTOs.User
 {
-    public class LoginModelPhone
+    public class ChangeUserDataModel
     {
-        public string PhoneNumber { get; set; }
+        public string Id { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
     }
 }

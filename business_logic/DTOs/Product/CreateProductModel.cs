@@ -12,8 +12,6 @@ namespace business_logic.DTOs
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
-
-        [BindProperty(Name = "SubcategoryId here")]
         public int? SubcategoryId { get; set; }
         public string? Description { get; set; }
         public bool? AvailableToPurchase { get; set; }
