@@ -18,7 +18,9 @@ namespace business_logic.Interfaces
         public Task<bool> CheckEmailExistence(string email);
         Task RemoveExpiredRefreshTokens();
         Task<bool> CheckPhoneNumberExistence(string phoneNumber);
-        Task ChangeData(ChangeUserDataModel model);
+        Task ChangeEmail(EmailChangeModel model);
+        Task ChangePassword(PasswordChangeModel model);
+        Task ChangePhoneNumber(PhoneNumberChangeModel model);
     }
     public class ResetToken
     {

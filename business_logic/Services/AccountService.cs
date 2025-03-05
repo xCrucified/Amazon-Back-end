@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using business_logic.DTOs;
+using business_logic.DTOs;
 using business_logic.DTOs.User;
 using business_logic.Entities;
 using business_logic.Interfaces;
@@ -154,16 +155,55 @@ namespace business_logic.Services
             return user != null;
         }
 
-        public async Task ChangeData(ChangeUserDataModel model)
+        public async Task ChangeEmail(EmailChangeModel model)
         {
-
             var user = await userManager.FindByIdAsync(model.Id);
 
             if (user == null)
                 throw new HttpException("User not found.", HttpStatusCode.NotFound);
 
-            //userManager.ChangeEmailAsync(user, model.Email, user.RefreshTokens);
+            if (user.RefreshTokens == null || !user.RefreshTokens.Any())
+                throw new HttpException("No refresh tokens available.", HttpStatusCode.BadRequest);
 
+            var latestToken = user.RefreshTokens.OrderBy(x => x.CreationDate).LastOrDefault()?.Token;
+
+            if (string.IsNullOrEmpty(latestToken))
+                throw new HttpException("Latest refresh token is invalid.", HttpStatusCode.BadRequest);
+
+            var res = await userManager.ChangeEmailAsync(user, model.Email, latestToken);
+
+            if (!res.Succeeded)
+                throw new HttpException(string.Join(" ", res.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);
+
+        }
+
+        public async Task ChangePassword(PasswordChangeModel model)
+        {
+            var user = userManager.FindByIdAsync(model.Id);
+            
+            if (user == null)
+                throw new HttpException("User not found.", HttpStatusCode.NotFound);
+            
+            if(!userManager.CheckPasswordAsync(user.Result, model.OldPassword).Result)
+                throw new HttpException("Invalid old password.", HttpStatusCode.BadRequest);
+            
+            var res = userManager.ChangePasswordAsync(user.Result, model.OldPassword, model.NewPassword);
+
+            if (!res.Result.Succeeded)
+                throw new HttpException(string.Join(" ", res.Result.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);
+        }
+
+        public async Task ChangePhoneNumber(PhoneNumberChangeModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+                throw new HttpException("User not found.", HttpStatusCode.NotFound);
+
+            var res = await userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+
+            if (!res.Succeeded)
+                throw new HttpException(string.Join(" ", res.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);
         }
     }
 }

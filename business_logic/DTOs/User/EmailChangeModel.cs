@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace business_logic.DTOs.User
 {
-    public class ChangeUserDataModel
+    public class EmailChangeModel
     {
         public string Id { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
     }
 }

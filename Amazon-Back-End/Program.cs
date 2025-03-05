@@ -2,6 +2,7 @@ using data_access;
 using business_logic;
 using Amazon_Back_End;
 using data_access.data;
+using Hangfire.PostgreSql;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.FileProviders;
 using Amazon_Back_End.Services;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using data_access.data.Database;
 using business_logic.Services;
+using Hangfire;
 namespace Amazon_Back_End
 {
     public class Program
@@ -17,23 +19,24 @@ namespace Amazon_Back_End
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            var connStr = builder.Configuration.GetConnectionString("DefaultConnection")!;
+            var ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
             builder.Services.AddDbContext<AmazonDbContext>(options =>
-                    options.UseNpgsql(connStr));
+                    options.UseNpgsql(ConnectionString));
 
             builder.Services.AddScoped<IImageHulk, ImageHulk>();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            //builder.Services.AddDbContext(connStr);
             builder.Services.AddIdentity();
             builder.Services.AddRepositories();
             builder.Services.AddAutoMapper();
             builder.Services.AddFluentValidators();
             builder.Services.AddCustomServices();
             builder.Services.AddScoped<ICartService, CartService>();
+
+            builder.Services.AddHangfire(ConnectionString);
 
             var app = builder.Build();
 
@@ -49,7 +52,6 @@ namespace Amazon_Back_End
             });
 
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -59,7 +61,9 @@ namespace Amazon_Back_End
 
             app.UseAuthorization();
 
+            app.UseHangfireDashboard("/dash");
             JobConfigurator.AddJobs();
+
 
             app.MapControllers();
 

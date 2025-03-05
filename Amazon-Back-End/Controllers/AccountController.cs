@@ -26,7 +26,26 @@ namespace Amazon_Back_End.Controllers
             return Ok();
         }
 
+        [HttpPost("change-email")]
+        public async Task<IActionResult> ChangeEmail(EmailChangeModel model)
+        {
+            await accountService.ChangeEmail(model);
+            return Ok();
+        }
 
+        [HttpPost("change-phone-number")]
+        public async Task<IActionResult> ChangePhoneNumber(PhoneNumberChangeModel model)
+        {
+            await accountService.ChangePhoneNumber(model);
+            return Ok();
+        }
+
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword(PasswordChangeModel model)
+        {
+            await accountService.ChangePassword(model);
+            return Ok();
+        }
 
         [HttpPost("login-via-email")]
         public async Task<IActionResult> LoginEmail(LoginModelEmail model)
