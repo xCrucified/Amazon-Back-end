@@ -52,11 +52,11 @@ namespace Amazon_Back_End
             });
 
 
-            if (app.Environment.IsDevelopment())
-            {
+            //if (app.Environment.IsDevelopment())
+            //{
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            //}
 
 
             app.UseAuthorization();
