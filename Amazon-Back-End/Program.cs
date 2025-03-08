@@ -62,7 +62,7 @@ namespace Amazon_Back_End
             app.UseAuthorization();
 
             app.UseHangfireDashboard("/dash");
-            JobConfigurator.AddJobs();
+            //JobConfigurator.AddJobs();
 
 
             app.MapControllers();

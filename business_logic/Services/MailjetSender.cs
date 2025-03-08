@@ -3,19 +3,21 @@ using Mailjet.Client;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
-using Mailjet.Client.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using business_logic.Entities;
+using Mailjet.Client.Resources;
 
 namespace business_logic.Services
 {
     public class MailjetSender : IEmailSender
     {
         private readonly IConfiguration _configuration;
-        public MailjetSender(IConfiguration configuration)
+        public MailjetSender(IConfiguration configuration, UserManager<Entities.User> user)
         {
             _configuration = configuration;
         }
@@ -30,7 +32,7 @@ namespace business_logic.Services
             {
                 Resource = Send.Resource,
             }
-               .Property(Send.FromEmail, "onyxsupport@gmail.com")
+               .Property(Send.FromEmail, "onyxsupport@ukr.net")
                .Property(Send.FromName, "Onyx")
                .Property(Send.Subject, subject)
                .Property(Send.HtmlPart, htmlMessage)
@@ -42,5 +44,6 @@ namespace business_logic.Services
 
             await client.PostAsync(request);
         }
+
     }
 }

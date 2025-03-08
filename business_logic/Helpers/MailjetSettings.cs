@@ -11,4 +11,5 @@ namespace business_logic.Helpers
         public string ApiKey { get; set; }
         public string ApiSecret { get; set; }
     }
+
 }
