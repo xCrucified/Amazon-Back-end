@@ -11,7 +11,6 @@ namespace Amazon_Back_End
             {
                 config.UsePostgreSqlStorage(connectionString);
             });
-
             services.AddHangfireServer();
         }
     }

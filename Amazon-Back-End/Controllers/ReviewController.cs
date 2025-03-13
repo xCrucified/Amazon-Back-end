@@ -1,7 +1,10 @@
 ﻿using business_logic.DTOs;
 using business_logic.Interfaces;
 using business_logic.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static Amazon_Back_End.Helpers.SeedExtension;
 
 namespace Amazon_Back_End.Controllers
 {
@@ -34,6 +37,7 @@ namespace Amazon_Back_End.Controllers
         }
         
         [HttpDelete("{id::int}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete(int id)
         {
             await reviewService_.Delete(id);

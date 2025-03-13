@@ -2,6 +2,8 @@
 using business_logic.DTOs.User;
 using business_logic.Interfaces;
 using business_logic.Services;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
@@ -25,6 +27,8 @@ namespace Amazon_Back_End.Controllers
             await accountService.Register(model);
             return Ok();
         }
+
+
 
         [HttpPost("change-email")]
         public async Task<IActionResult> ChangeEmail(EmailChangeModel model)
@@ -59,6 +63,13 @@ namespace Amazon_Back_End.Controllers
             return Ok(await accountService.LoginViaPhone(model));
         }
 
+        [HttpPost("login-via-google")]
+        public IActionResult LoginViaGoogle()
+        {
+            var properties = new AuthenticationProperties { RedirectUri = "/api/auth/google-response" };
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        }
+
         [HttpPost("refreshTokens")]
         public async Task<IActionResult> RefreshTokens(UserToken tokens)
         {
@@ -78,6 +89,7 @@ namespace Amazon_Back_End.Controllers
             bool exists = await accountService.CheckEmailExistence(email);
             return Ok(new { exists });
         }
+
 
         [HttpGet("check-phone-number")]
         public async Task<IActionResult> CheckPhoneNumberExists([FromQuery] string phonenumber)

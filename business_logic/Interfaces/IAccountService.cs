@@ -1,8 +1,10 @@
 ﻿using business_logic.DTOs;
 using business_logic.DTOs.User;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +15,9 @@ namespace business_logic.Interfaces
         Task Register(RegisterModel model);
         Task<LoginResponseDto> LoginViaEmail(LoginModelEmail model);
         Task<LoginResponseDto> LoginViaPhone(LoginModelPhone model);
+        ChallengeResult LoginViaGoogle();
+        Task<object> HandleGoogleResponse();
+        object GetUserProfile(ClaimsPrincipal user);
         Task Logout(string refreshToken);
         Task<UserToken> RefreshTokens(UserToken tokens);
         public Task<bool> CheckEmailExistence(string email);

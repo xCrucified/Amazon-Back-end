@@ -5,13 +5,19 @@ using business_logic.DTOs.User;
 using business_logic.Entities;
 using business_logic.Interfaces;
 using business_logic.Specifications;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Text;  
 using System.Threading.Tasks;
 
@@ -25,6 +31,7 @@ namespace business_logic.Services
         private readonly IJwtService jwtService;
         private readonly IRepository<RefreshToken> refreshTokenR;
         private readonly IImageHulk imageHulk;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public AccountService(UserManager<User> userManager,
                                 SignInManager<User> signInManager,
@@ -89,6 +96,8 @@ namespace business_logic.Services
 
             return tokens;
         }
+
+
 
         public async Task Register(RegisterModel model)
         {
@@ -204,6 +213,36 @@ namespace business_logic.Services
 
             if (!res.Succeeded)
                 throw new HttpException(string.Join(" ", res.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);
+        }
+
+        public ChallengeResult LoginViaGoogle()
+        {
+            var properties = new AuthenticationProperties { RedirectUri = "/api/auth/google-response" };
+            return new ChallengeResult(GoogleDefaults.AuthenticationScheme, properties);
+        }
+        public async Task<object> HandleGoogleResponse()
+        {
+            var authenticateResult = await _httpContextAccessor.HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (!authenticateResult.Succeeded)
+                return new { Message = "Google authentication failed." };
+
+            var claims = authenticateResult.Principal.Identities.FirstOrDefault()?.Claims
+                .Select(c => new { c.Type, c.Value });
+
+            return new
+            {
+                Message = "Google Authentication successful",
+                User = claims
+            };
+        }
+
+        public object GetUserProfile(ClaimsPrincipal user)
+        {
+            return new
+            {
+                Name = user.FindFirst(ClaimTypes.Name)?.Value,
+                Email = user.FindFirst(ClaimTypes.Email)?.Value
+            };
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using business_logic.DTOs;
 using business_logic.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static Amazon_Back_End.Helpers.SeedExtension;
 
 namespace Amazon_Back_End.Controllers
 {
@@ -24,6 +27,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public IActionResult Create([FromBody] CreateSubcategoryModel model)
         {
             subcategoryService.Create(model);
@@ -31,6 +35,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPut]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Edit([FromBody] EditSubcategoryModel model)
         {
             await subcategoryService.Edit(model);
@@ -38,6 +43,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpDelete]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await subcategoryService.Delete(id);
