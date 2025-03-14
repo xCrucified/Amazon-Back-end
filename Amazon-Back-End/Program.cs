@@ -53,7 +53,7 @@ namespace Amazon_Back_End
             //    options.CallbackPath = "/signin-google";
             //});
 
-            builder.Services.AddHttpContextAccessor();
+            //builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IImageHulk, ImageHulk>();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
