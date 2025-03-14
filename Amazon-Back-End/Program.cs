@@ -28,16 +28,16 @@ namespace Amazon_Back_End
                     options.UseNpgsql(ConnectionString));
 
 
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllOrigins",
-                    policyBuilder =>
-                    {
-                        policyBuilder.AllowAnyOrigin()
-                                     .AllowAnyMethod()
-                                     .AllowAnyHeader();
-                    });
-            });
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAllOrigins",
+            //        policyBuilder =>
+            //        {
+            //            policyBuilder.AllowAnyOrigin()
+            //                         .AllowAnyMethod()
+            //                         .AllowAnyHeader();
+            //        });
+            //});
 
 
             //builder.Services.AddAuthentication(options =>
