@@ -217,7 +217,7 @@ namespace business_logic.Services
 
         public ChallengeResult LoginViaGoogle()
         {
-            var properties = new AuthenticationProperties { RedirectUri = "/api/auth/google-response" };
+            var properties = new AuthenticationProperties { RedirectUri = "/api/Account/login-via-google" };
             return new ChallengeResult(GoogleDefaults.AuthenticationScheme, properties);
         }
         public async Task<object> HandleGoogleResponse()

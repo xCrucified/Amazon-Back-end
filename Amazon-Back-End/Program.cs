@@ -27,33 +27,31 @@ namespace Amazon_Back_End
             builder.Services.AddDbContext<AmazonDbContext>(options =>
                     options.UseNpgsql(ConnectionString));
 
+            
 
-            //builder.Services.AddCors(options =>
-            //{
-            //    options.AddPolicy("AllowAllOrigins",
-            //        policyBuilder =>
-            //        {
-            //            policyBuilder.AllowAnyOrigin()
-            //                         .AllowAnyMethod()
-            //                         .AllowAnyHeader();
-            //        });
-            //});
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            })
+
+            .AddCookie()
+            .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+            {
+                options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+                options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+                options.CallbackPath = "/signin-google";
+            });
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Ensure HTTPS
+                options.Cookie.SameSite = SameSiteMode.None;  // Required for OAuth
+            });
 
 
-            //builder.Services.AddAuthentication(options =>
-            //{
-            //    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-            //})
-            //.AddCookie()
-            //.AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
-            //{
-            //    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-            //    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-            //    options.CallbackPath = "/signin-google";
-            //});
-
-            //builder.Services.AddHttpContextAccessor();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IImageHulk, ImageHulk>();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -70,15 +68,23 @@ namespace Amazon_Back_End
 
             var app = builder.Build();
 
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:5000")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            });
+
             using (var scope = app.Services.CreateScope())
             {
                 scope.ServiceProvider.CreateRoles().Wait();
                 scope.ServiceProvider.SeedAdmin().Wait();
             }
 
-
             var dirImage = builder.Configuration["ImageFolder"] ?? "uploading";
             var dirPath = Path.Combine(Directory.GetCurrentDirectory(), dirImage);
+
             if (!Directory.Exists(dirPath))
                 Directory.CreateDirectory(dirPath);
 
@@ -88,13 +94,13 @@ namespace Amazon_Back_End
                 RequestPath = "/images"
             });
 
-            //app.UseCors("AllowAllOrigins");
 
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            
 
             app.UseAuthentication();
 

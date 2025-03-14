@@ -64,10 +64,9 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPost("login-via-google")]
-        public IActionResult LoginViaGoogle()
+        public  IActionResult LoginViaGoogle()
         {
-            var properties = new AuthenticationProperties { RedirectUri = "/api/auth/google-response" };
-            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+            return Ok(accountService.LoginViaGoogle());
         }
 
         [HttpPost("refreshTokens")]
