@@ -88,7 +88,7 @@ namespace Amazon_Back_End
                 RequestPath = "/images"
             });
 
-            app.UseCors("AllowAllOrigins");
+            //app.UseCors("AllowAllOrigins");
 
             if (app.Environment.IsDevelopment())
             {
