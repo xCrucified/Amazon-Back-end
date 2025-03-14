@@ -12,77 +12,76 @@ namespace Amazon_Back_End.Controllers
     [ApiController]
     public class AccountController : Controller
     {
-        private readonly IAccountService accountService;
-
+        private readonly IAccountService _accountService;
         public AccountController(IAccountService service)
         {
-            this.accountService = service;
+            this._accountService = service;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterModel model)
         {
-            await accountService.Register(model);
+            await _accountService.Register(model);
             return Ok();
         }
 
         [HttpPost("change-email")]
         public async Task<IActionResult> ChangeEmail(EmailChangeModel model)
         {
-            await accountService.ChangeEmail(model);
+            await _accountService.ChangeEmail(model);
             return Ok();
         }
 
         [HttpPost("change-phone-number")]
         public async Task<IActionResult> ChangePhoneNumber(PhoneNumberChangeModel model)
         {
-            await accountService.ChangePhoneNumber(model);
+            await _accountService.ChangePhoneNumber(model);
             return Ok();
         }
 
         [HttpPost("change-password")]
         public async Task<IActionResult> ChangePassword(PasswordChangeModel model)
         {
-            await accountService.ChangePassword(model);
+            await _accountService.ChangePassword(model);
             return Ok();
         }
 
         [HttpPost("login-via-email")]
         public async Task<IActionResult> LoginEmail(LoginModelEmail model)
         {
-            return Ok(await accountService.LoginViaEmail(model));
+            return Ok(await _accountService.LoginViaEmail(model));
         }
 
         [HttpPost("login-via-phone")]
         public async Task<IActionResult> LoginPhone(LoginModelPhone model)
         {
-            return Ok(await accountService.LoginViaPhone(model));
+            return Ok(await _accountService.LoginViaPhone(model));
         }
 
         [HttpPost("refreshTokens")]
         public async Task<IActionResult> RefreshTokens(UserToken tokens)
         {
-            return Ok(await accountService.RefreshTokens(tokens));
+            return Ok(await _accountService.RefreshTokens(tokens));
         }
 
         [HttpPost("logout")]
         public async Task<IActionResult> Logout(LogoutModel model)
         {
-            await accountService.Logout(model.RefreshToken);
+            await _accountService.Logout(model.RefreshToken);
             return Ok();
         }
 
         [HttpGet("check-email")]
         public async Task<IActionResult> CheckEmailExists([FromQuery] string email)
         {
-            bool exists = await accountService.CheckEmailExistence(email);
+            bool exists = await _accountService.CheckEmailExistence(email);
             return Ok(new { exists });
         }
 
         [HttpGet("check-phone-number")]
         public async Task<IActionResult> CheckPhoneNumberExists([FromQuery] string phonenumber)
         {
-            bool exists = await accountService.CheckPhoneNumberExistence(phonenumber);
+            bool exists = await _accountService.CheckPhoneNumberExistence(phonenumber);
             return Ok(new { exists });
         }
 

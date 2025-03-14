@@ -37,19 +37,28 @@ namespace Amazon_Back_End
             builder.Services.AddScoped<ICartService, CartService>();
 
             builder.Services.AddHangfire(ConnectionString);
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost", policy =>
+                {
+                    policy.WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
             var app = builder.Build();
 
-            var dirImage = builder.Configuration["ImageFolder"] ?? "uploading";
-            var dirPath = Path.Combine(Directory.GetCurrentDirectory(), dirImage);
-            if (!Directory.Exists(dirPath))
-                Directory.CreateDirectory(dirPath);
-
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(dirPath),
-                RequestPath = "/images"
-            });
+            // var dirImage = builder.Configuration["ImageFolder"] ?? "uploading";
+            // var dirPath = Path.Combine(Directory.GetCurrentDirectory(), dirImage);
+            // if (!Directory.Exists(dirPath))
+            //     Directory.CreateDirectory(dirPath);
+            //
+            // app.UseStaticFiles(new StaticFileOptions
+            // {
+            //     FileProvider = new PhysicalFileProvider(dirPath),
+            //     RequestPath = "/images"
+            // });
 
 
             //if (app.Environment.IsDevelopment())
@@ -57,7 +66,8 @@ namespace Amazon_Back_End
                 app.UseSwagger();
                 app.UseSwaggerUI();
             //}
-
+            
+            app.UseCors("AllowLocalhost");
 
             app.UseAuthorization();
 
