@@ -30,7 +30,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPost]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public IActionResult Create([FromForm] CreateProductModel createProductModel)
         {
             productService.Create(createProductModel);
