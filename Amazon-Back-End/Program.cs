@@ -28,26 +28,26 @@ namespace Amazon_Back_End
                     options.UseNpgsql(ConnectionString));
 
 
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-            })
+            //builder.Services.AddAuthentication(options =>
+            //{
+            //    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            //})
 
-            .AddCookie()
-            .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
-            {
-                options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-                options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-                options.CallbackPath = "/signin-google";
-            });
+            //.AddCookie()
+            //.AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+            //{
+            //    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+            //    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            //    options.CallbackPath = "/signin-google";
+            //});
 
-            builder.Services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.HttpOnly = true;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Ensure HTTPS
-                options.Cookie.SameSite = SameSiteMode.None;  // Required for OAuth
-            });
+            //builder.Services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Ensure HTTPS
+            //    options.Cookie.SameSite = SameSiteMode.None;  // Required for OAuth
+            //});
 
 
             builder.Services.AddHttpContextAccessor();
