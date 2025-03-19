@@ -27,7 +27,6 @@ namespace Amazon_Back_End
             builder.Services.AddDbContext<AmazonDbContext>(options =>
                     options.UseNpgsql(ConnectionString));
 
-            
 
             builder.Services.AddAuthentication(options =>
             {
