@@ -15,9 +15,6 @@ namespace business_logic.Interfaces
         Task Register(RegisterModel model);
         Task<LoginResponseDto> LoginViaEmail(LoginModelEmail model);
         Task<LoginResponseDto> LoginViaPhone(LoginModelPhone model);
-        ChallengeResult LoginViaGoogle();
-        Task<object> HandleGoogleResponse();
-        object GetUserProfile(ClaimsPrincipal user);
         Task Logout(string refreshToken);
         Task<UserToken> RefreshTokens(UserToken tokens);
         public Task<bool> CheckEmailExistence(string email);

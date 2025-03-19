@@ -72,7 +72,7 @@ namespace business_logic.Services
                 RefreshToken = CreateRefreshToken(user.Id).Token
             };
         }
-        
+
         public async Task<UserToken> RefreshTokens(UserToken ut)
         {
             var refreshToken = await refreshTokenR.GetItemBySpec(new RefreshTokenSpecs.ByToken(ut.RefreshToken));
@@ -108,9 +108,9 @@ namespace business_logic.Services
 
             if (DateTime.Now.Year - model.Birthdate.Year <= 14)
                 throw new HttpException("Users aged younger than 14 are forbidden from  using this site", HttpStatusCode.BadRequest);
-            
+
             var NewUser = mapper.Map<User>(model);
-            
+
             var res = await userManager.CreateAsync(NewUser, model.Password);
 
             if (!res.Succeeded)
@@ -189,13 +189,13 @@ namespace business_logic.Services
         public async Task ChangePassword(PasswordChangeModel model)
         {
             var user = userManager.FindByIdAsync(model.Id);
-            
+
             if (user == null)
                 throw new HttpException("User not found.", HttpStatusCode.NotFound);
-            
-            if(!userManager.CheckPasswordAsync(user.Result, model.OldPassword).Result)
+
+            if (!userManager.CheckPasswordAsync(user.Result, model.OldPassword).Result)
                 throw new HttpException("Invalid old password.", HttpStatusCode.BadRequest);
-            
+
             var res = userManager.ChangePasswordAsync(user.Result, model.OldPassword, model.NewPassword);
 
             if (!res.Result.Succeeded)
@@ -214,35 +214,6 @@ namespace business_logic.Services
             if (!res.Succeeded)
                 throw new HttpException(string.Join(" ", res.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);
         }
-
-        public ChallengeResult LoginViaGoogle()
-        {
-            var properties = new AuthenticationProperties { RedirectUri = "/api/Account/login-via-google" };
-            return new ChallengeResult(GoogleDefaults.AuthenticationScheme, properties);
-        }
-        public async Task<object> HandleGoogleResponse()
-        {
-            var authenticateResult = await _httpContextAccessor.HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            if (!authenticateResult.Succeeded)
-                return new { Message = "Google authentication failed." };
-
-            var claims = authenticateResult.Principal.Identities.FirstOrDefault()?.Claims
-                .Select(c => new { c.Type, c.Value });
-
-            return new
-            {
-                Message = "Google Authentication successful",
-                User = claims
-            };
-        }
-
-        public object GetUserProfile(ClaimsPrincipal user)
-        {
-            return new
-            {
-                Name = user.FindFirst(ClaimTypes.Name)?.Value,
-                Email = user.FindFirst(ClaimTypes.Email)?.Value
-            };
-        }
+        
     }
 }

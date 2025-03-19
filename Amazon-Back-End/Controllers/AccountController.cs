@@ -63,12 +63,6 @@ namespace Amazon_Back_End.Controllers
             return Ok(await accountService.LoginViaPhone(model));
         }
 
-        [HttpPost("login-via-google")]
-        public  IActionResult LoginViaGoogle()
-        {
-            return Ok(accountService.LoginViaGoogle());
-        }
-
         [HttpPost("refreshTokens")]
         public async Task<IActionResult> RefreshTokens(UserToken tokens)
         {
