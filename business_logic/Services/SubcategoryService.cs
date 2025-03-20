@@ -16,11 +16,11 @@ namespace business_logic.Services
 {
     public class SubcategoryService : ISubcategoryService
     {
-        private readonly IRepository<Subcategory> _subcategoriesRepository;
+        private readonly IRepository<Subcategory> _subcategoriesR;
         private readonly IMapper _mapper;
         public SubcategoryService(IRepository<Subcategory> subcategoriesRepository, IMapper mapper)
         {
-            this._subcategoriesRepository = subcategoriesRepository;
+            this._subcategoriesR = subcategoriesRepository;
             _mapper = mapper;
         }
 
@@ -28,16 +28,16 @@ namespace business_logic.Services
         {
             var obj = _mapper.Map<Subcategory>(model);
 
-            _subcategoriesRepository.Insert(obj);
-            _subcategoriesRepository.Save();
+            _subcategoriesR.Insert(obj);
+            _subcategoriesR.Save();
         }
 
         public async Task Delete(int id)
         {
-            var subcategory = await _subcategoriesRepository.GetItemBySpec(new SubcategorySpecs.ById(id));
-            if (subcategory == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
-            _subcategoriesRepository.Delete(id);
-            _subcategoriesRepository.Save();
+            var subcategory = _mapper.Map<SubcategoryDto>(Get(id));
+
+            _subcategoriesR.Delete(id);
+            _subcategoriesR.Save();
         }
 
         public async Task Edit(EditSubcategoryModel model)
@@ -45,23 +45,24 @@ namespace business_logic.Services
             var subcategory =  _mapper.Map<Subcategory>(model);
             if (subcategory == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            _subcategoriesRepository.Update(subcategory);
-            _subcategoriesRepository.Save();
+            _subcategoriesR.Update(subcategory);
+            _subcategoriesR.Save();
         }
 
         public IEnumerable<SubcategoryDto> GetAll()
         {
-            return _mapper.Map<IEnumerable<SubcategoryDto>>(_subcategoriesRepository.GetAll());
+            var subcategories = _subcategoriesR.GetAll() ?? Enumerable.Empty<Subcategory>();
+            return _mapper.Map<IEnumerable<SubcategoryDto>>(subcategories);
         }
 
-        public async Task<SubcategoryDto> GetById(int id)
+        public async Task<SubcategoryDto> Get(int id)
         {
             if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            var product = await _subcategoriesRepository.GetItemBySpec(new SubcategorySpecs.ById(id));
-            if (product == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var subcategory = await _subcategoriesR.GetItemBySpec(new SubcategorySpecs.ById(id));
+            if (subcategory == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            return _mapper.Map<SubcategoryDto>(product);
+            return _mapper.Map<SubcategoryDto>(subcategory);
         }
     }
 }

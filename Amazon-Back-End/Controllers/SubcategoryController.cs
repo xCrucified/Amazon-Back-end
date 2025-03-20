@@ -23,7 +23,7 @@ namespace Amazon_Back_End.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
-            return Ok(await subcategoryService.GetById(id));
+            return Ok(await subcategoryService.Get(id));
         }
 
         [HttpPost]

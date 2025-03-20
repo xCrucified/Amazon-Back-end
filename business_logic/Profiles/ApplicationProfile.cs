@@ -30,7 +30,8 @@ namespace business_logic.Profiles
             CreateMap<ProductProperties, ProductPropertiesDto>().ReverseMap();
             CreateMap<CreateProductPropertiesModel, ProductProperties>();
 
-            CreateMap<Subcategory, SubcategoryDto>().ReverseMap();
+            CreateMap<Subcategory, SubcategoryDto>();
+            CreateMap<SubcategoryDto, Subcategory>();
             CreateMap<CreateSubcategoryModel, Subcategory>();
             CreateMap<EditSubcategoryModel, Subcategory>();
 
@@ -41,10 +42,6 @@ namespace business_logic.Profiles
             CreateMap<ProductProperties, ProductPropertiesDto>().ReverseMap();
             CreateMap<CreateProductPropertiesModel, ProductProperties>();
             CreateMap<EditProductPropertiesModel, ProductProperties>();
-
-            CreateMap<Subcategory, SubcategoryDto>().ReverseMap();
-            CreateMap<CreateSubcategoryModel, Subcategory>();
-            CreateMap<EditSubcategoryModel, Subcategory>();
 
             CreateMap<ReviewDto, Review>().ReverseMap();
             CreateMap<CreateReviewModel, Review>();
