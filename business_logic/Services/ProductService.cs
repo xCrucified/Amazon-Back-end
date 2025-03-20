@@ -57,13 +57,14 @@ namespace business_logic.Services
             productimageR.Save();
         }
 
-        public async Task Delete(int ID)
+        public async Task Delete(int id)
         {
-            if (await Get(ID) == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (await Get(id) == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            var product = mapper.Map<ProductDto>(Get(ID));
+            var product = await Get(id);
+            var productDto = mapper.Map<ProductDto>(product);
 
-            productR.Delete(ID);
+            productR.Delete(id);
             productR.Save();
         }
 

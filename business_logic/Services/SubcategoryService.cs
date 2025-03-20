@@ -34,7 +34,8 @@ namespace business_logic.Services
 
         public async Task Delete(int id)
         {
-            var subcategory = _mapper.Map<SubcategoryDto>(Get(id));
+            var subcategory = await Get(id);
+            var subcategoryDto = _mapper.Map<SubcategoryDto>(subcategory);
 
             _subcategoriesR.Delete(id);
             _subcategoriesR.Save();
