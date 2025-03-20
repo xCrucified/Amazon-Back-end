@@ -35,7 +35,7 @@ namespace business_logic.Services
             if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
             var product = await Get(id);
-            var productDto = mapper.Map<ProductDto>(product);
+            var productDto = mapper.Map<CategoryDto>(product);
 
             categoryR.Delete(id);
             categoryR.Save();
