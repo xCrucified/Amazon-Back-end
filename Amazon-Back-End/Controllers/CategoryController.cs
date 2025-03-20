@@ -26,7 +26,7 @@ namespace Amazon_Back_End.Controllers
         public async Task<IActionResult> Get([FromRoute]int id) =>  Ok(await this.categoryService.Get(id));
 
         [HttpPost]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public IActionResult Create([FromForm] CreateCategoryModel createCategoryModel)
         {
             categoryService.Create(createCategoryModel);
@@ -34,7 +34,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPut]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Edit([FromBody] EditCategoryModel category)
         {
             await categoryService.Edit(category);
@@ -42,7 +42,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await categoryService.Delete(id);

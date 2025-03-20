@@ -37,7 +37,7 @@ namespace Amazon_Back_End.Controllers
         }
         
         [HttpDelete("{id::int}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete(int id)
         {
             await reviewService_.Delete(id);

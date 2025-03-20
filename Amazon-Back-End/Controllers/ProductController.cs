@@ -23,7 +23,7 @@ namespace Amazon_Back_End.Controllers
         public IActionResult GetAll() => Ok(this.productService.GetAll());
 
         [HttpGet("{id:int}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<ActionResult> Get([FromRoute] int id)
         {
             return  Ok(await productService.Get(id));
@@ -38,7 +38,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPut]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Edit([FromForm] EditProductModel product)
         {
             await productService.Edit(product);
@@ -46,7 +46,7 @@ namespace Amazon_Back_End.Controllers
         }
         
         [HttpDelete("{id:int}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await productService.Delete(id);

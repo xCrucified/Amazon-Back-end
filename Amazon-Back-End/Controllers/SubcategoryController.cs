@@ -27,7 +27,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPost]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public IActionResult Create([FromBody] CreateSubcategoryModel model)
         {
             subcategoryService.Create(model);
@@ -35,7 +35,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPut]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Edit([FromBody] EditSubcategoryModel model)
         {
             await subcategoryService.Edit(model);
@@ -43,7 +43,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpDelete]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await subcategoryService.Delete(id);

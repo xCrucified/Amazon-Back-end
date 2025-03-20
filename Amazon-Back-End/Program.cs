@@ -15,6 +15,9 @@ using business_logic.Services;
 using Hangfire;
 using Amazon_Back_End.Helpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 namespace Amazon_Back_End
 {
     public class Program
@@ -32,14 +35,28 @@ namespace Amazon_Back_End
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-
             .AddCookie()
             .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
             {
                 options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
                 options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
                 options.CallbackPath = "/signin-google";
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false; // Для тестов можно отключить HTTPS
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["JwtOptions:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtOptions:Key"]))
+                };
             });
 
             builder.Services.ConfigureApplicationCookie(options =>
@@ -55,7 +72,6 @@ namespace Amazon_Back_End
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddJWT(builder.Configuration);
             builder.Services.AddIdentity();
             builder.Services.AddRepositories();
             builder.Services.AddAutoMapper();

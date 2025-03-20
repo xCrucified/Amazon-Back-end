@@ -20,7 +20,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPost]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public IActionResult Create([FromBody] CreateProductPropertiesModel createProductPropertiesModel)
         {
             _productPropertiesService.Create(createProductPropertiesModel);
@@ -28,7 +28,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete([FromRoute] int id, [FromBody] IEnumerable<int> propertyIds)
         {
             await _productPropertiesService.Delete(id, propertyIds);
@@ -36,7 +36,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPut]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Edit([FromBody] EditProductPropertiesModel editProductPropertiesModel)
         {
             await _productPropertiesService.Edit(editProductPropertiesModel);

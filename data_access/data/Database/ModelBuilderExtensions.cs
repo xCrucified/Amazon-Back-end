@@ -31,7 +31,7 @@ namespace data_access.data.Database
             builder.Entity<Subcategory>().HasData(new[]
             {
                 // Electronics
-                new Subcategory { Id = 1, Name = "Mobile Phones", CategoryId = 1 },
+                new Subcategory { Id = 1, Name = "Phones", CategoryId = 1 },
                 new Subcategory { Id = 2, Name = "Laptops", CategoryId = 1 },
                 new Subcategory { Id = 3, Name = "Televisions", CategoryId = 1 },
 
