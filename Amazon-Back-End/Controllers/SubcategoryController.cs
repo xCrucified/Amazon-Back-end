@@ -1,9 +1,12 @@
 ﻿using business_logic.DTOs;
 using business_logic.Interfaces;
+using business_logic.Services;
+using business_logic.Specifications;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static Amazon_Back_End.Helpers.SeedExtension;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Amazon_Back_End.Controllers
 {
@@ -24,6 +27,14 @@ namespace Amazon_Back_End.Controllers
         public async Task<IActionResult> Get([FromRoute] int id)
         {
             return Ok(await subcategoryService.Get(id));
+        }
+
+        [HttpGet("bycategories/{id:int}")]
+        public async Task<IActionResult> GetByCategory(int id)
+        {
+            var subcategories = await subcategoryService.GetAllByCategory(id);
+
+            return Ok(subcategories);
         }
 
         [HttpPost]

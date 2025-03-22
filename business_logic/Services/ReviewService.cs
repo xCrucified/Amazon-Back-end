@@ -47,7 +47,10 @@ namespace business_logic.Services
         public async Task Delete(int id)
         {
             if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
-
+            
+            var review = await Get(id);
+            var reviewDto = mapper.Map<ReviewDto>(review);
+            
             reviewR.Delete(id);
             reviewR.Save();
         }

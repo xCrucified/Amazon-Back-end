@@ -50,11 +50,13 @@ namespace business_logic.Services
             _subcategoriesR.Save();
         }
 
-        public IEnumerable<SubcategoryDto> GetAll()
+        public async Task<IEnumerable<SubcategoryDto>> GetAll()
         {
             var subcategories = _subcategoriesR.GetAll() ?? Enumerable.Empty<Subcategory>();
-            return _mapper.Map<IEnumerable<SubcategoryDto>>(subcategories);
+            return _mapper.Map<List<SubcategoryDto>>(subcategories);
         }
+
+        
 
         public async Task<SubcategoryDto> Get(int id)
         {
@@ -64,6 +66,17 @@ namespace business_logic.Services
             if (subcategory == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
             return _mapper.Map<SubcategoryDto>(subcategory);
+        }
+
+        public async Task<IEnumerable<SubcategoryDto>> GetAllByCategory(int id)
+        {
+            if (id < 0) return new List<SubcategoryDto>(); // Return empty list instead of exception
+
+            var subcategories = await _subcategoriesR.GetListBySpec(new SubcategorySpecs.ByCategory(id));
+
+            if (subcategories == null || !subcategories.Any()) return new List<SubcategoryDto>();
+
+            return _mapper.Map<List<SubcategoryDto>>(subcategories);
         }
     }
 }

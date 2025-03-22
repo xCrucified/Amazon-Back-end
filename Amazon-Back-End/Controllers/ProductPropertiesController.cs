@@ -21,7 +21,7 @@ namespace Amazon_Back_End.Controllers
 
         [HttpPost]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
-        public IActionResult Create([FromBody] CreateProductPropertiesModel createProductPropertiesModel)
+        public IActionResult Create([FromForm] CreateProductPropertiesModel createProductPropertiesModel)
         {
             _productPropertiesService.Create(createProductPropertiesModel);
             return Ok();

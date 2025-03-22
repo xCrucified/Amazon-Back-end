@@ -9,8 +9,9 @@ namespace business_logic.Interfaces
 {
     public interface ISubcategoryService
     {
-        IEnumerable<SubcategoryDto> GetAll();
+        Task<IEnumerable<SubcategoryDto>> GetAll();
         Task<SubcategoryDto> Get(int id);
+        Task<IEnumerable<SubcategoryDto>> GetAllByCategory(int id);
         void Create(CreateSubcategoryModel model);
         Task Edit(EditSubcategoryModel model);
         Task Delete(int id);
