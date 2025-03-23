@@ -1,21 +1,16 @@
-using data_access;
-using business_logic;
-using Amazon_Back_End;
-using data_access.data;
-using Hangfire.PostgreSql;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.FileProviders;
-using Amazon_Back_End.Services;
-using business_logic.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.Google;
-using System;
-using data_access.data.Database;
-using business_logic.Services;
-using Hangfire;
 using Amazon_Back_End.Helpers;
+using Amazon_Back_End.Services;
+using business_logic;
+using business_logic.Interfaces;
+using business_logic.Services;
+using data_access;
+using data_access.data.Database;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 namespace Amazon_Back_End
@@ -29,7 +24,6 @@ namespace Amazon_Back_End
 
             builder.Services.AddDbContext<AmazonDbContext>(options =>
                     options.UseNpgsql(ConnectionString));
-
 
             builder.Services.AddAuthentication(options =>
             {
@@ -46,7 +40,7 @@ namespace Amazon_Back_End
             })
             .AddJwtBearer(options =>
             {
-                options.RequireHttpsMetadata = false; // Для тестов можно отключить HTTPS
+                options.RequireHttpsMetadata = false; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTPS
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -66,7 +60,6 @@ namespace Amazon_Back_End
                 options.Cookie.SameSite = SameSiteMode.None;  // Required for OAuth
             });
 
-
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IImageHulk, ImageHulk>();
             builder.Services.AddControllers();
@@ -81,12 +74,11 @@ namespace Amazon_Back_End
 
             builder.Services.AddHangfire(ConnectionString);
 
-
             var app = builder.Build();
 
             app.UseCors(options =>
             {
-                options.WithOrigins("http://localhost:5000")
+                options.WithOrigins("http://localhost:3000", "http://localhost:5000")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials();
@@ -110,13 +102,11 @@ namespace Amazon_Back_End
                 RequestPath = "/images"
             });
 
-
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            
 
             app.UseAuthentication();
 
@@ -124,7 +114,6 @@ namespace Amazon_Back_End
 
             app.UseHangfireDashboard("/dash");
             JobConfigurator.AddJobs();
-
 
             app.MapControllers();
 
