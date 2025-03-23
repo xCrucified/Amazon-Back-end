@@ -29,10 +29,28 @@ namespace Amazon_Back_End.Controllers
             return Ok(await subcategoryService.Get(id));
         }
 
-        [HttpGet("bycategories/{id:int}")]
-        public async Task<IActionResult> GetByCategory(int id)
+        [HttpGet("{id:int}/subcategories")]
+        public async Task<ActionResult> GetSubcategoriesByCategory([FromRoute] int id)
         {
-            var subcategories = await subcategoryService.GetAllByCategory(id);
+            var subcategories = await subcategoryService.GetSubcategoriesByCategoryAsync(id);
+
+            if (subcategories == null || subcategories.Any() == false)
+            {
+                return NotFound($"No subcategories found for category ID '{id}'.");
+            }
+
+            return Ok(subcategories);
+        }
+
+        [HttpGet("category-{categoryName}/subcategories")]
+        public async Task<ActionResult> GetSubcategoriesByCategory([FromRoute] string categoryName)
+        {
+            var subcategories = await subcategoryService.GetSubcategoriesByCategoryNameAsync(categoryName);
+
+            if (subcategories == null || subcategories.Any() == false)
+            {
+                return NotFound($"No subcategories found for category '{categoryName}'.");
+            }
 
             return Ok(subcategories);
         }

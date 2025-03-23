@@ -26,6 +26,14 @@ namespace business_logic.Specifications
             }
         }
 
+        public class ByCategoryName : Specification<Subcategory>
+        {
+            public ByCategoryName(string categoryName)
+            {
+                Query.Where(x => x.Category.Name.Equals(categoryName));
+            }
+        }
+
         public class All : Specification<Subcategory>
         {
             public All()
