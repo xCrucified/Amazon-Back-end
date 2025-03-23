@@ -89,11 +89,9 @@ namespace business_logic.Services
             return mapper.Map<List<ProductDto>>(productR.GetAll());
         }
 
-        async Task<IEnumerable<ProductDto>> IProductService.Get(IEnumerable<int> ids)
+        public async Task<IEnumerable<ProductDto>> Get(IEnumerable<int> ids)
         {
             return mapper.Map<List<ProductDto>>(await productR.GetListBySpec(new ProductSpecs.ByIds(ids)));
         }
-
-       
     }
 }

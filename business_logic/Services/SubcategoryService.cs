@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using business_logic.Entities;
 using AutoMapper;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace business_logic.Services
@@ -58,10 +59,30 @@ namespace business_logic.Services
         {
             if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            var product = await _subcategoriesRepository.GetItemBySpec(new SubcategorySpecs.ById(id));
-            if (product == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var category = await _subcategoriesRepository.GetItemBySpec(new SubcategorySpecs.ById(id));
+            if (category == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            return _mapper.Map<SubcategoryDto>(product);
+            return _mapper.Map<SubcategoryDto>(category);
+        }
+
+        public async Task<IEnumerable<SubcategoryDto>> GetSubcategoriesByCategoryAsync(int id)
+        {
+            var subcategories = await _subcategoriesRepository.GetListBySpec(new SubcategorySpecs.ByCategory(id));
+
+            if (subcategories == null || !subcategories.Any())
+                throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+
+            return _mapper.Map<IEnumerable<SubcategoryDto>>(subcategories);
+        }
+
+        public async Task<IEnumerable<SubcategoryDto>> GetSubcategoriesByCategoryNameAsync(string categoryName)
+        {
+            var subcategories = await _subcategoriesRepository.GetListBySpec(new SubcategorySpecs.ByCategoryName(categoryName));
+
+            if (subcategories == null || !subcategories.Any())
+                throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+
+            return _mapper.Map<IEnumerable<SubcategoryDto>>(subcategories);
         }
     }
 }
