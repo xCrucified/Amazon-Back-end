@@ -28,21 +28,24 @@ namespace business_logic.Services
             if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             MailjetClient client = new MailjetClient(settings.ApiKey, settings.ApiSecret);
+
             MailjetRequest request = new MailjetRequest
             {
                 Resource = Send.Resource,
             }
-               .Property(Send.FromEmail, "onyxsupport@ukr.net")
-               .Property(Send.FromName, "Onyx")
-               .Property(Send.Subject, subject)
-               .Property(Send.HtmlPart, htmlMessage)
-               .Property(Send.Recipients, new JArray {
-                    new JObject {
-                        {"Email", email}
-                    }
-               });
+            .Property(Send.FromEmail, "onyxsupport@ukr.net")
+            .Property(Send.FromName, "Onyx")
+            .Property(Send.Subject, subject)
+            .Property(Send.Recipients, new JArray {
+        new JObject { { "Email", email } }
+            });
 
-            await client.PostAsync(request);
+            MailjetResponse response = await client.PostAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Failed to send email: {response.GetErrorMessage()}");
+            }
         }
 
     }

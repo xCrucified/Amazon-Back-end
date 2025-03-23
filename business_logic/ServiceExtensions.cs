@@ -39,6 +39,7 @@ namespace business_logic
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IImageHulk, ImageHulk>();
             services.AddScoped<IEmailSender, MailjetSender>();
+            services.AddScoped<IWishlistService, WishlistService>();
         }
     }
 }

@@ -48,6 +48,8 @@ namespace business_logic.Profiles
 
             CreateMap<OrderDto, Order>();
             CreateMap<RegisterModel, User>();
+
+            CreateMap<WishListItem, WishlistItemDto>().ReverseMap();
         }
     }
 }

@@ -34,11 +34,6 @@ namespace Amazon_Back_End.Controllers
         {
             var subcategories = await subcategoryService.GetSubcategoriesByCategoryAsync(id);
 
-            if (subcategories == null || subcategories.Any() == false)
-            {
-                return NotFound($"No subcategories found for category ID '{id}'.");
-            }
-
             return Ok(subcategories);
         }
 
@@ -46,11 +41,6 @@ namespace Amazon_Back_End.Controllers
         public async Task<ActionResult> GetSubcategoriesByCategory([FromRoute] string categoryName)
         {
             var subcategories = await subcategoryService.GetSubcategoriesByCategoryNameAsync(categoryName);
-
-            if (subcategories == null || subcategories.Any() == false)
-            {
-                return NotFound($"No subcategories found for category '{categoryName}'.");
-            }
 
             return Ok(subcategories);
         }

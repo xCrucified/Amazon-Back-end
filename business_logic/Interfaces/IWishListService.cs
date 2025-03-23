@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace business_logic.Interfaces
 {
-    public interface IWishListService
+    public interface IWishlistService
     {
-        Task<IEnumerable<ProductDto>> GetProducts();
-        IEnumerable<int> GetProductIds();
-        void Add(int id);
-        void Remove(int id);
-        int GetCount();
+        Task<IEnumerable<WishlistItemDto>> GetAllWishlistItems();
+        Task<WishlistItemDto> GetWishlistItemById(int id);
+        Task AddWishlistItem(WishlistItemDto itemDto);
+        Task RemoveWishlistItem(string userId, int id);
     }
 }
