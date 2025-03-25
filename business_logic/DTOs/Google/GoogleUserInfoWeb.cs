@@ -10,6 +10,7 @@ namespace business_logic.DTOs
     {
         public string Name { get; set; }
         public string Email { get; set; }
+        public string PhoneNumber { get; set; }
         public DateTime? BirthDate { get; set; }
         public bool EmailVerified { get; set; }
     }

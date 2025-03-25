@@ -29,11 +29,10 @@ namespace business_logic.Services
             return _mapper.Map<List<WishListItemDto>>(wishlistitems);
         }
 
-        public async Task<WishListItemDto> GetWishlistItemById(int id)
+        public async Task<WishListItemDto> GetWishlistItemById(string id)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
-
-            var wishllstitem = await wishlistitemR.GetItemBySpec(new WishlistSpecs.ById(id));
+            
+            var wishllstitem = await wishlistitemR.GetItemBySpec(new WishlistSpecs.ByUserId(id));
             if (wishllstitem == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
             return _mapper.Map<WishListItemDto>(wishllstitem);

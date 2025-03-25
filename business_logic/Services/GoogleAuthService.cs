@@ -23,7 +23,7 @@ namespace business_logic.Services
             try
             {
                 HttpClient httpClient = new HttpClient();
-                const string GoogleUserInfoUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
+                const string GoogleUserInfoUrl = "";
                 using var request = new HttpRequestMessage(HttpMethod.Get, GoogleUserInfoUrl);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 

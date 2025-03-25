@@ -17,7 +17,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetWishList(int userId)
+        public async Task<IActionResult> GetWishList(string userId)
         {
             var items = await _wishListService.GetWishlistItemById(userId);
             return Ok(items);
@@ -35,10 +35,10 @@ namespace Amazon_Back_End.Controllers
             return Ok("Item added to wishlist.");
         }
 
-        [HttpDelete("{userId}/{productId}")]
-        public async Task<IActionResult> RemoveFromWishList(string userId, int productId)
+        [HttpDelete("{userId}/{itemid}")]
+        public async Task<IActionResult> RemoveFromWishList(string userId, int itemid)
         {
-            await _wishListService.RemoveWishlistItem(userId, productId);
+            await _wishListService.RemoveWishlistItem(userId, itemid);
             return Ok("Item removed from wishlist.");
         }
     }
