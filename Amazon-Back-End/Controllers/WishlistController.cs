@@ -24,7 +24,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddToWishList([FromBody] WishlistItemDto itemDto)
+        public async Task<IActionResult> AddToWishList([FromBody] WishListItemDto itemDto)
         {
             if (itemDto == null)
             {

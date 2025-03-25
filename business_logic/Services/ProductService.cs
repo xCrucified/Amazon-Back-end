@@ -13,7 +13,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace business_logic.Services
 {
@@ -26,7 +25,7 @@ namespace business_logic.Services
         private readonly IWebHostEnvironment environment;
         private readonly string imageFolder = "Images";
 
-        
+
         public ProductService(IMapper mapper, IRepository<Product> productR, IImageHulk hulk, IRepository<ProductImage> repository, IWebHostEnvironment environment)
         {
             this.mapper = mapper;
@@ -38,23 +37,28 @@ namespace business_logic.Services
 
         public async Task Create(CreateProductModel productModel)
         {
-            var ProductToInsert = mapper.Map<Product>(productModel);
-            productR.Insert(ProductToInsert);
-            productR.Save();
-            if (productModel.Images != null)
+            try
             {
+                var productToInsert = mapper.Map<Product>(productModel);
+                productR.Insert(productToInsert);
+                productR.Save();
+                
                 foreach (var image in productModel.Images)
                 {
                     var imageName = await imageHulk.Save(image);
                     var imageProduct = new ProductImage
                     {
                         Image = imageName,
-                        ProductId = ProductToInsert.Id
+                        ProductId = productToInsert.Id
                     };
-                    productimageR.Insert(mapper.Map<ProductImage>(imageProduct));
+                    productimageR.Insert(imageProduct);
                 }
+                productimageR.Save();
             }
-            productimageR.Save();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
 
@@ -81,7 +85,7 @@ namespace business_logic.Services
             if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
             var product = await productR.GetItemBySpec(new ProductSpecs.ById(id));
-            if(product == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (product == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
             return mapper.Map<ProductDto>(product);
         }
@@ -96,6 +100,6 @@ namespace business_logic.Services
             return mapper.Map<List<ProductDto>>(await productR.GetListBySpec(new ProductSpecs.ByIds(ids)));
         }
 
-       
+
     }
 }

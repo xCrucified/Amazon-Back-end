@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace business_logic.DTOs
 {
-    public class WishListItemDto
+    public class GoogleUserInfo
     {
-        public int Id { get; set; }
-        public string UserId { get; set; }
-        public int ProductId { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public DateTime? BirthDate { get; set; }
     }
 }

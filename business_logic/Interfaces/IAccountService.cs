@@ -23,6 +23,7 @@ namespace business_logic.Interfaces
         Task ChangeEmail(EmailChangeModel model);
         Task ChangePassword(PasswordChangeModel model);
         Task ChangePhoneNumber(PhoneNumberChangeModel model);
+        Task<string> GoogleLoginAsync(string googleToken);
     }
     public class ResetToken
     {

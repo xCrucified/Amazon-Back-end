@@ -23,23 +23,23 @@ namespace business_logic.Services
             this._mapper = mapp;
         }
 
-        public async Task<IEnumerable<WishlistItemDto>> GetAllWishlistItems()
+        public async Task<IEnumerable<WishListItemDto>> GetAllWishlistItems()
         {
             var wishlistitems = wishlistitemR.GetAll() ?? Enumerable.Empty<WishListItem>();
-            return _mapper.Map<List<WishlistItemDto>>(wishlistitems);
+            return _mapper.Map<List<WishListItemDto>>(wishlistitems);
         }
 
-        public async Task<WishlistItemDto> GetWishlistItemById(int id)
+        public async Task<WishListItemDto> GetWishlistItemById(int id)
         {
             if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
             var wishllstitem = await wishlistitemR.GetItemBySpec(new WishlistSpecs.ById(id));
             if (wishllstitem == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            return _mapper.Map<WishlistItemDto>(wishllstitem);
+            return _mapper.Map<WishListItemDto>(wishllstitem);
         }
 
-        public async Task AddWishlistItem(WishlistItemDto itemDto)
+        public async Task AddWishlistItem(WishListItemDto itemDto)
         {
             var item = _mapper.Map<WishListItem>(itemDto);
             wishlistitemR.Insert(item);

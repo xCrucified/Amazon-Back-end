@@ -26,12 +26,10 @@ namespace business_logic.Profiles
                  .ForMember(x => x.ProductImages, opt => opt.Ignore());
             CreateMap<EditProductModel, Product>();
 
-
             CreateMap<ProductProperties, ProductPropertiesDto>().ReverseMap();
             CreateMap<CreateProductPropertiesModel, ProductProperties>();
 
-            CreateMap<Subcategory, SubcategoryDto>();
-            CreateMap<SubcategoryDto, Subcategory>();
+            CreateMap<Subcategory, SubcategoryDto>().ReverseMap(); // might cause an issue
             CreateMap<CreateSubcategoryModel, Subcategory>();
             CreateMap<EditSubcategoryModel, Subcategory>();
 
@@ -49,7 +47,7 @@ namespace business_logic.Profiles
             CreateMap<OrderDto, Order>();
             CreateMap<RegisterModel, User>();
 
-            CreateMap<WishListItem, WishlistItemDto>().ReverseMap();
+            CreateMap<WishListItem, WishListItemDto>().ReverseMap();
         }
     }
 }

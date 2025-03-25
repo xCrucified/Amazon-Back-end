@@ -9,9 +9,9 @@ namespace business_logic.Interfaces
 {
     public interface IWishlistService
     {
-        Task<IEnumerable<WishlistItemDto>> GetAllWishlistItems();
-        Task<WishlistItemDto> GetWishlistItemById(int id);
-        Task AddWishlistItem(WishlistItemDto itemDto);
+        Task<IEnumerable<WishListItemDto>> GetAllWishlistItems();
+        Task<WishListItemDto> GetWishlistItemById(int id);
+        Task AddWishlistItem(WishListItemDto itemDto);
         Task RemoveWishlistItem(string userId, int id);
     }
 }

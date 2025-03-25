@@ -17,7 +17,6 @@ namespace business_logic.Services
     public class ImageHulk : IImageHulk
     {
         private readonly IConfiguration _configuration;
-        public IRepository<ProductImage> productimageR { get; }
 
         public ImageHulk(IConfiguration conf)
         {

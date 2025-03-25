@@ -19,7 +19,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
-using System.Text;  
+using System.Text;
 using System.Threading.Tasks;
 
 namespace business_logic.Services
@@ -28,8 +28,9 @@ namespace business_logic.Services
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
-        private readonly IMapper mapper;
+        private readonly IGoogleAuthService _googleAuthService;
         private readonly IJwtService jwtService;
+        private readonly IMapper mapper;
         private readonly IRepository<RefreshToken> refreshTokenR;
         private readonly IImageHulk imageHulk;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -39,8 +40,10 @@ namespace business_logic.Services
                                 IRepository<RefreshToken> refreshTokenR,
                                 IMapper mapper,
                                 IJwtService jwtService,
-                                IImageHulk hulk)
+                                IImageHulk hulk,
+                                IGoogleAuthService googleAuthService)
         {
+            this._googleAuthService = googleAuthService;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.refreshTokenR = refreshTokenR;
@@ -135,7 +138,27 @@ namespace business_logic.Services
             return refreshTokenEntity;
         }
 
+        public async Task<string> GoogleLoginAsync(string googleToken)
+        {
+            var googleUser = await _googleAuthService.ValidateGoogleTokenAsync(googleToken);
+            if (googleUser == null)
+            {
+                throw new Exception("Invalid Google Token");
+            }
 
+            var user = await userManager.FindByEmailAsync(googleUser.Email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    UserName = googleUser.Email,
+                    Email = googleUser.Email
+                };
+                await userManager.CreateAsync(user);
+            }
+
+            return jwtService.CreateToken(jwtService.GetClaims(user));
+        }
         public async Task RemoveExpiredRefreshTokens()
         {
             var lastDate = jwtService.GetLastValidRefreshTokenDate();
@@ -178,7 +201,7 @@ namespace business_logic.Services
             var latestToken = user.RefreshTokens.OrderBy(x => x.CreationDate).LastOrDefault()?.Token;
 
             if (string.IsNullOrEmpty(latestToken))
-                throw new HttpException("Latest refresh token is invalid.", HttpStatusCode.BadRequest);
+                throw new HttpException("Latest refresh Token is invalid.", HttpStatusCode.BadRequest);
 
             var res = await userManager.ChangeEmailAsync(user, model.Email, latestToken);
 
@@ -215,6 +238,10 @@ namespace business_logic.Services
             if (!res.Succeeded)
                 throw new HttpException(string.Join(" ", res.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);
         }
-        
+
+        public Task GoogleLoginAsync(object token)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -71,6 +71,8 @@ namespace Amazon_Back_End
             builder.Services.AddFluentValidators();
             builder.Services.AddCustomServices();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddHttpClient<IGoogleAuthService, GoogleAuthService>();
+
 
             builder.Services.AddHangfire(ConnectionString);
 

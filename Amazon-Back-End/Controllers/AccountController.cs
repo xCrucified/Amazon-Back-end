@@ -28,8 +28,6 @@ namespace Amazon_Back_End.Controllers
             return Ok();
         }
 
-
-
         [HttpPost("change-email")]
         public async Task<IActionResult> ChangeEmail(EmailChangeModel model)
         {
