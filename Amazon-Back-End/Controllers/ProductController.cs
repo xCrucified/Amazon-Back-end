@@ -47,8 +47,6 @@ namespace Amazon_Back_End.Controllers
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Create([FromForm] CreateProductModel createProductModel)
         {
-            
-
             try
             {
                 var productToInsert = _mapper.Map<Product>(createProductModel);

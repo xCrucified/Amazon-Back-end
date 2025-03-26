@@ -26,15 +26,6 @@ namespace data_access.data.Database
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    base.OnConfiguring(optionsBuilder);
-
-        //    optionsBuilder.UseSqlServer("NeonTechDatabase");
-
-
-        //}
-
+ 
     }
 }

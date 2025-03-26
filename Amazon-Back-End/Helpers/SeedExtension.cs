@@ -20,7 +20,7 @@ namespace Amazon_Back_End.Helpers
             var roles = typeof(Roles).GetFields(
                 BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
                 .Select(x => (string)x.GetValue(null)!);
-
+            
             foreach (var role in roles)
             {
                 if (!await roleManager.RoleExistsAsync(role))

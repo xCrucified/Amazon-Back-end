@@ -104,11 +104,11 @@ namespace Amazon_Back_End
                 RequestPath = "/images"
             });
 
-            if (app.Environment.IsDevelopment())
-            {
+            //if (app.Environment.IsDevelopment())
+            //{
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            //}
 
             app.UseAuthentication();
 
