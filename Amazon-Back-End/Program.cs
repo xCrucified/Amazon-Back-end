@@ -72,11 +72,13 @@ namespace Amazon_Back_End
             builder.Services.AddCustomServices();
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddHttpClient<IGoogleAuthService, GoogleAuthService>();
-
+            builder.Services.AddHealthChecks();
 
             builder.Services.AddHangfire(ConnectionString);
 
             var app = builder.Build();
+
+            app.UseRouting();
 
             app.UseCors(options =>
             {
@@ -104,9 +106,15 @@ namespace Amazon_Back_End
                 RequestPath = "/Images"
             });
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHealthChecks("/healthz");
+                endpoints.MapControllers();
+            });
+
             //if (app.Environment.IsDevelopment())
             //{
-                app.UseSwagger();
+            app.UseSwagger();
                 app.UseSwaggerUI();
             //}
 
