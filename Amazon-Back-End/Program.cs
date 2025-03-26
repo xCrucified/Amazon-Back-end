@@ -101,7 +101,7 @@ namespace Amazon_Back_End
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(dirPath),
-                RequestPath = "/images"
+                RequestPath = "/Images"
             });
 
             //if (app.Environment.IsDevelopment())

@@ -15,12 +15,15 @@ namespace business_logic.Profiles
     {
         public ApplicationProfile(IFileService fileService)
         {
-            CreateMap<Product, ProductDto>();
-            
+            CreateMap<Product, ProductDto>()
+                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.ProductImages)); ;
+
             CreateMap<ProductDto, Product>()
                 .ForMember(x => x.ProductImages, opt =>
-                    opt.MapFrom(x => x.images == null ?
-                        new List<string>() : x.images.Select(pi => pi.Image).ToList()));
+                    opt.MapFrom(x => x.Images == null ?
+                        new List<string>() : x.Images.Select(pi => pi.Image).ToList()));
+
+            CreateMap<ProductImage, ProductImageDto>();
 
             CreateMap<CreateProductModel, Product>()
                  .ForMember(x => x.ProductImages, opt => opt.Ignore());
@@ -46,6 +49,7 @@ namespace business_logic.Profiles
 
             CreateMap<OrderDto, Order>();
             CreateMap<RegisterModel, User>();
+
 
             CreateMap<WishListItem, WishListItemDto>().ReverseMap();
         }

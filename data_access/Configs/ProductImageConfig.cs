@@ -15,6 +15,8 @@ namespace data_access.Configs
         {
             builder.HasKey(x => x.Id);
             builder.ToTable("ProductImages");
+
+            builder.HasOne(x => x.Product).WithMany(x => x.ProductImages).HasForeignKey(x => x.ProductId);
         }
     }
 }

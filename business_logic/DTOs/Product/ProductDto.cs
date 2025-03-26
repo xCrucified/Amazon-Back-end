@@ -14,6 +14,6 @@ namespace business_logic.DTOs
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int SubcategoryId { get; set; }
-        public IEnumerable<ProductImage> images { get; set; }
+        public List<ProductImageDto> Images { get; set; }
     }
 }

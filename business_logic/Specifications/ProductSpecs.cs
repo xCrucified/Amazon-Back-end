@@ -21,7 +21,7 @@ namespace business_logic.Specifications
         {
             public All()
             {
-                Query.Include(x => x.Subcategory).Include(x => x.ProductImages);
+                Query.Include(x => x.ProductImages).Include(x => x.Subcategory);
             }
         }
         public class ByIds : Specification<Product>

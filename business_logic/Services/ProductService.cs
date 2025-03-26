@@ -90,9 +90,12 @@ namespace business_logic.Services
             return mapper.Map<ProductDto>(product);
         }
 
-        public IEnumerable<ProductDto> GetAll()
+        public  IEnumerable<ProductDto> GetAll()
         {
-            return mapper.Map<List<ProductDto>>(productR.GetAll());
+            var products = productR.GetListBySpec(new ProductSpecs.All()).Result;
+
+
+            return mapper.Map<List<ProductDto>>(products);
         }
 
         async Task<IEnumerable<ProductDto>> IProductService.Get(IEnumerable<int> ids)

@@ -12,7 +12,7 @@ namespace business_logic.Services
 {
     public class LocalFileService : IFileService
     {
-        private const string imageFolder = "images";
+        private const string imageFolder = "Images";
         private readonly IWebHostEnvironment environment;
 
         public LocalFileService(IWebHostEnvironment environment)

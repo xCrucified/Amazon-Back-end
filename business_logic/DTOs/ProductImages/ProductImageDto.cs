@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace business_logic.DTOs
 {
-    public class ProductImagesDto
+    public class ProductImageDto
     {
         public int Id { get; set; }
         public string Image { get; set; }
