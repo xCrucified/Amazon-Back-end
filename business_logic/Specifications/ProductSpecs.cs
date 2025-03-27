@@ -14,7 +14,7 @@ namespace business_logic.Specifications
         {
             public ById(int id)
             {
-                Query.Where(x => x.Id == id);
+                Query.Where(x => x.Id == id).Include(x => x.ProductImages);
             }
         }
         public class All : Specification<Product>
