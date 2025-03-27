@@ -82,7 +82,7 @@ namespace Amazon_Back_End
 
             app.UseCors(options =>
             {
-                options.WithOrigins("http://localhost:3000", "http://localhost:5000")
+                options.WithOrigins("http://localhost:3000", "http://localhost:5000", "http://ub1.pluton.pp.ua:5000")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials();
