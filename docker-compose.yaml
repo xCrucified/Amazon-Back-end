@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   amazon-asp-api:
     image: yevgeniy911/amazon_asp_api:latest
