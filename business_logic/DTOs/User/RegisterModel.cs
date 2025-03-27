@@ -13,6 +13,5 @@ namespace business_logic.DTOs
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime Birthdate { get; set; }
     }
 }

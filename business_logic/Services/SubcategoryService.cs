@@ -50,13 +50,11 @@ namespace business_logic.Services
             _subcategoriesR.Save();
         }
 
-        public async Task<IEnumerable<SubcategoryDto>> GetAll()
+        public  IEnumerable<SubcategoryDto> GetAll()
         {
             var subcategories = _subcategoriesR.GetAll() ?? Enumerable.Empty<Subcategory>();
             return _mapper.Map<List<SubcategoryDto>>(subcategories);
         }
-
-        
 
         public async Task<SubcategoryDto> Get(int id)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using business_logic.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +11,7 @@ namespace business_logic.Entities
 {
     public class User : IdentityUser
     {
-        public DateTime? BirthDate { get; set; }
+        public Cart Cart { get; set; }
         public ICollection<Review>? WrittenReviews { get; set; }
         public ICollection<RefreshToken>? RefreshTokens { get; set; }
         public ICollection<WishListItem>? WishList { get; set; }

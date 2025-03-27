@@ -15,11 +15,6 @@ namespace business_logic.Validators
             RuleFor(x => x.Email)
                 .NotEmpty()
                 .EmailAddress();
-            
-            RuleFor(x => x.Birthdate)
-                .NotEmpty()
-                .GreaterThan(new DateTime(1900, 1, 1)).WithMessage("Birthdate must be more than 1900.")
-                .LessThan(DateTime.Now).WithMessage("Birthdate cannot be more than current date.");
 
             RuleFor(x => x.Username)
                 .NotEmpty()

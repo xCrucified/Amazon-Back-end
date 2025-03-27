@@ -43,7 +43,7 @@ namespace business_logic.Services
 
             var products = await productR.GetListBySpec(new ProductSpecs.ByIds(productIds));
 
-            if (products.Any(p => !p.AvailableToPurchase))
+            if (products.Any(p => p.InStock == 0))
             {
                 throw new HttpException("Some of the products are not available for purchase now", HttpStatusCode.BadRequest);
             }

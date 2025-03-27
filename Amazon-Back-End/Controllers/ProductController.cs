@@ -69,7 +69,6 @@ namespace Amazon_Back_End.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            //productService.Create(createProductModel);
             return Ok();
         }
 

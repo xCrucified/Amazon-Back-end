@@ -49,7 +49,6 @@ namespace business_logic.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.DateOfBirth, user.BirthDate.ToString()),
                 new Claim(ClaimTypes.MobilePhone, user.PhoneNumber)
             };
 

@@ -12,8 +12,8 @@ using data_access.data.Database;
 namespace data_access.Migrations
 {
     [DbContext(typeof(AmazonDbContext))]
-    [Migration("20250313193646_Roles")]
-    partial class Roles
+    [Migration("20250327215604_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,6 +157,26 @@ namespace data_access.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("business_logic.Entities.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Carts", (string)null);
+                });
+
             modelBuilder.Entity("business_logic.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -290,12 +310,15 @@ namespace data_access.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("AvailableToPurchase")
-                        .HasColumnType("boolean");
+                    b.Property<int?>("CartId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("InStock")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -308,6 +331,8 @@ namespace data_access.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CartId");
 
                     b.HasIndex("SubcategoryId");
 
@@ -448,7 +473,7 @@ namespace data_access.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            Name = "Mobile Phones"
+                            Name = "Phones"
                         },
                         new
                         {
@@ -652,9 +677,6 @@ namespace data_access.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
@@ -711,6 +733,30 @@ namespace data_access.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("business_logic.Entities.WishListItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("WishlistItems", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -762,6 +808,17 @@ namespace data_access.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("business_logic.Entities.Cart", b =>
+                {
+                    b.HasOne("business_logic.Entities.User", "User")
+                        .WithOne("Cart")
+                        .HasForeignKey("business_logic.Entities.Cart", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("business_logic.Entities.Order", b =>
                 {
                     b.HasOne("business_logic.Entities.User", "User")
@@ -794,6 +851,10 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.Product", b =>
                 {
+                    b.HasOne("business_logic.Entities.Cart", null)
+                        .WithMany("Products")
+                        .HasForeignKey("CartId");
+
                     b.HasOne("business_logic.Entities.Subcategory", "Subcategory")
                         .WithMany("Products")
                         .HasForeignKey("SubcategoryId")
@@ -866,6 +927,30 @@ namespace data_access.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("business_logic.Entities.WishListItem", b =>
+                {
+                    b.HasOne("business_logic.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("business_logic.Entities.User", "User")
+                        .WithMany("WishList")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("business_logic.Entities.Cart", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("business_logic.Entities.Category", b =>
                 {
                     b.Navigation("Subcategories");
@@ -892,7 +977,12 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.User", b =>
                 {
+                    b.Navigation("Cart")
+                        .IsRequired();
+
                     b.Navigation("RefreshTokens");
+
+                    b.Navigation("WishList");
 
                     b.Navigation("WrittenReviews");
                 });

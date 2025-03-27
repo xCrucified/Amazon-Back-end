@@ -21,7 +21,7 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpGet("all")]
-        public IActionResult GetAll() => Ok(subcategoryService.GetAll());
+        public IActionResult GetAll() => Ok(this.subcategoryService.GetAll());
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get([FromRoute] int id)
