@@ -38,7 +38,7 @@ namespace Amazon_Back_End.Controllers
             return Ok(await productService.Get(id));
         }
 
-        [HttpGet("filtered")]
+        [HttpPost("filtered")]
         public async Task<IActionResult> GetProducts(
             int page = 1,
             int pageSize = 16,
