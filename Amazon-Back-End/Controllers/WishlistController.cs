@@ -1,4 +1,6 @@
 ﻿using business_logic.DTOs;
+using business_logic.DTOs.Wishlist;
+using business_logic.Entities;
 using business_logic.Interfaces;
 using business_logic.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,26 +21,33 @@ namespace Amazon_Back_End.Controllers
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetWishList(string userId)
         {
-            var items = await _wishListService.GetWishlistItemById(userId);
+            var items = await _wishListService.GetWishlistById(userId);
             return Ok(items);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddToWishList([FromBody] WishListItemDto itemDto)
+        public async Task<IActionResult> AddToWishList([FromForm] CreateWishlistModel itemDto)
         {
             if (itemDto == null)
             {
                 return BadRequest("Invalid item.");
             }
 
-            await _wishListService.AddWishlistItem(itemDto);
+            await _wishListService.Create(itemDto);
             return Ok("Item added to wishlist.");
         }
 
-        [HttpDelete("{userId}/{itemid}")]
-        public async Task<IActionResult> RemoveFromWishList(string userId, int itemid)
+        [HttpPut]
+        public async Task<IActionResult> Edit([FromForm] EditWishlistModel model)
         {
-            await _wishListService.RemoveWishlistItem(userId, itemid);
+            await _wishListService.Edit(model);
+            return Ok();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> RemoveWishlist(int id)
+        {
+            await _wishListService.Delete(id);
             return Ok("Item removed from wishlist.");
         }
     }

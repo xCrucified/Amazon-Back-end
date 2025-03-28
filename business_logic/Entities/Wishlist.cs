@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace business_logic.Entities
 {
-    public class WishListItem
+    public class Wishlist
     {
         public int Id { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public string Name { get; set; }
+        public bool isPublic { get; set; }
+        public ICollection<int> Products { get; set; }
     }
 }

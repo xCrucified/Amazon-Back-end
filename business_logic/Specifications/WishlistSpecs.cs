@@ -10,7 +10,7 @@ namespace business_logic.Specifications
 {
     public class WishlistSpecs
     {
-        public class ById : Specification<WishListItem>
+        public class ById : Specification<Wishlist>
         {
             public ById(int id)
             {
@@ -18,7 +18,7 @@ namespace business_logic.Specifications
             }
         }
 
-        public class ByUserId : Specification<WishListItem>
+        public class ByUserId : Specification<Wishlist>
         {
             public ByUserId(string userId)
             {
@@ -26,11 +26,11 @@ namespace business_logic.Specifications
             }
         }
 
-        public class All : Specification<WishListItem>
+        public class All : Specification<Wishlist>
         {
             public All()
             {
-                Query.Include(x => x.Product);
+                Query.Include(x => x.Products);
             }
         }
 

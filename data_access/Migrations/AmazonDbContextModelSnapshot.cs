@@ -740,7 +740,7 @@ namespace data_access.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("business_logic.Entities.WishListItem", b =>
+            modelBuilder.Entity("business_logic.Entities.Wishlist", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -748,16 +748,22 @@ namespace data_access.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.PrimitiveCollection<int[]>("Products")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
 
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<bool>("isPublic")
+                        .HasColumnType("boolean");
 
-                    b.HasIndex("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -945,21 +951,13 @@ namespace data_access.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("business_logic.Entities.WishListItem", b =>
+            modelBuilder.Entity("business_logic.Entities.Wishlist", b =>
                 {
-                    b.HasOne("business_logic.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("business_logic.Entities.User", "User")
-                        .WithMany("WishList")
+                        .WithMany("WishLists")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });
@@ -995,7 +993,7 @@ namespace data_access.Migrations
 
                     b.Navigation("RefreshTokens");
 
-                    b.Navigation("WishList");
+                    b.Navigation("WishLists");
 
                     b.Navigation("WrittenReviews");
                 });

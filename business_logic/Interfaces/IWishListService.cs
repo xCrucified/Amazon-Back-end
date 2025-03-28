@@ -1,4 +1,5 @@
 ﻿using business_logic.DTOs;
+using business_logic.DTOs.Wishlist;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,10 @@ namespace business_logic.Interfaces
 {
     public interface IWishlistService
     {
-        Task<IEnumerable<WishListItemDto>> GetAllWishlistItems();
-        Task<WishListItemDto> GetWishlistItemById(string id);
-        Task AddWishlistItem(WishListItemDto itemDto);
-        Task RemoveWishlistItem(string userId, int id);
+        Task<IEnumerable<WishlistDto>> GetAllWishlistItems();
+        Task<WishlistDto> GetWishlistById(string id);
+        Task Create(CreateWishlistModel itemDto);
+        Task Edit(EditWishlistModel model);
+        Task Delete(int id);
     }
 }

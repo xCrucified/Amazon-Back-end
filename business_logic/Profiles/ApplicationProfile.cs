@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using business_logic.DTOs;
+using business_logic.DTOs.Wishlist;
 using business_logic.Entities;
 using business_logic.Interfaces;
 using business_logic.Services;
@@ -16,7 +17,7 @@ namespace business_logic.Profiles
         public ApplicationProfile(IFileService fileService)
         {
             CreateMap<Product, ProductDto>()
-                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.ProductImages)); ;
+                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.ProductImages));
 
             CreateMap<ProductDto, Product>()
                 .ForMember(x => x.ProductImages, opt =>
@@ -51,7 +52,9 @@ namespace business_logic.Profiles
             CreateMap<RegisterModel, User>();
 
 
-            CreateMap<WishListItem, WishListItemDto>().ReverseMap();
+            CreateMap<Wishlist, WishlistDto>().ReverseMap();
+            CreateMap<CreateWishlistModel, Wishlist>();
+            CreateMap<EditWishlistModel, Wishlist>();
         }
     }
 }

@@ -743,7 +743,7 @@ namespace data_access.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("business_logic.Entities.WishListItem", b =>
+            modelBuilder.Entity("business_logic.Entities.WishLists", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -948,7 +948,7 @@ namespace data_access.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("business_logic.Entities.WishListItem", b =>
+            modelBuilder.Entity("business_logic.Entities.WishLists", b =>
                 {
                     b.HasOne("business_logic.Entities.Product", "Product")
                         .WithMany()
@@ -957,7 +957,7 @@ namespace data_access.Migrations
                         .IsRequired();
 
                     b.HasOne("business_logic.Entities.User", "User")
-                        .WithMany("WishList")
+                        .WithMany("WishLists")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -998,7 +998,7 @@ namespace data_access.Migrations
 
                     b.Navigation("RefreshTokens");
 
-                    b.Navigation("WishList");
+                    b.Navigation("WishLists");
 
                     b.Navigation("WrittenReviews");
                 });

@@ -9,12 +9,16 @@ using System.Threading.Tasks;
 
 namespace data_access.Configs
 {
-    public class WishlistConfig : IEntityTypeConfiguration<WishListItem>
+    public class WishlistConfig : IEntityTypeConfiguration<Wishlist>
     {
-        public void Configure(EntityTypeBuilder<WishListItem> builder)
+        public void Configure(EntityTypeBuilder<Wishlist> builder)
         {
             builder.HasKey(x => x.Id);
             builder.ToTable("WishlistItems");
+
+            builder.HasOne(x => x.User).WithMany(x => x.WishLists).HasForeignKey(x => x.UserId);
+
+            builder.HasOne(x => x.User).WithMany(x => x.WishLists).HasForeignKey(x => x.UserId);
 
         }
     }

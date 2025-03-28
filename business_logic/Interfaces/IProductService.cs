@@ -10,11 +10,11 @@ namespace business_logic.Interfaces
 {
     public interface IProductService
     {
-        public Task<IEnumerable<ProductDto>> Get(IEnumerable<int> ids);
-        public Task<ProductDto> Get(int id);
+        Task<IEnumerable<ProductDto>> Get(IEnumerable<int> ids);
+        Task<ProductDto> Get(int id);
         IEnumerable<ProductDto> GetAll();
-        public Task Create(CreateProductModel productModel);
-        public Task Delete(int id);
-        public Task Edit(EditProductModel productEdit);
+        Task Create(CreateProductModel productModel);
+        Task Delete(int id);
+        Task Edit(EditProductModel productEdit);
     }
 }
