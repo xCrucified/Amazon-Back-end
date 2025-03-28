@@ -13,6 +13,7 @@ namespace business_logic.Entities
         [JsonIgnore]
         public Subcategory Subcategory { get; set; }
         public ICollection<Review>? Reviews { get; set; }
+        public ICollection<Cart> Carts { get; set; }
         public virtual ICollection<ProductImage>? ProductImages { get; set; }
         public ICollection<ProductProperties>? ProductProperties { get; set; }
     }
