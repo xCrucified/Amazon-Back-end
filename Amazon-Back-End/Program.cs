@@ -40,7 +40,7 @@ namespace Amazon_Back_End
             })
             .AddJwtBearer(options =>
             {
-                options.RequireHttpsMetadata = false; // ��� ������ ����� ��������� HTTPS
+                options.RequireHttpsMetadata = false; 
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {

@@ -49,7 +49,8 @@ namespace business_logic.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber)
+                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
+                new Claim(ClaimTypes.Name, user.UserName),
             };
 
             var roles = userManager.GetRolesAsync(user).Result;

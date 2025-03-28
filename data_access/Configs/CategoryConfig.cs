@@ -17,7 +17,7 @@ namespace data_access.Configs
         {
             builder.HasKey(x => x.Id);
             builder.ToTable("Categories");
-
+            builder.HasMany(x => x.Products).WithOne(x => x.Category).HasForeignKey(x => x.CategoryId);
 
         }
     }

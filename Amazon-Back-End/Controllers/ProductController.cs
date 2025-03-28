@@ -45,13 +45,13 @@ namespace Amazon_Back_End.Controllers
             decimal? minPrice = null,
             decimal? maxPrice = null,
             bool? inStock = null,
+            int? categoryId = null,
             int? subcategoryId = null,
             string? search = null,
             float? minRating = null)
         {
             var query = productService.GetAll();
 
-            // 🔍 Додаємо фільтрацію
             if (minPrice.HasValue)
                 query = query.Where(p => p.Price >= minPrice.Value);
 
@@ -60,6 +60,9 @@ namespace Amazon_Back_End.Controllers
 
             if (inStock.HasValue && inStock.Value)
                 query = query.Where(p => p.InStock > 0);
+
+            if (categoryId.HasValue)
+                query = query.Where(p => p.CategoryId == categoryId.Value);
 
             if (subcategoryId.HasValue)
                 query = query.Where(p => p.SubcategoryId == subcategoryId.Value);
@@ -70,17 +73,14 @@ namespace Amazon_Back_End.Controllers
             if (minRating.HasValue)
                 query = query.Where(p => p.Reviews.Any() && p.Reviews.Average(r => r.Rate) >= minRating.Value);
 
-            // 📌 Підрахунок загальної кількості
             int totalCount = query.Count();
 
-            // 🚀 Пагінація
             var products = query
-                .OrderBy(p => p.Name) // або інший параметр сортування
+                .OrderBy(p => p.Name)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
-            // 📦 Відправляємо дані + метаінформацію
             return Ok(new
             {
                 totalItems = totalCount,

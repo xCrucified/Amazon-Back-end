@@ -14,7 +14,7 @@ namespace data_access.Configs
         public void Configure(EntityTypeBuilder<Wishlist> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.ToTable("WishlistItems");
+            builder.ToTable("Wishlist");
 
             builder.HasOne(x => x.User).WithMany(x => x.WishLists).HasForeignKey(x => x.UserId);
 

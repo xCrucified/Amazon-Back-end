@@ -32,7 +32,6 @@ namespace business_logic
         {
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IProductPropertiesService, ProductPropertiesService>();
             services.AddScoped<ISubcategoryService, SubcategoryService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IGoogleAuthService, GoogleAuthService>();
