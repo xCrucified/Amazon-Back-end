@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace business_logic.Entities
+﻿namespace business_logic.Entities
 {
     public class Product
     {
@@ -10,7 +8,6 @@ namespace business_logic.Entities
         public decimal Price { get; set; }
         public int InStock { get; set; }
         public int SubcategoryId { get; set; }
-        [JsonIgnore]
         public Subcategory Subcategory { get; set; }
         public ICollection<Review>? Reviews { get; set; }
         public ICollection<Cart> Carts { get; set; }

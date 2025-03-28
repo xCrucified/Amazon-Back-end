@@ -41,7 +41,7 @@ namespace Amazon_Back_End.Controllers
         [HttpGet("filtered")]
         public async Task<IActionResult> GetProducts(
             int page = 1,
-            int pageSize = 10,
+            int pageSize = 16,
             decimal? minPrice = null,
             decimal? maxPrice = null,
             bool? inStock = null,
@@ -49,11 +49,7 @@ namespace Amazon_Back_End.Controllers
             string? search = null,
             float? minRating = null)
         {
-            var query = _amazonDbContext.Products
-                .Include(p => p.Subcategory)
-                .Include(p => p.ProductImages)
-                .Include(p => p.Reviews) // Додаємо зв’язок з Reviews
-                .AsQueryable();
+            var query = productService.GetAll();
 
             // 🔍 Додаємо фільтрацію
             if (minPrice.HasValue)
@@ -75,14 +71,14 @@ namespace Amazon_Back_End.Controllers
                 query = query.Where(p => p.Reviews.Any() && p.Reviews.Average(r => r.Rate) >= minRating.Value);
 
             // 📌 Підрахунок загальної кількості
-            int totalCount = await query.CountAsync();
+            int totalCount = query.Count();
 
             // 🚀 Пагінація
-            var products = await query
+            var products = query
                 .OrderBy(p => p.Name) // або інший параметр сортування
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .ToListAsync();
+                .ToList();
 
             // 📦 Відправляємо дані + метаінформацію
             return Ok(new
