@@ -1,11 +1,4 @@
-﻿using business_logic.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace business_logic.DTOs
+﻿namespace business_logic.DTOs
 {
     public class ProductDto
     {
@@ -15,6 +8,7 @@ namespace business_logic.DTOs
         public int InStock { get; set; }
         public decimal Price { get; set; }
         public int SubcategoryId { get; set; }
+        public List<ReviewDto> Reviews { get; set; }
         public List<ProductImageDto> Images { get; set; }
     }
 }
