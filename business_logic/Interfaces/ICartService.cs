@@ -12,6 +12,7 @@ namespace business_logic.Interfaces
         Task ClearCart(string userId);
         Task Delete(int id);
         void Create(CreateCartItemModel cartitem);
+        Task Edit(EditCartItemModel model);
         Task<CartItemDto> Get(int id);
         IEnumerable<CartItemDto> GetAll();
         IEnumerable<CartItemDto> GetByUser(string id);

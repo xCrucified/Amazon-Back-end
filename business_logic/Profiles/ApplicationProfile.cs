@@ -53,6 +53,7 @@ namespace business_logic.Profiles
 
             CreateMap<CartItem, CartItemDto>().ReverseMap();
             CreateMap<CreateCartItemModel, CartItem>();
+            CreateMap<EditCartItemModel, CartItem>();
         }
     }
 }

@@ -44,5 +44,12 @@ namespace Amazon_Back_End.Controllers
             await cartService.ClearCart(userId);
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Edit([FromForm] EditCartItemModel editCartItemModel)
+        {
+            await cartService.Edit(editCartItemModel);
+            return Ok();
+        }
     }
 }

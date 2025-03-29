@@ -77,5 +77,10 @@ namespace business_logic.Services
             return mapper.Map<List<CartItemDto>>(carts);
         }
 
+        public async Task Edit(EditCartItemModel model)
+        {
+            cartR.Update(mapper.Map<CartItem>(model));
+            cartR.Save();
+        }
     }
 }
