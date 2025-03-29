@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using business_logic.DTOs;
+using business_logic.DTOs.PageRequest;
 using business_logic.Entities;
 using business_logic.Interfaces;
 using data_access.data.Database;
@@ -39,57 +40,51 @@ namespace Amazon_Back_End.Controllers
         }
 
         [HttpPost("filtered")]
-        public async Task<IActionResult> GetProducts(
-            int page = 1,
-            int pageSize = 16,
-            decimal? minPrice = null,
-            decimal? maxPrice = null,
-            bool? inStock = null,
-            int? categoryId = null,
-            int? subcategoryId = null,
-            string? search = null,
-            float? minRating = null)
+        public async Task<IActionResult> GetProducts([FromForm] ProductFilterRequestDto request)
         {
+            if (request == null)
+                return BadRequest(new { error = "Invalid request data" });
+
             var query = productService.GetAll();
+            if (request.minPrice.HasValue)
+                query = query.Where(p => p.Price >= request.minPrice.Value);
 
-            if (minPrice.HasValue)
-                query = query.Where(p => p.Price >= minPrice.Value);
+            if (request.maxPrice.HasValue)
+                query = query.Where(p => p.Price <= request.maxPrice.Value);
 
-            if (maxPrice.HasValue)
-                query = query.Where(p => p.Price <= maxPrice.Value);
+            if (request.inStock.HasValue)
+                query = query.Where(p => p.InStock > 0 == request.inStock.Value);
 
-            if (inStock.HasValue && inStock.Value)
-                query = query.Where(p => p.InStock > 0);
+            if (request.categoryId.HasValue)
+                query = query.Where(p => p.CategoryId == request.categoryId.Value);
 
-            if (categoryId.HasValue)
-                query = query.Where(p => p.CategoryId == categoryId.Value);
+            if (request.subcategoryId.HasValue)
+                query = query.Where(p => p.SubcategoryId == request.subcategoryId.Value);
 
-            if (subcategoryId.HasValue)
-                query = query.Where(p => p.SubcategoryId == subcategoryId.Value);
+            if (!string.IsNullOrEmpty(request.search))
+                query = query.Where(p => p.Name.Contains(request.search) || p.Description.Contains(request.search));
 
-            if (!string.IsNullOrEmpty(search))
-                query = query.Where(p => p.Name.Contains(search) || p.Description.Contains(search));
-
-            if (minRating.HasValue)
-                query = query.Where(p => p.Reviews.Any() && p.Reviews.Average(r => r.Rate) >= minRating.Value);
+            if (request.minRating.HasValue)
+                query = query.Where(p => p.Reviews.Any() && p.Reviews.Average(r => r.Rate) >= request.minRating.Value);
 
             int totalCount = query.Count();
 
             var products = query
                 .OrderBy(p => p.Name)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
+                .Skip((request.page - 1) * request.pageSize)
+                .Take(request.pageSize)
                 .ToList();
 
             return Ok(new
             {
-                totalItems = totalCount,
-                totalPages = (int)Math.Ceiling(totalCount / (double)pageSize),
-                currentPage = page,
-                pageSize = pageSize,
-                products = products
+                TotalCount = totalCount,
+                TotalPages = (int)Math.Ceiling(totalCount / (double)request.pageSize),
+                CurrentPage = request.page,
+                PageSize = request.pageSize,
+                Products = products
             });
         }
+
 
         [HttpPost]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
