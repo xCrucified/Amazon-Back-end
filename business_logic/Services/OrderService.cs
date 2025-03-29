@@ -34,40 +34,40 @@ namespace business_logic.Services
 
         public async Task Create(string userId)
         {
-            var productIds = cartService.GetProductIds();
+            //var productIds = cartService.GetProductIds();
 
-            if (productIds == null || !productIds.Any())
-            {
-                throw new Exception("Cart is empty.");
-            }
+            //if (productIds == null || !productIds.Any())
+            //{
+            //    throw new Exception("CartItem is empty.");
+            //}
 
-            var products = await productR.GetListBySpec(new ProductSpecs.ByIds(productIds));
+            //var products ;// = await productR.GetListBySpec(new ProductSpecs.ByIds());
 
-            if (products.Any(p => p.InStock == 0))
-            {
-                throw new HttpException("Some of the products are not available for purchase now", HttpStatusCode.BadRequest);
-            }
+            //if (products.Any(p => p.InStock == 0))
+            //{
+            //    throw new HttpException("Some of the products are not available for purchase now", HttpStatusCode.BadRequest);
+            //}
 
 
-            var order = new Order
-            {
-                UserId = userId,
-                PurchaseDate = DateTime.Now,
-                TotalPrice = products.Sum(p => p.Price),
-                OrderProducts = new List<OrderProduct>() 
-            };
+            //var order = new Order
+            //{
+            //    UserId = userId,
+            //    PurchaseDate = DateTime.Now,
+            //    TotalPrice = products.Sum(p => p.Price),
+            //    OrderProducts = new List<OrderProduct>() 
+            //};
 
-            foreach (var product in products)
-            {
-                order.OrderProducts.Add(new OrderProduct
-                {
-                    ProductId = product.Id,
-                    Quantity = 1
-                });
-            }
+            //foreach (var product in products)
+            //{
+            //    order.OrderProducts.Add(new OrderProduct
+            //    {
+            //        ProductId = product.Id,
+            //        Quantity = 1
+            //    });
+            //}
 
-            orderR.Insert(order);
-            orderR.Save();
+            //orderR.Insert(order);
+            //orderR.Save();
 
         }
         public async Task<IEnumerable<OrderDto>> GetAllByUser(string userId)

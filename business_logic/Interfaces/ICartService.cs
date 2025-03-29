@@ -9,11 +9,11 @@ namespace business_logic.Interfaces
 {
     public interface ICartService
     {
-        Task<IEnumerable<ProductDto>> GetProducts();
-        IEnumerable<int> GetProductIds();
-        void Add(int id);
-        void Remove(int id);
-        int GetCount();
-        bool IsExists(int id);
+        Task ClearCart(string userId);
+        Task Delete(int id);
+        void Create(CreateCartItemModel cartitem);
+        Task<CartItemDto> Get(int id);
+        IEnumerable<CartItemDto> GetAll();
+        IEnumerable<CartItemDto> GetByUser(string id);
     }
 }

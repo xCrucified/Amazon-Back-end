@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace data_access.Configs
 {
-    public class CartConfig : IEntityTypeConfiguration<Cart>
+    public class CartConfig : IEntityTypeConfiguration<CartItem>
     {
-        public void Configure(EntityTypeBuilder<Cart> builder)
+        public void Configure(EntityTypeBuilder<CartItem> builder)
         {
             builder.HasKey(x => x.Id);
             builder.ToTable("Carts");
-            builder.HasOne(x => x.User).WithOne(x => x.Cart).HasForeignKey<Cart>(x => x.UserId);
+            builder.HasOne(x => x.User).WithMany(x => x.Cart).HasForeignKey(x => x.UserId);
         }
     }
 }

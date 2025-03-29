@@ -15,6 +15,7 @@ namespace business_logic.DTOs
         public decimal Price { get; set; }
         public int InStock { get; set; }
         public int SubcategoryId { get; set; }
+        public int CategodyId { get;set; }
         public string? Description { get; set; }
         public IEnumerable<ProductImage> images { get; set; }
     }

@@ -20,7 +20,6 @@ namespace data_access.Configs
 
             builder.HasMany(x => x.Reviews).WithOne(x => x.Product).HasForeignKey(x => x.Id);
             builder.HasOne(x => x.Subcategory).WithMany(x => x.Products).HasForeignKey(x => x.SubcategoryId);
-            builder.HasMany(x => x.Carts).WithMany(x => x.Products);
             
         }
     }

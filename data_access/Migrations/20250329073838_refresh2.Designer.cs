@@ -12,8 +12,8 @@ using data_access.data.Database;
 namespace data_access.Migrations
 {
     [DbContext(typeof(AmazonDbContext))]
-    [Migration("20250328222846_ref3")]
-    partial class ref3
+    [Migration("20250329073838_refresh2")]
+    partial class refresh2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,21 +24,6 @@ namespace data_access.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("CartProduct", b =>
-                {
-                    b.Property<int>("CartsId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CartsId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("CartProduct");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -180,14 +165,18 @@ namespace data_access.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Carts", (string)null);
                 });
@@ -325,6 +314,9 @@ namespace data_access.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -343,6 +335,8 @@ namespace data_access.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("SubcategoryId");
 
@@ -747,21 +741,6 @@ namespace data_access.Migrations
                     b.ToTable("Wishlist", (string)null);
                 });
 
-            modelBuilder.Entity("CartProduct", b =>
-                {
-                    b.HasOne("business_logic.Entities.CartItem", null)
-                        .WithMany()
-                        .HasForeignKey("CartsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("business_logic.Entities.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -815,11 +794,19 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.CartItem", b =>
                 {
-                    b.HasOne("business_logic.Entities.User", "User")
-                        .WithOne("CartItem")
-                        .HasForeignKey("business_logic.Entities.CartItem", "UserId")
+                    b.HasOne("business_logic.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("business_logic.Entities.User", "User")
+                        .WithMany("Cart")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });
@@ -856,11 +843,19 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.Product", b =>
                 {
+                    b.HasOne("business_logic.Entities.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("business_logic.Entities.Subcategory", "Subcategory")
                         .WithMany("Products")
                         .HasForeignKey("SubcategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("Subcategory");
                 });
@@ -930,6 +925,8 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.Category", b =>
                 {
+                    b.Navigation("Products");
+
                     b.Navigation("Subcategories");
                 });
 
@@ -952,8 +949,7 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.User", b =>
                 {
-                    b.Navigation("CartItem")
-                        .IsRequired();
+                    b.Navigation("Cart");
 
                     b.Navigation("RefreshTokens");
 

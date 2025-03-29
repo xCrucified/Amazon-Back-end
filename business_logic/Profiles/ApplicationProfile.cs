@@ -31,7 +31,7 @@ namespace business_logic.Profiles
             CreateMap<EditProductModel, Product>();
 
 
-            CreateMap<Subcategory, SubcategoryDto>().ReverseMap(); // might cause an issue
+            CreateMap<Subcategory, SubcategoryDto>().ReverseMap();
             CreateMap<CreateSubcategoryModel, Subcategory>();
             CreateMap<EditSubcategoryModel, Subcategory>();
 
@@ -50,6 +50,9 @@ namespace business_logic.Profiles
             CreateMap<Wishlist, WishlistDto>().ReverseMap();
             CreateMap<CreateWishlistModel, Wishlist>();
             CreateMap<EditWishlistModel, Wishlist>();
+
+            CreateMap<CartItem, CartItemDto>().ReverseMap();
+            CreateMap<CreateCartItemModel, CartItem>();
         }
     }
 }

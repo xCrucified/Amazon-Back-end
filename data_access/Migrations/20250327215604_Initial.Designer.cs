@@ -157,7 +157,7 @@ namespace data_access.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("business_logic.Entities.Cart", b =>
+            modelBuilder.Entity("business_logic.Entities.CartItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -808,11 +808,11 @@ namespace data_access.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("business_logic.Entities.Cart", b =>
+            modelBuilder.Entity("business_logic.Entities.CartItem", b =>
                 {
                     b.HasOne("business_logic.Entities.User", "User")
-                        .WithOne("Cart")
-                        .HasForeignKey("business_logic.Entities.Cart", "UserId")
+                        .WithOne("CartItem")
+                        .HasForeignKey("business_logic.Entities.CartItem", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -851,7 +851,7 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.Product", b =>
                 {
-                    b.HasOne("business_logic.Entities.Cart", null)
+                    b.HasOne("business_logic.Entities.CartItem", null)
                         .WithMany("Products")
                         .HasForeignKey("CartId");
 
@@ -946,7 +946,7 @@ namespace data_access.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("business_logic.Entities.Cart", b =>
+            modelBuilder.Entity("business_logic.Entities.CartItem", b =>
                 {
                     b.Navigation("Products");
                 });
@@ -977,7 +977,7 @@ namespace data_access.Migrations
 
             modelBuilder.Entity("business_logic.Entities.User", b =>
                 {
-                    b.Navigation("Cart")
+                    b.Navigation("CartItem")
                         .IsRequired();
 
                     b.Navigation("RefreshTokens");

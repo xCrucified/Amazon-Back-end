@@ -18,6 +18,7 @@ namespace business_logic.Specifications
                 Query.Where(x => x.Id == id);
             }
         }
+
         public class All : Specification<Review>
         {
             public All()
