@@ -135,5 +135,12 @@ namespace Amazon_Back_End.Controllers
             await productService.Delete(id);
             return Ok();
         }
+
+        [HttpGet("{id:int}/products")]
+        public async Task<IActionResult> GetProductsBySubcategory([FromRoute] int id)
+        {
+            var products = productService.GetBySubcategory(id);
+            return Ok(products);
+        }
     }
 }

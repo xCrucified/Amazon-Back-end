@@ -103,6 +103,11 @@ namespace business_logic.Services
             return mapper.Map<List<ProductDto>>(await productR.GetListBySpec(new ProductSpecs.ByIds(ids)));
         }
 
+        public IEnumerable<ProductDto> GetBySubcategory(int subcategoryId)
+        {
+            var products = productR.GetListBySpec(new ProductSpecs.BySubcategory(subcategoryId)).Result;
 
+            return mapper.Map<List<ProductDto>>(products);
+        }
     }
 }

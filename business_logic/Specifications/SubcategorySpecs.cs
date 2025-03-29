@@ -18,6 +18,7 @@ namespace business_logic.Specifications
             }
         }
 
+
         public class ByCategory : Specification<Subcategory>
         {
             public ByCategory(int categoryId)

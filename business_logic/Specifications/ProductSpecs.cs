@@ -19,6 +19,15 @@ namespace business_logic.Specifications
                 Query.Include(x => x.ProductImages).Include(x => x.Subcategory).Include(x => x.Reviews);
             }
         }
+
+        public class BySubcategory : Specification<Product>
+        {
+            public BySubcategory(int subcategoryId)
+            {
+                Query.Where(x => x.SubcategoryId == subcategoryId).Include(x => x.ProductImages).Include(x => x.Subcategory);
+            }
+        }
+
         public class ByIds : Specification<Product>
         {
             public ByIds(IEnumerable<int> ids)

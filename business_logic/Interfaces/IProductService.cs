@@ -16,5 +16,6 @@ namespace business_logic.Interfaces
         Task Create(CreateProductModel productModel);
         Task Delete(int id);
         Task Edit(EditProductModel productEdit);
+        IEnumerable<ProductDto> GetBySubcategory(int subcategoryId);
     }
 }
