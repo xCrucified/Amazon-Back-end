@@ -1,6 +1,6 @@
-﻿using business_logic.Entities;
-using business_logic.Interfaces;
-using business_logic.Services;
+﻿using BLL.Entities;
+using BLL.Interfaces;
+using BLL.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace data_access.Configs
+namespace DAL.Configs
 {
     public class CartConfig : IEntityTypeConfiguration<CartItem>
     {

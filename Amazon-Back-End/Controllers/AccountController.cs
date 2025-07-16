@@ -1,14 +1,14 @@
-﻿using business_logic.DTOs;
-using business_logic.DTOs.User;
-using business_logic.Interfaces;
-using business_logic.Services;
+﻿using BLL.DTOs;
+using BLL.DTOs.User;
+using BLL.Interfaces;
+using BLL.Services;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace Amazon_Back_End.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

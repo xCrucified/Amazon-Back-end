@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using data_access.data;
+using DAL.data;
 
-namespace data_access.data.Database
+namespace DAL.data.Database
 {
     internal class SampleContextFactory : IDesignTimeDbContextFactory<AmazonDbContext>
     {

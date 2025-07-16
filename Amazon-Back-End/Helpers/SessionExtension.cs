@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Amazon_Back_End.Helpers
+namespace WebAPI.Helpers
 {
     public static class SessionExtension
     {

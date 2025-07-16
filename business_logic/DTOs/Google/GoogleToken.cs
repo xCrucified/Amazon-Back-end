@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.DTOs.Google
+namespace BLL.DTOs.Google
 { 
     public class GoogleToken { public string Token { get; set; } } 
 }

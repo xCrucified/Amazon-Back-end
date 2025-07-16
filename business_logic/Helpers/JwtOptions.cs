@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Helpers
+namespace BLL.Helpers
 {
     public class JwtOptions
     {

@@ -1,11 +1,11 @@
-﻿using business_logic.Helpers;
+﻿using BLL.Helpers;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace Amazon_Back_End
+namespace WebAPI
 {
     public static class ServiceExtensions
     {

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using business_logic.DTOs;
-using business_logic.DTOs;
-using business_logic.DTOs.User;
-using business_logic.Entities;
-using business_logic.Interfaces;
-using business_logic.Specifications;
+using BLL.DTOs;
+using BLL.DTOs;
+using BLL.DTOs.User;
+using BLL.Entities;
+using BLL.Interfaces;
+using BLL.Specifications;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -22,7 +22,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Services
+namespace BLL.Services
 {
     public class AccountService : IAccountService
     {

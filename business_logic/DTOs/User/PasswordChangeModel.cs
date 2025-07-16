@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.DTOs.User
+namespace BLL.DTOs.User
 {
     public class PasswordChangeModel
     {

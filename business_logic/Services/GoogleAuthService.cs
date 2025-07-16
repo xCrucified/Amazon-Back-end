@@ -1,5 +1,5 @@
-﻿using business_logic.DTOs;
-using business_logic.Interfaces;
+﻿using BLL.DTOs;
+using BLL.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Services
+namespace BLL.Services
 {
     public class GoogleAuthService : IGoogleAuthService
     {

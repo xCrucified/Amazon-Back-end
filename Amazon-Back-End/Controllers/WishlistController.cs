@@ -1,11 +1,11 @@
-﻿using business_logic.DTOs;
-using business_logic.DTOs.Wishlist;
-using business_logic.Entities;
-using business_logic.Interfaces;
-using business_logic.Services;
+﻿using BLL.DTOs;
+using BLL.DTOs.Wishlist;
+using BLL.Entities;
+using BLL.Interfaces;
+using BLL.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Amazon_Back_End.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

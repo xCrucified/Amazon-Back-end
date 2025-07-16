@@ -29,7 +29,7 @@
 		
 
 		<ItemGroup>
-			<ProjectReference Include="..\business_logic\business_logic.csproj" />
+			<ProjectReference Include="..\business_logic\BLL.csproj" />
 		</ItemGroup>
 
 		

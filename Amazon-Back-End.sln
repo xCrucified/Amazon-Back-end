@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amazon-Back-End", "Amazon-Back-End\Amazon-Back-End.csproj", "{F6DAAA6D-988A-4D49-808B-ED314693535A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "Amazon-Back-End\WebAPI.csproj", "{F6DAAA6D-988A-4D49-808B-ED314693535A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "data_access", "data_access\data_access.csproj", "{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "data_access\DAL.csproj", "{E3FE6094-C9FA-4E15-ACDA-5B2B220809C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "business_logic", "business_logic\business_logic.csproj", "{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "business_logic\BLL.csproj", "{851D0C49-FD5D-4D11-BA53-4CB027D7FF21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

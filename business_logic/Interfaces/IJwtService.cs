@@ -1,4 +1,4 @@
-﻿using business_logic.Entities;
+﻿using BLL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Interfaces
+namespace BLL.Interfaces
 {
     public interface IJwtService
     {

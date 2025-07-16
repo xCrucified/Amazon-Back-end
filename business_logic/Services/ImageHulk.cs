@@ -1,5 +1,5 @@
-﻿using business_logic.Entities;
-using business_logic.Interfaces;
+﻿using BLL.Entities;
+using BLL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;   
 
-namespace business_logic.Services
+namespace BLL.Services
 {
     public class ImageHulk : IImageHulk
     {

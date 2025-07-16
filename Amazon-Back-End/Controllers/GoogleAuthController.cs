@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using business_logic.Interfaces;
-using business_logic.DTOs.Google;
+using BLL.Interfaces;
+using BLL.DTOs.Google;
 
-namespace Amazon_Back_End.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

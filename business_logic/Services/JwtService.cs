@@ -1,6 +1,6 @@
-﻿using business_logic.Entities;
-using business_logic.Helpers;
-using business_logic.Interfaces;
+﻿using BLL.Entities;
+using BLL.Helpers;
+using BLL.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -14,7 +14,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Services
+namespace BLL.Services
 {
     public class JwtService : IJwtService
     {

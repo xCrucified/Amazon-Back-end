@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace business_logic {
+namespace BLL {
     using System;
     
     

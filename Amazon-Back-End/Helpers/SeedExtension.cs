@@ -1,9 +1,9 @@
-﻿using business_logic.Entities;
+﻿using BLL.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Data;
 using System.Reflection;
 
-namespace Amazon_Back_End.Helpers
+namespace WebAPI.Helpers
 {
     public static class SeedExtension
     {

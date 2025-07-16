@@ -1,9 +1,9 @@
-using Amazon_Back_End.Helpers;
-using business_logic;
-using business_logic.Interfaces;
-using business_logic.Services;
-using data_access;
-using data_access.data.Database;
+using WebAPI.Helpers;
+using BLL;
+using BLL.Interfaces;
+using BLL.Services;
+using DAL;
+using DAL.data.Database;
 using Hangfire;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -12,7 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-namespace Amazon_Back_End
+
+namespace WebAPI
 {
     public class Program
     {

@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using business_logic.DTOs;
-using business_logic.DTOs.PageRequest;
-using business_logic.Entities;
-using business_logic.Interfaces;
-using data_access.data.Database;
+using BLL.DTOs;
+using BLL.DTOs.PageRequest;
+using BLL.Entities;
+using BLL.Interfaces;
+using DAL.data.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Amazon_Back_End.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

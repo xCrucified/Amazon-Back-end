@@ -1,12 +1,12 @@
-﻿using business_logic.DTOs;
-using business_logic.Interfaces;
-using business_logic.Services;
+﻿using BLL.DTOs;
+using BLL.Interfaces;
+using BLL.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static Amazon_Back_End.Helpers.SeedExtension;
+using static WebAPI.Helpers.SeedExtension;
 
-namespace Amazon_Back_End.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

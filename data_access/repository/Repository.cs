@@ -1,8 +1,8 @@
 ﻿using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
-using business_logic.Interfaces;
-using data_access;
-using data_access.data.Database;
+using BLL.Interfaces;
+using DAL;
+using DAL.data.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace data_access.repository
+namespace DAL.repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

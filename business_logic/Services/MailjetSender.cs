@@ -1,4 +1,4 @@
-﻿using business_logic.Helpers;
+﻿using BLL.Helpers;
 using Mailjet.Client;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using business_logic.Entities;
+using BLL.Entities;
 using Mailjet.Client.Resources;
 
-namespace business_logic.Services
+namespace BLL.Services
 {
     public class MailjetSender : IEmailSender
     {

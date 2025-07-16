@@ -1,4 +1,4 @@
-﻿namespace business_logic.DTOs.PageRequest
+﻿namespace BLL.DTOs.PageRequest
 {
     public class ProductFilterRequestDto
     {

@@ -1,4 +1,4 @@
-﻿using business_logic.DTOs;
+﻿using BLL.DTOs;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Interfaces
+namespace BLL.Interfaces
 {
     public interface IProductService
     {

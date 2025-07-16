@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.DTOs.Wishlist
+namespace BLL.DTOs.Wishlist
 {
     public class CreateWishlistModel
     {

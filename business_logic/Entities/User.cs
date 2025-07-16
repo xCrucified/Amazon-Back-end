@@ -1,4 +1,4 @@
-﻿using business_logic.Interfaces;
+﻿using BLL.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Entities
+namespace BLL.Entities
 {
     public class User : IdentityUser
     {

@@ -1,4 +1,4 @@
-﻿namespace business_logic.Entities
+﻿namespace BLL.Entities
 {
     public class Product
     {

@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
-using business_logic.Interfaces;
+using BLL.Interfaces;
 using Hangfire;
 
 
-namespace Amazon_Back_End
+namespace WebAPI
 {
     public class JobConfigurator
     {

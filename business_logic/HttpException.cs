@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic
+namespace BLL
 {
     public class HttpException : Exception
     {

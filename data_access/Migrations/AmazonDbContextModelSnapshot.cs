@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using data_access.data.Database;
+using DAL.data.Database;
 
 #nullable disable
 
-namespace data_access.Migrations
+namespace DAL.Migrations
 {
     [DbContext(typeof(AmazonDbContext))]
     partial class AmazonDbContextModelSnapshot : ModelSnapshot

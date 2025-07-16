@@ -1,4 +1,4 @@
-﻿using business_logic.Interfaces;
+﻿using BLL.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Services
+namespace BLL.Services
 {
     public class LocalFileService : IFileService
     {

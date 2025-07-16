@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Entities
+namespace BLL.Entities
 {
     public class ProductImage
     {

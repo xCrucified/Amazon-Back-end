@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using business_logic.Entities;
+using BLL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace data_access.Configs
+namespace DAL.Configs
 {
     public class SubcategoryConfig : IEntityTypeConfiguration<Subcategory>
     {

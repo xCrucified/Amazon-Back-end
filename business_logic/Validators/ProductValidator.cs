@@ -1,5 +1,5 @@
-﻿using business_logic.DTOs;
-using business_logic.Entities;
+﻿using BLL.DTOs;
+using BLL.Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Validators
+namespace BLL.Validators
 {
     public class ProductValidator : AbstractValidator<ProductDto>
     {

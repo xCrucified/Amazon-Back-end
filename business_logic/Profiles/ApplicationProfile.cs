@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using business_logic.DTOs;
-using business_logic.DTOs.Wishlist;
-using business_logic.Entities;
-using business_logic.Interfaces;
-using business_logic.Services;
+using BLL.DTOs;
+using BLL.DTOs.Wishlist;
+using BLL.Entities;
+using BLL.Interfaces;
+using BLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Profiles
+namespace BLL.Profiles
 {
     public class ApplicationProfile : Profile
     {

@@ -1,4 +1,4 @@
-﻿using business_logic.Entities;
+﻿using BLL.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace data_access.Configs
+namespace DAL.Configs
 {
     public class RefreshTokenEntityConfigs : IEntityTypeConfiguration<RefreshToken>
     {

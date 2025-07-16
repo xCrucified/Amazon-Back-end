@@ -1,7 +1,7 @@
-﻿using business_logic.Entities;
-using business_logic.Interfaces;
-using data_access.data.Database;
-using data_access.repository;
+﻿using BLL.Entities;
+using BLL.Interfaces;
+using DAL.data.Database;
+using DAL.repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace data_access
+namespace DAL
 {
     public static class ServiceExtensions
     {

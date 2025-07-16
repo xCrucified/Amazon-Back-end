@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using business_logic.DTOs;
-using business_logic.Entities;
-using business_logic.Interfaces;
-using business_logic.Specifications;
+using BLL.DTOs;
+using BLL.Entities;
+using BLL.Interfaces;
+using BLL.Specifications;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +14,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Services
+namespace BLL.Services
 {
     public class ProductService : IProductService
     {

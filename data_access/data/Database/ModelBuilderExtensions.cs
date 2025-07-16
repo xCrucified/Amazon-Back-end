@@ -1,4 +1,4 @@
-﻿using business_logic.Entities;
+﻿using BLL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace data_access.data.Database
+namespace DAL.data.Database
 {
     public static class ModelBuilderExtensions
     {

@@ -1,8 +1,8 @@
-﻿using business_logic.DTOs;
-using business_logic.Interfaces;
+﻿using BLL.DTOs;
+using BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Amazon_Back_End.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

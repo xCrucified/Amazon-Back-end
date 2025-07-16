@@ -1,4 +1,4 @@
-﻿namespace business_logic.DTOs
+﻿namespace BLL.DTOs
 {
     public class ProductDto
     {

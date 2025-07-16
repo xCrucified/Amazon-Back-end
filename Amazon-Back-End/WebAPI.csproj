@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Amazon_Back_End</RootNamespace>
+    <RootNamespace>WebAPI</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,8 +36,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\business_logic\business_logic.csproj" />
-		<ProjectReference Include="..\data_access\data_access.csproj" />
+		<ProjectReference Include="..\business_logic\BLL.csproj" />
+		<ProjectReference Include="..\data_access\DAL.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

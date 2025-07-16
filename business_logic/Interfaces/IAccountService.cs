@@ -1,5 +1,5 @@
-﻿using business_logic.DTOs;
-using business_logic.DTOs.User;
+﻿using BLL.DTOs;
+using BLL.DTOs.User;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Interfaces
+namespace BLL.Interfaces
 {
     public interface IAccountService
     {

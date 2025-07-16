@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using business_logic.Interfaces;
-using business_logic.Profiles;
-using business_logic.Services;
+using BLL.Interfaces;
+using BLL.Profiles;
+using BLL.Services;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic
+namespace BLL
 {
     public static class ServiceExtensions
     {

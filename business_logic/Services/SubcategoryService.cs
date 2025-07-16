@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using business_logic.DTOs;
-using business_logic.Interfaces;
-using business_logic.Specifications;
+using BLL.DTOs;
+using BLL.Interfaces;
+using BLL.Specifications;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using business_logic.Entities;
+using BLL.Entities;
 using AutoMapper;
 using System.Net;
 
 
-namespace business_logic.Services
+namespace BLL.Services
 {
     public class SubcategoryService : ISubcategoryService
     {

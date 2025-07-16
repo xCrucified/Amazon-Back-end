@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Interfaces
+namespace BLL.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {

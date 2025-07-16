@@ -1,7 +1,7 @@
 ﻿using Ardalis.Specification;
-using business_logic.Entities;
+using BLL.Entities;
 
-namespace business_logic.Specifications
+namespace BLL.Specifications
 {
     public class ProductSpecs
     {

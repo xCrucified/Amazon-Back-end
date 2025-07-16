@@ -1,4 +1,4 @@
-﻿using business_logic.Entities;
+﻿using BLL.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -10,7 +10,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace data_access.data.Database
+namespace DAL.data.Database
 {
     public class AmazonDbContext : IdentityDbContext<User>
     {
