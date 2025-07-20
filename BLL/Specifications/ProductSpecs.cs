@@ -9,14 +9,20 @@ namespace BLL.Specifications
         {
             public ById(int id)
             {
-                Query.Where(x => x.Id == id).Include(x => x.ProductImages).Include(x => x.Subcategory);
+                Query.Where(x => x.Id == id)
+                     .Include(x => x.ProductImages)
+                     .Include(x => x.Subcategory)
+                     .Include(x => x.Reviews);
             }
         }
+
         public class All : Specification<Product>
         {
             public All()
             {
-                Query.Include(x => x.ProductImages).Include(x => x.Subcategory).Include(x => x.Reviews);
+                Query.Include(x => x.ProductImages)
+                     .Include(x => x.Subcategory)
+                     .Include(x => x.Reviews);
             }
         }
 
@@ -24,7 +30,10 @@ namespace BLL.Specifications
         {
             public BySubcategory(int subcategoryId)
             {
-                Query.Where(x => x.SubcategoryId == subcategoryId).Include(x => x.ProductImages).Include(x => x.Subcategory);
+                Query.Where(x => x.SubcategoryId == subcategoryId)
+                     .Include(x => x.ProductImages)
+                     .Include(x => x.Subcategory)
+                     .Include(x => x.Reviews);
             }
         }
 
@@ -32,7 +41,10 @@ namespace BLL.Specifications
         {
             public ByIds(IEnumerable<int> ids)
             {
-                Query.Where(x => ids.Contains(x.Id));
+                Query.Where(x => ids.Contains(x.Id))
+                     .Include(x => x.ProductImages)
+                     .Include(x => x.Subcategory)
+                     .Include(x => x.Reviews);
             }
         }
     }

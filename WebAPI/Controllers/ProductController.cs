@@ -13,7 +13,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductController : Controller
     {
-        public readonly IProductService productService;
+        public readonly IProductService _productService;
         private readonly AmazonDbContext _amazonDbContext;
         private readonly IMapper _mapper;
         public readonly IImageHulk _imageHulk;
@@ -23,68 +23,77 @@ namespace WebAPI.Controllers
             AmazonDbContext amazonDbContext,
             IImageHulk imageHulk)
         {
-            this.productService = productService;
-            _amazonDbContext = amazonDbContext;
-            _mapper = mapper;
-            _imageHulk = imageHulk;
+            this._productService = productService;
+            this._amazonDbContext = amazonDbContext;
+            this._mapper = mapper;
+            this._imageHulk = imageHulk;
         }
 
         [HttpGet("all")]
-        public IActionResult GetAll() => Ok(this.productService.GetAll());
+        public IActionResult GetAll() => Ok(this._productService.GetAll());
 
         [HttpGet("{id:int}")]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<ActionResult> Get([FromRoute] int id)
         {
-            return Ok(await productService.Get(id));
+            return Ok(await _productService.Get(id));
         }
 
-        [HttpPost("filtered")]
-        public async Task<IActionResult> GetProducts([FromForm] ProductFilterRequestDto request)
+        [HttpGet("filtered")]
+        public async Task<IActionResult> GetFilteredProducts([FromQuery] ProductFilterRequestDto request)
         {
             if (request == null)
-                return BadRequest(new { error = "Invalid request data" });
+                return BadRequest(new { error = "Некоректні вхідні дані запиту." });
 
-            var query = productService.GetAll();
-            if (request.minPrice.HasValue)
-                query = query.Where(p => p.Price >= request.minPrice.Value);
+            if (request.Page < 1)
+                return BadRequest(new { error = "Номер сторінки не може бути меншим за 1." });
 
-            if (request.maxPrice.HasValue)
-                query = query.Where(p => p.Price <= request.maxPrice.Value);
+            if (request.PageSize < 1)
+                return BadRequest(new { error = "Розмір сторінки не може бути меншим за 1." });
 
-            if (request.inStock.HasValue)
-                query = query.Where(p => p.InStock > 0 == request.inStock.Value);
+            var query = _productService.GetAll();
 
-            if (request.categoryId.HasValue)
-                query = query.Where(p => p.CategoryId == request.categoryId.Value);
+            if (request.MinPrice.HasValue)
+                query = query.Where(p => p.Price >= request.MinPrice.Value);
 
-            if (request.subcategoryId.HasValue)
-                query = query.Where(p => p.SubcategoryId == request.subcategoryId.Value);
+            if (request.MaxPrice.HasValue)
+                query = query.Where(p => p.Price <= request.MaxPrice.Value);
 
-            if (!string.IsNullOrEmpty(request.search))
-                query = query.Where(p => p.Name.Contains(request.search) || p.Description.Contains(request.search));
+            if (request.InStock.HasValue)
+                query = query.Where(p => (p.InStock > 0) == request.InStock.Value);
 
-            if (request.minRating.HasValue)
-                query = query.Where(p => p.Reviews.Any() && p.Reviews.Average(r => r.Rate) >= request.minRating.Value);
+            if (request.CategoryId.HasValue)
+                query = query.Where(p => p.CategoryId == request.CategoryId.Value);
 
-            int totalCount = query.Count();
+            if (request.SubcategoryId.HasValue)
+                query = query.Where(p => p.SubcategoryId == request.SubcategoryId.Value);
 
-            var products = query
+            if (!string.IsNullOrEmpty(request.Search))
+            {
+                string searchTerm = request.Search.ToLower();
+                query = query.Where(p => p.Name.ToLower().Contains(searchTerm) || p.Description.ToLower().Contains(searchTerm));
+            }
+
+            if (request.MinRating.HasValue)
+                query = query.Where(p => p.Reviews.Any() && p.Reviews.Average(r => r.Rate) >= request.MinRating.Value);
+
+            int totalCount = await query.CountAsync();
+
+            var products = await query
                 .OrderBy(p => p.Name)
-                .Skip((request.page - 1) * request.pageSize)
-                .Take(request.pageSize)
-                .ToList();
+                .Skip((request.Page - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToListAsync();
 
             return Ok(new
             {
                 TotalCount = totalCount,
-                TotalPages = (int)Math.Ceiling(totalCount / (double)request.pageSize),
-                CurrentPage = request.page,
-                PageSize = request.pageSize,
+                TotalPages = (int)Math.Ceiling(totalCount / (double)request.PageSize),
+                CurrentPage = request.Page,
+                PageSize = request.PageSize,
                 Products = products
             });
         }
-
 
         [HttpPost]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
@@ -119,7 +128,7 @@ namespace WebAPI.Controllers
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Edit([FromForm] EditProductModel product)
         {
-            await productService.Edit(product);
+            await _productService.Edit(product);
             return Ok();
         }
 
@@ -127,14 +136,14 @@ namespace WebAPI.Controllers
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            await productService.Delete(id);
+            await _productService.Delete(id);
             return Ok();
         }
 
         [HttpGet("{id:int}/products")]
         public async Task<IActionResult> GetProductsBySubcategory([FromRoute] int id)
         {
-            var products = productService.GetBySubcategory(id);
+            var products = _productService.GetBySubcategory(id);
             return Ok(products);
         }
     }

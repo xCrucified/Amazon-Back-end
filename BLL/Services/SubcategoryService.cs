@@ -1,88 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AutoMapper;
 using BLL.DTOs;
+using BLL.Entities;
 using BLL.Interfaces;
 using BLL.Specifications;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using BLL.Entities;
-using AutoMapper;
 using System.Net;
-
 
 namespace BLL.Services
 {
     public class SubcategoryService : ISubcategoryService
     {
-        private readonly IRepository<Subcategory> _subcategoriesR;
+        private readonly IRepository<Subcategory> _subcategoriesRepo;
         private readonly IMapper _mapper;
+
         public SubcategoryService(IRepository<Subcategory> subcategoriesRepository, IMapper mapper)
         {
-            this._subcategoriesR = subcategoriesRepository;
+            _subcategoriesRepo = subcategoriesRepository;
             _mapper = mapper;
         }
 
-        public void Create(CreateSubcategoryModel model)
+        public async Task Create(CreateSubcategoryModel model)
         {
             var obj = _mapper.Map<Subcategory>(model);
 
-            _subcategoriesR.Insert(obj);
-            _subcategoriesR.Save();
+            await _subcategoriesRepo.InsertAsync(obj);
+            await _subcategoriesRepo.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
         {
-            var subcategory = await Get(id);
-            var subcategoryDto = _mapper.Map<SubcategoryDto>(subcategory);
+            if (id <= 0)
+                throw new HttpException("Subcategory not found.", HttpStatusCode.BadRequest);
 
-            _subcategoriesR.Delete(id);
-            _subcategoriesR.Save();
+            var subcategoryToDelete = await _subcategoriesRepo.GetItemBySpec(new SubcategorySpecs.ById(id));
+
+            if (subcategoryToDelete == null)
+                throw new HttpException("Subcategory not found.", HttpStatusCode.NotFound);
+
+            await _subcategoriesRepo.DeleteAsync(subcategoryToDelete);
+            await _subcategoriesRepo.SaveChangesAsync();
         }
 
         public async Task Edit(EditSubcategoryModel model)
         {
-            var subcategory =  _mapper.Map<Subcategory>(model);
-            if (subcategory == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var existingSubcategory = await _subcategoriesRepo.GetItemBySpec(new SubcategorySpecs.ById(model.Id));
 
-            _subcategoriesR.Update(subcategory);
-            _subcategoriesR.Save();
+            if (existingSubcategory == null)
+                throw new HttpException("Subcategory not found.", HttpStatusCode.NotFound);
+
+            _mapper.Map(model, existingSubcategory);
+
+            await _subcategoriesRepo.UpdateAsync(existingSubcategory);
+            await _subcategoriesRepo.SaveChangesAsync();
         }
 
-        public  IEnumerable<SubcategoryDto> GetAll()
+        public async Task<IEnumerable<SubcategoryDto>> GetAll()
         {
-            var subcategories = _subcategoriesR.GetAll() ?? Enumerable.Empty<Subcategory>();
+            var subcategories = await _subcategoriesRepo.GetListBySpec(new SubcategorySpecs.All());
             return _mapper.Map<List<SubcategoryDto>>(subcategories);
         }
 
         public async Task<SubcategoryDto> Get(int id)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (id <= 0)
+                throw new HttpException("Subcategory not found.", HttpStatusCode.BadRequest);
 
-            var subcategory = await _subcategoriesR.GetItemBySpec(new SubcategorySpecs.ById(id));
-            if (subcategory == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var subcategory = await _subcategoriesRepo.GetItemBySpec(new SubcategorySpecs.ById(id));
+            if (subcategory == null)
+                throw new HttpException("Subcategory not found.", HttpStatusCode.NotFound);
 
             return _mapper.Map<SubcategoryDto>(subcategory);
         }
 
-
         public async Task<IEnumerable<SubcategoryDto>> GetSubcategoriesByCategoryAsync(int id)
         {
-            var subcategories = await _subcategoriesR.GetListBySpec(new SubcategorySpecs.ByCategory(id));
+            var subcategories = await _subcategoriesRepo.GetListBySpec(new SubcategorySpecs.ByCategory(id));
 
             if (subcategories == null || !subcategories.Any())
-                throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+                throw new HttpException("Subcategories not found for the given category.", HttpStatusCode.NotFound);
 
             return _mapper.Map<IEnumerable<SubcategoryDto>>(subcategories);
         }
 
         public async Task<IEnumerable<SubcategoryDto>> GetSubcategoriesByCategoryNameAsync(string categoryName)
         {
-            var subcategories = await _subcategoriesR.GetListBySpec(new SubcategorySpecs.ByCategoryName(categoryName));
+            var subcategories = await _subcategoriesRepo.GetListBySpec(new SubcategorySpecs.ByCategoryName(categoryName));
 
             if (subcategories == null || !subcategories.Any())
-                throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+                throw new HttpException("Subcategories not found for the given category name.", HttpStatusCode.NotFound);
 
             return _mapper.Map<IEnumerable<SubcategoryDto>>(subcategories);
         }

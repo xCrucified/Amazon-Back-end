@@ -3,84 +3,91 @@ using BLL.DTOs;
 using BLL.Entities;
 using BLL.Interfaces;
 using BLL.Specifications;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
     public class CartService : ICartService
     {
-        private readonly IRepository<CartItem> cartR;
-        private readonly IMapper mapper;
+        private readonly IRepository<CartItem> _cartRepo;
+        private readonly IMapper _mapper;
 
-        public CartService(IRepository<CartItem> cartR, IMapper mapper)
+        public CartService(IRepository<CartItem> cartRepo, IMapper mapper)
         {
-            this.cartR = cartR;
-            this.mapper = mapper;
+            _cartRepo = cartRepo;
+            _mapper = mapper;
         }
 
-        public void Create(CreateCartItemModel cartitem)
+        public async Task Create(CreateCartItemModel cartitemModel)
         {
-            cartR.Insert(mapper.Map<CartItem>(cartitem));
-            cartR.Save();
+            var cartItemToInsert = _mapper.Map<CartItem>(cartitemModel);
+            await _cartRepo.InsertAsync(cartItemToInsert);
+            await _cartRepo.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (id <= 0)
+                throw new HttpException("Cart item not found.", HttpStatusCode.BadRequest);
 
-            var cartitem = await Get(id);
-            var cartitemDto = mapper.Map<CartItemDto>(cartitem);
+            var cartItemToDelete = await _cartRepo.GetItemBySpec(new CartItemSpecs.ById(id));
 
-            cartR.Delete(id);
-            cartR.Save();
+            if (cartItemToDelete == null)
+                throw new HttpException("Cart item not found.", HttpStatusCode.NotFound);
+
+            await _cartRepo.DeleteAsync(cartItemToDelete);
+            await _cartRepo.SaveChangesAsync();
         }
 
         public async Task ClearCart(string userId)
         {
-            var cartitems = cartR.GetListBySpec(new CartItemSpecs.ByUserId(userId)).Result;
+            var cartItems = await _cartRepo.GetListBySpec(new CartItemSpecs.ByUserId(userId));
 
-            foreach (var item in cartitems)
+            if (cartItems != null && cartItems.Any())
             {
-                cartR.Delete(item.Id);
+                foreach (var item in cartItems)
+                {
+                    await _cartRepo.DeleteAsync(item);
+                }
+                await _cartRepo.SaveChangesAsync();
             }
-
-            cartR.Save();
         }
 
         public async Task<CartItemDto> Get(int id)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (id <= 0)
+                throw new HttpException("Cart item not found.", HttpStatusCode.BadRequest);
 
-            var product = await cartR.GetItemBySpec(new CartItemSpecs.ById(id));
-            if (product == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var cartItem = await _cartRepo.GetItemBySpec(new CartItemSpecs.ById(id));
+            if (cartItem == null)
+                throw new HttpException("Cart item not found.", HttpStatusCode.NotFound);
 
-            return mapper.Map<CartItemDto>(product);
+            return _mapper.Map<CartItemDto>(cartItem);
         }
 
-        public IEnumerable<CartItemDto> GetByUser(string id)
+        public async Task<IEnumerable<CartItemDto>> GetByUser(string userId)
         {
-            var carts = cartR.GetListBySpec(new CartItemSpecs.ByUserId(id)).Result;
-
-            return mapper.Map<List<CartItemDto>>(carts);
+            var carts = await _cartRepo.GetListBySpec(new CartItemSpecs.ByUserId(userId));
+            return _mapper.Map<List<CartItemDto>>(carts);
         }
 
-        public IEnumerable<CartItemDto> GetAll()
+        public async Task<IEnumerable<CartItemDto>> GetAll()
         {
-            var carts = cartR.GetListBySpec(new CartItemSpecs.All()).Result;
-
-            return mapper.Map<List<CartItemDto>>(carts);
+            var carts = await _cartRepo.GetListBySpec(new CartItemSpecs.All());
+            return _mapper.Map<List<CartItemDto>>(carts);
         }
 
         public async Task Edit(EditCartItemModel model)
         {
-            cartR.Update(mapper.Map<CartItem>(model));
-            cartR.Save();
+            var existingCartItem = await _cartRepo.GetItemBySpec(new CartItemSpecs.ById(model.Id));
+
+            if (existingCartItem == null)
+                throw new HttpException("Cart item not found.", HttpStatusCode.NotFound);
+
+            _mapper.Map(model, existingCartItem);
+
+            await _cartRepo.UpdateAsync(existingCartItem);
+            await _cartRepo.SaveChangesAsync();
         }
     }
 }

@@ -1,9 +1,4 @@
 ﻿using BLL.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
@@ -11,10 +6,10 @@ namespace BLL.Interfaces
     {
         Task ClearCart(string userId);
         Task Delete(int id);
-        void Create(CreateCartItemModel cartitem);
+        Task Create(CreateCartItemModel cartitem);
         Task Edit(EditCartItemModel model);
         Task<CartItemDto> Get(int id);
-        IEnumerable<CartItemDto> GetAll();
-        IEnumerable<CartItemDto> GetByUser(string id);
+        Task<IEnumerable<CartItemDto>> GetAll();
+        Task<IEnumerable<CartItemDto>> GetByUser(string id);
     }
 }

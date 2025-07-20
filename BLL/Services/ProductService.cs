@@ -1,113 +1,116 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using BLL.DTOs;
 using BLL.Entities;
 using BLL.Interfaces;
 using BLL.Specifications;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IMapper mapper;
-        private readonly IRepository<Product> productR;
-        private readonly IRepository<ProductImage> productimageR;
-        public readonly IImageHulk imageHulk;
-        private readonly IWebHostEnvironment environment;
+        private readonly IMapper _mapper;
+        private readonly IRepository<Product> _productRepo;
+        private readonly IRepository<ProductImage> _productImageRepo;
+        private readonly IImageHulk _imageHulk;
+        private readonly IWebHostEnvironment _environment;
         private readonly string imageFolder = "Images";
 
-
-        public ProductService(IMapper mapper, IRepository<Product> productR, IImageHulk hulk, IRepository<ProductImage> repository, IWebHostEnvironment environment)
+        public ProductService(IMapper _mapper, IRepository<Product> _productRepo, IImageHulk _imageHulk, IRepository<ProductImage> _productImageRepo, IWebHostEnvironment _environment)
         {
-            this.mapper = mapper;
-            this.productR = productR;
-            this.imageHulk = hulk;
-            this.productimageR = repository;
-            this.environment = environment;
+            this._mapper = _mapper;
+            this._productRepo = _productRepo;
+            this._imageHulk = _imageHulk;
+            this._productImageRepo = _productImageRepo;
+            this._environment = _environment;
         }
 
         public async Task Create(CreateProductModel productModel)
         {
             try
             {
-                var productToInsert = mapper.Map<Product>(productModel);
-                productR.Insert(productToInsert);
-                productR.Save();
-                
-                foreach (var image in productModel.Images)
+                var productToInsert = _mapper.Map<Product>(productModel);
+
+                await _productRepo.InsertAsync(productToInsert);
+                await _productRepo.SaveChangesAsync();
+
+                if (productModel.Images != null && productModel.Images.Any())
                 {
-                    var imageName = await imageHulk.Save(image);
-                    var imageProduct = new ProductImage
+                    foreach (var image in productModel.Images)
                     {
-                        Image = imageName,
-                        ProductId = productToInsert.Id
-                    };
-                    productimageR.Insert(imageProduct);
+                        var imageName = await _imageHulk.Save(image);
+                        var imageProduct = new ProductImage
+                        {
+                            Image = imageName,
+                            ProductId = productToInsert.Id
+                        };
+                        await _productImageRepo.InsertAsync(imageProduct);
+                    }
+                    await _productImageRepo.SaveChangesAsync();
                 }
-                productimageR.Save();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"Помилка при створенні продукту: {ex.Message}");
+                throw;
             }
         }
 
-
         public async Task Delete(int id)
         {
-            if (await Get(id) == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var productToDelete = await _productRepo.GetItemBySpec(new ProductSpecs.ById(id));
 
-            var product = await Get(id);
-            var productDto = mapper.Map<ProductDto>(product);
+            if (productToDelete == null)
+                throw new HttpException(Errors.ItemNotFound, HttpStatusCode.NotFound);
 
-            productR.Delete(id);
-            productR.Save();
+            await _productRepo.DeleteAsync(productToDelete.Id);
+            await _productRepo.SaveChangesAsync();
         }
 
         public async Task Edit(EditProductModel productEdit)
         {
-            productR.Update(mapper.Map<Product>(productEdit));
-            productR.Save();
-        }
+            var existingProduct = await _productRepo.GetItemBySpec(new ProductSpecs.ById(productEdit.Id));
 
+            if (existingProduct == null)
+                throw new HttpException(Errors.ItemNotFound, HttpStatusCode.NotFound);
+
+            _mapper.Map(productEdit, existingProduct);
+
+            await _productRepo.UpdateAsync(existingProduct);
+            await _productRepo.SaveChangesAsync();
+        }
 
         public async Task<ProductDto> Get(int id)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (id <= 0)
+                throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
 
-            var product = await productR.GetItemBySpec(new ProductSpecs.ById(id));
-            if (product == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var product = await _productRepo.GetItemBySpec(new ProductSpecs.ById(id));
+            if (product == null)
+                throw new HttpException(Errors.ItemNotFound, HttpStatusCode.NotFound);
 
-            return mapper.Map<ProductDto>(product);
-        }
-
-        public  IEnumerable<ProductDto> GetAll()
-        {
-            var products = productR.GetListBySpec(new ProductSpecs.All()).Result;
-
-
-            return mapper.Map<List<ProductDto>>(products);
+            return _mapper.Map<ProductDto>(product);
         }
 
         public async Task<IEnumerable<ProductDto>> Get(IEnumerable<int> ids)
         {
-            return mapper.Map<List<ProductDto>>(await productR.GetListBySpec(new ProductSpecs.ByIds(ids)));
+            var products = await _productRepo.GetListBySpec(new ProductSpecs.ByIds(ids));
+            return _mapper.Map<List<ProductDto>>(products);
         }
 
-        public IEnumerable<ProductDto> GetBySubcategory(int subcategoryId)
+        public IQueryable<ProductDto> GetAll()
         {
-            var products = productR.GetListBySpec(new ProductSpecs.BySubcategory(subcategoryId)).Result;
+            return _productRepo.GetQueryable()
+                           .ProjectTo<ProductDto>(_mapper.ConfigurationProvider);
+        }
 
-            return mapper.Map<List<ProductDto>>(products);
+        public IQueryable<ProductDto> GetBySubcategory(int subcategoryId)
+        {
+            return _productRepo.GetQueryable()
+                               .Where(p => p.SubcategoryId == subcategoryId)
+                               .ProjectTo<ProductDto>(_mapper.ConfigurationProvider);
         }
     }
 }

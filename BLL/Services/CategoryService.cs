@@ -3,69 +3,78 @@ using BLL.DTOs;
 using BLL.Entities;
 using BLL.Interfaces;
 using BLL.Specifications;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IMapper mapper;
-        private readonly IRepository<Category> categoryR;
+        private readonly IMapper _mapper;
+        private readonly IRepository<Category> _categoryRepo;
 
-        public CategoryService(IMapper mapper, IRepository<Category> categoryR)
+        public CategoryService(IMapper mapper, IRepository<Category> categoryRepo)
         {
-            this.mapper = mapper;
-            this.categoryR = categoryR;
+            _mapper = mapper;
+            _categoryRepo = categoryRepo;
         }
 
-
-        public void Create(CreateCategoryModel categoryModel)
+        public async Task Create(CreateCategoryModel categoryModel)
         {
-            categoryR.Insert(mapper.Map<Category>(categoryModel));
-            categoryR.Save();
+            var categoryToInsert = _mapper.Map<Category>(categoryModel);
+            await _categoryRepo.InsertAsync(categoryToInsert);
+            await _categoryRepo.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (id <= 0)
+                throw new HttpException("Category not found.", HttpStatusCode.BadRequest);
 
-            var product = await Get(id);
-            var productDto = mapper.Map<CategoryDto>(product);
 
-            categoryR.Delete(id);
-            categoryR.Save();
+            var categoryToDelete = await _categoryRepo.GetItemBySpec(new CategorySpecs.ById(id));
+
+            if (categoryToDelete == null)
+                throw new HttpException("Category not found.", HttpStatusCode.NotFound);
+
+            await _categoryRepo.DeleteAsync(categoryToDelete);
+            await _categoryRepo.SaveChangesAsync();
         }
 
         public async Task Edit(EditCategoryModel categoryEdit)
         {
-            categoryR.Update(mapper.Map<Category>(categoryEdit));
-            categoryR.Save();
-        }
+            var existingCategory = await _categoryRepo.GetItemBySpec(new CategorySpecs.ById(categoryEdit.Id));
 
+            if (existingCategory == null)
+                throw new HttpException("Category not found.", HttpStatusCode.NotFound);
+
+            _mapper.Map(categoryEdit, existingCategory);
+
+            await _categoryRepo.UpdateAsync(existingCategory);
+            await _categoryRepo.SaveChangesAsync();
+        }
 
         public async Task<CategoryDto> Get(int id)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (id <= 0)
+                throw new HttpException("Category not found.", HttpStatusCode.BadRequest);
 
-            var category = await categoryR.GetItemBySpec(new CategorySpecs.ById(id));
-            if (category == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var category = await _categoryRepo.GetItemBySpec(new CategorySpecs.ById(id));
+            if (category == null)
+                throw new HttpException("Category not found.", HttpStatusCode.NotFound);
 
-            return mapper.Map<CategoryDto>(category);
+            return _mapper.Map<CategoryDto>(category);
         }
 
-        public IEnumerable<CategoryDto> GetAll()
+        public async Task<IEnumerable<CategoryDto>> GetAll()
         {
-            return mapper.Map<List<CategoryDto>>(categoryR.GetAll());
+            var categories = await _categoryRepo.GetListBySpec(new CategorySpecs.All());
+            return _mapper.Map<List<CategoryDto>>(categories);
         }
 
-        async Task<IEnumerable<CategoryDto>> ICategoryService.Get(IEnumerable<int> ids)
+        public async Task<IEnumerable<CategoryDto>> Get(IEnumerable<int> ids)
         {
-            return mapper.Map<List<CategoryDto>>(await categoryR.GetListBySpec(new CategorySpecs.ByIds(ids)));
+            var categories = await _categoryRepo.GetListBySpec(new CategorySpecs.ByIds(ids));
+            return _mapper.Map<List<CategoryDto>>(categories);
         }
     }
 }
