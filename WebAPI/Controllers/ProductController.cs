@@ -43,13 +43,13 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetFilteredProducts([FromQuery] ProductFilterRequestDto request)
         {
             if (request == null)
-                return BadRequest(new { error = "Некоректні вхідні дані запиту." });
+                return BadRequest(new { error = "Incorrect input data." });
 
             if (request.Page < 1)
-                return BadRequest(new { error = "Номер сторінки не може бути меншим за 1." });
+                return BadRequest(new { error = "Page cannot be less than 1." });
 
             if (request.PageSize < 1)
-                return BadRequest(new { error = "Розмір сторінки не може бути меншим за 1." });
+                return BadRequest(new { error = "PageSize cannot be less than 1." });
 
             var query = _productService.GetAll();
 
