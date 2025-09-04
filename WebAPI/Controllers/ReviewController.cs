@@ -4,6 +4,8 @@ using BLL.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using static WebAPI.Helpers.SeedExtension;
 
 namespace WebAPI.Controllers
@@ -12,35 +14,38 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ReviewController : Controller
     {
-        private readonly IReviewService reviewService_;
+        private readonly IReviewService _reviewService;
 
         public ReviewController(IReviewService reviewService)
         {
-            this.reviewService_ = reviewService;
+            _reviewService = reviewService;
         }
 
-
         [HttpGet("all")]
-        public IActionResult GetAll() => Ok(reviewService_.GetAll());
-
-        [HttpGet("{id::int}")]
-        public async Task<ActionResult> Get([FromRoute] int id)
+        public async Task<ActionResult<IEnumerable<ReviewDto>>> GetAll()
         {
-            return Ok(await reviewService_.Get(id));
+            var reviews = await _reviewService.GetAll();
+            return Ok(reviews);
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ReviewDto>> Get([FromRoute] int id)
+        {
+            return Ok(await _reviewService.Get(id));
         }
 
         [HttpPost]
-        public IActionResult Create([FromForm] CreateReviewModel model)
+        public async Task<IActionResult> Create([FromForm] CreateReviewModel model)
         {
-            reviewService_.Create(model);
+            await _reviewService.Create(model);
             return Ok();
         }
-        
-        [HttpDelete("{id::int}")]
+
+        [HttpDelete("{id:int}")]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete(int id)
         {
-            await reviewService_.Delete(id);
+            await _reviewService.Delete(id);
             return Ok();
         }
     }

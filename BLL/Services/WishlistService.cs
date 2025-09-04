@@ -4,72 +4,68 @@ using BLL.DTOs.Wishlist;
 using BLL.Entities;
 using BLL.Interfaces;
 using BLL.Specifications;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
     public class WishlistService : IWishlistService
     {
-        private readonly IRepository<Wishlist> wishlistR;
-        private readonly UserManager<User> userManager;
+        private readonly IRepository<Wishlist> _wishlistRepo;
         private readonly IMapper _mapper;
 
-        public WishlistService(IRepository<Wishlist> R, IMapper mapp)
+        public WishlistService(IRepository<Wishlist> wishlistRepo, IMapper mapper)
         {
-            this.wishlistR = R;
-            this._mapper = mapp;
+            _wishlistRepo = wishlistRepo;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<WishlistDto>> GetAllWishlistItems()
         {
-            var wishlistitems = wishlistR.GetAll() ?? Enumerable.Empty<Wishlist>();
-            return _mapper.Map<List<WishlistDto>>(wishlistitems);
+            var wishlistItems = await _wishlistRepo.GetListBySpec(new WishlistSpecs.All());
+            return _mapper.Map<List<WishlistDto>>(wishlistItems);
         }
 
-        public async Task<WishlistDto> GetWishlistById(string id)
+        public async Task<WishlistDto> GetWishlistById(string userId)
         {
-            var wishllstitem = await wishlistR.GetItemBySpec(new WishlistSpecs.ByUserId(id));
-            if (wishllstitem == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var wishlistitem = await _wishlistRepo.GetItemBySpec(new WishlistSpecs.ByUserId(userId));
+            if (wishlistitem == null)
+                throw new HttpException("Wishlist item not found for this user.", HttpStatusCode.NotFound);
 
-            return _mapper.Map<WishlistDto>(wishllstitem);
-        }
-
-        public async Task<WishlistDto> GetWishlistById(int id)
-        {
-            var wishllstitem = await wishlistR.GetItemBySpec(new WishlistSpecs.ById(id));
-            if (wishllstitem == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
-
-            return _mapper.Map<WishlistDto>(wishllstitem);
+            return _mapper.Map<WishlistDto>(wishlistitem);
         }
 
         public async Task Create(CreateWishlistModel itemDto)
         {
             var item = _mapper.Map<Wishlist>(itemDto);
-            wishlistR.Insert(item);
-            wishlistR.Save();
+            await _wishlistRepo.InsertAsync(item);
+            await _wishlistRepo.SaveChangesAsync();
         }
 
         public async Task Edit(EditWishlistModel model)
         {
-            wishlistR.Update(_mapper.Map<Wishlist>(model));
-            wishlistR.Save();
+            var existingWishlistItem = await _wishlistRepo.GetItemBySpec(new WishlistSpecs.ById(model.Id));
+
+            if (existingWishlistItem == null)
+                throw new HttpException("Wishlist item not found.", HttpStatusCode.NotFound);
+
+            _mapper.Map(model, existingWishlistItem);
+
+            await _wishlistRepo.UpdateAsync(existingWishlistItem);
+            await _wishlistRepo.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
         {
-            if (await GetWishlistById(id) == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (id <= 0)
+                throw new HttpException("Wishlist item not found.", HttpStatusCode.BadRequest);
 
-            var wishlist = await GetWishlistById(id);
-            var wishlistDto = _mapper.Map<Wishlist>(wishlist);
+            var wishlistItemToDelete = await _wishlistRepo.GetItemBySpec(new WishlistSpecs.ById(id));
 
-            wishlistR.Delete(id);
-            wishlistR.Save();
+            if (wishlistItemToDelete == null)
+                throw new HttpException("Wishlist item not found.", HttpStatusCode.NotFound);
+
+            await _wishlistRepo.DeleteAsync(wishlistItemToDelete);
+            await _wishlistRepo.SaveChangesAsync();
         }
     }
 }

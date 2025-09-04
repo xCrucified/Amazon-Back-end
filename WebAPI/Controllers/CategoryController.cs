@@ -1,9 +1,10 @@
 ﻿using BLL.DTOs;
 using BLL.Interfaces;
-using BLL.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using static WebAPI.Helpers.SeedExtension;
 
 namespace WebAPI.Controllers
@@ -12,24 +13,28 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CategoryController : Controller
     {
-        public readonly ICategoryService categoryService;
+        private readonly ICategoryService _categoryService;
+
         public CategoryController(ICategoryService categoryService)
         {
-            this.categoryService = categoryService;
+            _categoryService = categoryService;
         }
 
         [HttpGet("all")]
-        public IActionResult GetAll() => Ok(this.categoryService.GetAll());
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetAll()
+        {
+            var categories = await _categoryService.GetAll();
+            return Ok(categories);
+        }
 
         [HttpGet("{id:int}")]
-
-        public async Task<IActionResult> Get([FromRoute]int id) =>  Ok(await this.categoryService.Get(id));
+        public async Task<IActionResult> Get([FromRoute] int id) => Ok(await _categoryService.Get(id));
 
         [HttpPost]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
-        public IActionResult Create([FromForm] CreateCategoryModel createCategoryModel)
+        public async Task<IActionResult> Create([FromForm] CreateCategoryModel createCategoryModel)
         {
-            categoryService.Create(createCategoryModel);
+            await _categoryService.Create(createCategoryModel);
             return Ok();
         }
 
@@ -37,7 +42,7 @@ namespace WebAPI.Controllers
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Edit([FromBody] EditCategoryModel category)
         {
-            await categoryService.Edit(category);
+            await _categoryService.Edit(category);
             return Ok();
         }
 
@@ -45,7 +50,7 @@ namespace WebAPI.Controllers
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            await categoryService.Delete(id);
+            await _categoryService.Delete(id);
             return Ok();
         }
     }

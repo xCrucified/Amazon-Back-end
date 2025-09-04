@@ -1,55 +1,55 @@
 ﻿using BLL.DTOs;
 using BLL.Interfaces;
-using BLL.Services;
-using BLL.Specifications;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using static WebAPI.Helpers.SeedExtension;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class SubcategoryController : Controller
     {
-        private readonly ISubcategoryService subcategoryService;
+        private readonly ISubcategoryService _subcategoryService;
 
         public SubcategoryController(ISubcategoryService subcategoryService)
         {
-            this.subcategoryService = subcategoryService;
+            _subcategoryService = subcategoryService;
         }
 
         [HttpGet("all")]
-        public IActionResult GetAll() => Ok(this.subcategoryService.GetAll());
+        public async Task<ActionResult<IEnumerable<SubcategoryDto>>> GetAll()
+        {
+            var subcategories = await _subcategoryService.GetAll();
+            return Ok(subcategories);
+        }
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
-            return Ok(await subcategoryService.Get(id));
+            return Ok(await _subcategoryService.Get(id));
         }
 
         [HttpGet("{id:int}/subcategories")]
-        public async Task<ActionResult> GetSubcategoriesByCategory([FromRoute] int id)
+        public async Task<ActionResult<IEnumerable<SubcategoryDto>>> GetSubcategoriesByCategory([FromRoute] int id)
         {
-            var subcategories = await subcategoryService.GetSubcategoriesByCategoryAsync(id);
-
+            var subcategories = await _subcategoryService.GetSubcategoriesByCategoryAsync(id);
             return Ok(subcategories);
         }
 
         [HttpGet("category-{categoryName}/subcategories")]
-        public async Task<ActionResult> GetSubcategoriesByCategory([FromRoute] string categoryName)
+        public async Task<ActionResult<IEnumerable<SubcategoryDto>>> GetSubcategoriesByCategory([FromRoute] string categoryName)
         {
-            var subcategories = await subcategoryService.GetSubcategoriesByCategoryNameAsync(categoryName);
-
+            var subcategories = await _subcategoryService.GetSubcategoriesByCategoryNameAsync(categoryName);
             return Ok(subcategories);
         }
 
         [HttpPost]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
-        public IActionResult Create([FromBody] CreateSubcategoryModel model)
+        public async Task<IActionResult> Create([FromBody] CreateSubcategoryModel model)
         {
-            subcategoryService.Create(model);
+            await _subcategoryService.Create(model); // Правильно await'имо асинхронний метод
             return Ok();
         }
 
@@ -57,7 +57,7 @@ namespace WebAPI.Controllers
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Edit([FromBody] EditSubcategoryModel model)
         {
-            await subcategoryService.Edit(model);
+            await _subcategoryService.Edit(model);
             return Ok();
         }
 
@@ -65,7 +65,7 @@ namespace WebAPI.Controllers
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = Roles._ADMIN)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            await subcategoryService.Delete(id);
+            await _subcategoryService.Delete(id);
             return Ok();
         }
     }

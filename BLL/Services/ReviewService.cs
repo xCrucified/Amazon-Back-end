@@ -1,58 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using BLL.DTOs;
 using BLL.Entities;
 using BLL.Interfaces;
 using BLL.Specifications;
+using System.Net;
 
 namespace BLL.Services
 {
     public class ReviewService : IReviewService
     {
-        private readonly IMapper mapper;
-        private readonly IRepository<Review> reviewR;
+        private readonly IMapper _mapper;
+        private readonly IRepository<Review> _reviewRepo;
 
         public ReviewService(IMapper mapper, IRepository<Review> repository)
         {
-            this.mapper = mapper;
-            this.reviewR = repository;
+            _mapper = mapper;
+            _reviewRepo = repository;
         }
 
-        public void Create(CreateReviewModel createReviewModel)
+        public async Task Create(CreateReviewModel createReviewModel)
         {
-            reviewR.Insert(mapper.Map<Review>(createReviewModel));
-            reviewR.Save();
+            var reviewToInsert = _mapper.Map<Review>(createReviewModel);
+            await _reviewRepo.InsertAsync(reviewToInsert);
+            await _reviewRepo.SaveChangesAsync();
         }
 
         public async Task<ReviewDto> Get(int id)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            if (id <= 0)
+                throw new HttpException("Review not found.", HttpStatusCode.BadRequest);
 
-            var product = await reviewR.GetItemBySpec(new ReviewSpecs.ById(id));
-            if (product == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+            var review = await _reviewRepo.GetItemBySpec(new ReviewSpecs.ById(id));
+            if (review == null)
+                throw new HttpException("Review not found.", HttpStatusCode.NotFound);
 
-            return mapper.Map<ReviewDto>(product);
+            return _mapper.Map<ReviewDto>(review);
         }
 
-        public IEnumerable<ReviewDto> GetAll()
+        public async Task<IEnumerable<ReviewDto>> GetAll()
         {
-            return mapper.Map<List<ReviewDto>>(reviewR.GetAll());
+            var reviews = await _reviewRepo.GetListBySpec(new ReviewSpecs.All());
+            return _mapper.Map<List<ReviewDto>>(reviews);
         }
 
         public async Task Delete(int id)
         {
-            if (id < 0) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
-            
-            var review = await Get(id);
-            var reviewDto = mapper.Map<ReviewDto>(review);
-            
-            reviewR.Delete(id);
-            reviewR.Save();
+            if (id <= 0)
+                throw new HttpException("Review not found.", HttpStatusCode.BadRequest);
+
+            var reviewToDelete = await _reviewRepo.GetItemBySpec(new ReviewSpecs.ById(id));
+
+            if (reviewToDelete == null)
+                throw new HttpException("Review not found.", HttpStatusCode.NotFound);
+
+            await _reviewRepo.DeleteAsync(reviewToDelete);
+            await _reviewRepo.SaveChangesAsync();
         }
     }
 }

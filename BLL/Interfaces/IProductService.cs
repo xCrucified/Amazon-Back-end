@@ -1,10 +1,4 @@
 ﻿using BLL.DTOs;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
@@ -12,10 +6,13 @@ namespace BLL.Interfaces
     {
         Task<IEnumerable<ProductDto>> Get(IEnumerable<int> ids);
         Task<ProductDto> Get(int id);
-        IEnumerable<ProductDto> GetAll();
+
+        IQueryable<ProductDto> GetAll();
+
         Task Create(CreateProductModel productModel);
         Task Delete(int id);
         Task Edit(EditProductModel productEdit);
-        IEnumerable<ProductDto> GetBySubcategory(int subcategoryId);
+
+        IQueryable<ProductDto> GetBySubcategory(int subcategoryId);
     }
 }

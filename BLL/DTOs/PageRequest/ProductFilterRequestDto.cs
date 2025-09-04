@@ -2,14 +2,15 @@
 {
     public class ProductFilterRequestDto
     {
-        public int page { get; set; } = 1;
-        public int pageSize { get; set; } = 16;
-        public decimal? minPrice { get; set; }
-        public decimal? maxPrice { get; set; }
-        public bool? inStock { get; set; }
-        public int? categoryId { get; set; }
-        public int? subcategoryId { get; set; }
-        public string? search { get; set; }
-        public float? minRating { get; set; }
+        public decimal? MinPrice { get; set; }
+        public decimal? MaxPrice { get; set; }
+        public bool? InStock { get; set; }
+        public int? CategoryId { get; set; }
+        public int? SubcategoryId { get; set; }
+        public string Search { get; set; }
+        public double? MinRating { get; set; }
+
+        public int Page { get; set; } = 1;
+        public int PageSize { get; set; } = 10;
     }
 }

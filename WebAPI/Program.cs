@@ -1,4 +1,5 @@
-using WebAPI.Helpers;
+using Ardalis.Specification;
+using Ardalis.Specification.EntityFrameworkCore;
 using BLL;
 using BLL.Interfaces;
 using BLL.Services;
@@ -12,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using WebAPI.Helpers;
 
 namespace WebAPI
 {
@@ -40,7 +42,7 @@ namespace WebAPI
             })
             .AddJwtBearer(options =>
             {
-                options.RequireHttpsMetadata = false; 
+                options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -57,7 +59,7 @@ namespace WebAPI
             {
                 options.Cookie.HttpOnly = true;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Ensure HTTPS
-                options.Cookie.SameSite = SameSiteMode.None;  // Required for OAuth
+                options.Cookie.SameSite = SameSiteMode.None; // Required for OAuth
             });
 
             builder.Services.AddHttpContextAccessor();
@@ -71,6 +73,7 @@ namespace WebAPI
             builder.Services.AddFluentValidators();
             builder.Services.AddCustomServices();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<ISpecificationEvaluator>(provider => SpecificationEvaluator.Default);
             builder.Services.AddHttpClient<IGoogleAuthService, GoogleAuthService>();
             builder.Services.AddHealthChecks();
 
@@ -106,26 +109,17 @@ namespace WebAPI
                 RequestPath = "/Images"
             });
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHealthChecks("/healthz");
-                endpoints.MapControllers();
-            });
-
-            //if (app.Environment.IsDevelopment())
-            //{
             app.UseSwagger();
             app.UseSwaggerUI();
-            //}
 
             app.UseAuthentication();
-
             app.UseAuthorization();
 
             app.UseHangfireDashboard("/dash");
             JobConfigurator.AddJobs();
 
             app.MapControllers();
+            app.MapHealthChecks("/healthz");
 
             app.Run();
         }

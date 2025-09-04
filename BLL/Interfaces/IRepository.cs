@@ -1,26 +1,26 @@
 ﻿using Ardalis.Specification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntity> GetAll();
-        TEntity GetById(object id);
-        void Insert(TEntity entity);
-        void Delete(object id);
-        void Delete(TEntity entityToDelete);
-        void Update(TEntity entityToUpdate);
+        IQueryable<TEntity> GetQueryable();
 
-        
+        Task<IEnumerable<TEntity>> GetAllAsync();
 
-        public Task<TEntity?> GetItemBySpec(ISpecification<TEntity> specification);
-        public Task<IEnumerable<TEntity>> GetListBySpec(ISpecification<TEntity> specification);
+        Task<TEntity?> GetByIdAsync(object id);
 
-        void Save();
+        Task InsertAsync(TEntity entity);
+
+        Task DeleteAsync(object id);
+
+        Task DeleteAsync(TEntity entityToDelete);
+
+        Task UpdateAsync(TEntity entityToUpdate);
+
+        Task<TEntity?> GetItemBySpec(ISpecification<TEntity> specification);
+        Task<IEnumerable<TEntity>> GetListBySpec(ISpecification<TEntity> specification);
+
+        Task SaveChangesAsync();
     }
 }
