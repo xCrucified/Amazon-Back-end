@@ -49,7 +49,7 @@ namespace BLL.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
+                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? "0000000"),
                 new Claim(ClaimTypes.Name, user.UserName),
             };
 

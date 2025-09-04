@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
-using BLL.DTOs;
 using BLL.DTOs.User;
 using BLL.Entities;
 using BLL.Interfaces;
 using BLL.Specifications;
+using Google.Apis.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -137,19 +137,17 @@ namespace BLL.Services
 
         public async Task<string> GoogleLoginAsync(string googleToken)
         {
-            var googleUser = await _googleAuthService.ValidateGoogleTokenAsync(googleToken);
-            if (googleUser == null)
-            {
-                throw new Exception("Invalid Google Token");
-            }
-
-            var user = await userManager.FindByEmailAsync(googleUser.Email);
+            var payload = await GoogleJsonWebSignature.ValidateAsync(googleToken);
+            
+            var user = await userManager.FindByEmailAsync(payload.Email);
             if (user == null)
             {
                 user = new User
                 {
-                    UserName = googleUser.Email,
-                    Email = googleUser.Email
+                    UserName = payload.Name,
+                    Email = payload.Email,
+                    PhoneNumber = "01232321",
+
                 };
                 await userManager.CreateAsync(user);
             }

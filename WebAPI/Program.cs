@@ -20,7 +20,7 @@ namespace WebAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            var ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+            var ConnectionString = builder.Configuration.GetConnectionString("connStr")!;
 
             builder.Services.AddDbContext<AmazonDbContext>(options =>
                     options.UseNpgsql(ConnectionString));
